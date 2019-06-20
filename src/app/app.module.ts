@@ -8,6 +8,7 @@ import { CustomerProfileComponent } from './components/customer/customer-profile
 import { VendorComponent } from './components/vendor/vendor.component';
 import { VendorProfileComponent } from './components/vendor/vendor-profile/vendor-profile.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AdminComponent } from './components/admin/admin.component';
     CustomerProfileComponent,
     VendorComponent,
     VendorProfileComponent,
-    AdminComponent
+    AdminComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,
