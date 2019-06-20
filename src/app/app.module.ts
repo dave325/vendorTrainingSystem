@@ -4,13 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { CustomerProfileComponent } from './components/customer/customer-profile/customer-profile.component';
+import { VendorComponent } from './components/vendor/vendor.component';
+import { VendorProfileComponent } from './components/vendor/vendor-profile/vendor-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    VendorComponent,
+    VendorProfileComponent
   ],
   imports: [
     BrowserModule,
