@@ -1,3 +1,6 @@
-<p>
-  search-event works!
-</p>
+<form (ngSubmit)="onSubmit()">
+  <input type="text" name="search"  [(ngModel)] = "searchTerm"
+    placeholder="Search for an event">
+  <input type="Submit" name="search" value="Search">
+</form>
+
