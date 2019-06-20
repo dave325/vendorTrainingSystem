@@ -14,6 +14,7 @@ import { ListEventsComponent } from './components/list-events/list-events.compon
 import { SearchEventComponent } from './components/search-event/search-event.component';
 import { EventComponent } from './components/event/event.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
+import { NavbarComponent } from './components/header/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ContactInfoComponent } from './components/contact-info/contact-info.com
     ListEventsComponent,
     SearchEventComponent,
     EventComponent,
-    ContactInfoComponent
+    ContactInfoComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
