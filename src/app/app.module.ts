@@ -11,6 +11,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminProfileComponent } from './components/admin/admin-profile/admin-profile.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { ListEventsComponent } from './components/list-events/list-events.component';
+import { SearchEventComponent } from './components/search-event/search-event.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListEventsComponent } from './components/list-events/list-events.compon
     AdminComponent,
     AdminProfileComponent,
     FrontPageComponent,
-    ListEventsComponent
+    ListEventsComponent,
+    SearchEventComponent
   ],
   imports: [
     BrowserModule,
