@@ -13,6 +13,7 @@ import { FrontPageComponent } from './components/front-page/front-page.component
 import { ListEventsComponent } from './components/list-events/list-events.component';
 import { SearchEventComponent } from './components/search-event/search-event.component';
 import { EventComponent } from './components/event/event.component';
+import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EventComponent } from './components/event/event.component';
     FrontPageComponent,
     ListEventsComponent,
     SearchEventComponent,
-    EventComponent
+    EventComponent,
+    ContactInfoComponent
   ],
   imports: [
     BrowserModule,
