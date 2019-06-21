@@ -25,7 +25,7 @@ SECRET_KEY = 'qoxckp8ku%5belym@41mu*^-!z!d^(-*uvq74!3gzg5el@m$m!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_mysql'
 ]
 
 MIDDLEWARE = [
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'vendortraining.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'wordpress',
+        'USER': 'wordpress',
+        'PASSWORD': 'wordpress',
+        'HOST': 'db',
+        'PORT': 3306,
     }
 }
 
