@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchEventComponent implements OnInit {
 
+  searchTerm:string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit():void{
+    const searchTerm = this.searchTerm;
+    console.log(searchTerm);
   }
 
 }

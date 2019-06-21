@@ -1,3 +1,25 @@
-<p>
-  event works!
-</p>
+<div>
+  <div>Event_id: {{ event._id }}</div>
+  <div>Vendor_id: {{ event.v_id }}</div>
+  <div>Name: {{ event.name }}</div>
+  <div>Summary: {{ event.summary }}</div>
+  <div>Description: {{ event.description }}</div>
+  <div>Url: <a href="event.url">{{ event.url }}</a></div>
+  <div>Start Time: {{ event.start_time }}</div>
+  <div>End Time: {{  event.end_time }}</div>
+  <div>Created At: {{ event.created_at }}</div>
+  <div>Modified At: {{ event.modified_at }}</div>
+  <div>Published At: {{ event.published_at }}</div>
+  <div>Status: {{ event.status }}</div>
+  <div>Created By: {{ event.created_by }}</div>
+  <div>Modified By: {{ event.modified_by }}</div>
+  <span *ngIf="event.listed; then isListed; else notListed"></span>
+  <ng-template #isListed>Event is listed!</ng-template>
+  <ng-template #notListed>Event is not listed!</ng-template>
+  <span *ngIf="event.shareable; then isShared; else notShared"></span>
+  <ng-template #isListed>Event is shareable!</ng-template>
+  <ng-template #notListed>Event is not shareable!</ng-template>
+  <div>Capacity: {{ event.capacity }}</div>
+  <hr>
+</div>
+
