@@ -16,6 +16,7 @@ import { SearchEventComponent } from './components/search-event/search-event.com
 import { EventComponent } from './components/event/event.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
+import { ReportVendorComponent } from './modals/report-vendor/report-vendor.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
     SearchEventComponent,
     EventComponent,
     ContactInfoComponent,
-    NavbarComponent
+    NavbarComponent,
+    ReportVendorComponent
   ],
   imports: [
     BrowserModule,
