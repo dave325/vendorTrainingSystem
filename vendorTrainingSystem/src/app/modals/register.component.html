@@ -4,26 +4,39 @@
         <div>
             <label>First Name:</label>
             <input type="text" class = "form-control" [(ngModel)]="user.firstName" #first="ngModel" required>
+            <div *ngIf="f.submitted && firstName.invalid" class="errors">
+                <div *ngIf="firstName.errors.required">First Name is required</div>
+            </div>
         </div>
 		 <div>
             <label>Last Name:</label>
             <input type="text" class = "form-control" [(ngModel)]="user.lastName" #last="ngModel" required>
+            <div *ngIf="l.submitted && lastName.invalid" class="errors">
+                <div *ngIf="lastName.errors.required">Last Name is required</div>
          </div>
 		<div>
             <label>Phone Number:</label>
             <input type="phone" class = "form-control" [(ngModel)]="user.phone" #phone="ngModel" required>
+            <div *ngIf="p.submitted && phone.invalid" class="errors">
+                <div *ngIf="phone.errors.required">Phone Number is required</div>
         </div>
 		 <div>
             <label>Email:</label>
             <input type="email" class = "form-control" [(ngModel)]="user.email" #email="ngModel" required>
+            <div *ngIf="email.submitted && email.invalid" class="errors">
+                <div *ngIf="email.errors.required">Email is required</div>
          </div>
         <div>
             <label>Password:</label>
             <input type="password" class = "form-control" [(ngModel)]="user.password" #password="ngModel" required>
+            <div *ngIf="password.submitted && password.invalid" class="errors">
+                <div *ngIf="password.errors.required">Password is required</div>
         </div>
         <div>
             <label>Confirm Password:</label>
             <input type="password" class = "form-control" [(ngModel)]="user.confirmpassword" #password="ngModel" required>
+            <div *ngIf="password.submitted && password.invalid" class="errors">
+                <div *ngIf="password.errors.required">Password is required</div>
         </div>
         <div>
             <button type="submit" [disabled]="!f.valid">Submit</button>
