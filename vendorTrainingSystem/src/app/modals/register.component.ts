@@ -8,6 +8,11 @@ import { Component } from '@angular/core';
 
 export class RegisterComponent {
 
+    //these two lines are temporary 
+    submitted = false;
+
+    ngSubmit() { this.submitted = true; }
+
 }
 
 

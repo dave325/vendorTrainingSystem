@@ -13,7 +13,7 @@
       <textarea name="Violation" class="form-control" [(ngModel)]="violationText" #violation="ngModel" id="violation" required></textarea>
     </div>
     <div *ngIf = "violation.invalid && (violation.dirty || violation.touched)">Please provide the description of violation</div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success" [disabled] = "vendorName.invalid || violation.invalid">Submit</button>
  
   </form>
   
