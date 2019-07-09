@@ -14,11 +14,13 @@ import { Event } from '../../models/Event';
       // ...
       state('open', style({
         height: '200px',
+        width : "100%",
         opacity: 1,
         backgroundColor: 'yellow'
       })),
       state('closed', style({
         height: '100px',
+        width: "25%",
         opacity: 0.5,
         backgroundColor: 'green'
       })),
