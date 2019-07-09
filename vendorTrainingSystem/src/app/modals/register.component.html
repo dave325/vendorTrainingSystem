@@ -1,32 +1,32 @@
 <div class="register">
     <h1>Register for account</h1>
     <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-        <p>
+        <div>
             <label>First Name:</label>
-            <input type="text"  [(ngModel)]="user.firstName" #first="ngModel" required>
-        </p>
-		 <p>
+            <input type="text" class = "first" [(ngModel)]="user.firstName" #first="ngModel" required>
+        </div>
+		 <div>
             <label>Last Name:</label>
-            <input type="text"  [(ngModel)]="user.lastName" #last="ngModel" required>
-        </p>
-		<p>
+            <input type="text" class = "last" [(ngModel)]="user.lastName" #last="ngModel" required>
+         </div>
+		<div>
             <label>Phone Number:</label>
-            <input type="phone"  [(ngModel)]="user.phone" #phone="ngModel" required>
-        </p>
-		 <p>
+            <input type="phone" class = "phone" [(ngModel)]="user.phone" #phone="ngModel" required>
+        </div>
+		 <div>
             <label>Email:</label>
-            <input type="email"  [(ngModel)]="user.email" #email="ngModel" required>
-        </p>
-        <p>
+            <input type="email" class = "email" [(ngModel)]="user.email" #email="ngModel" required>
+         </div>
+        <div>
             <label>Password:</label>
-            <input type="password"  [(ngModel)]="user.password" #password="ngModel" required>
-        </p>
-        <p>
+            <input type="password" class = "password" [(ngModel)]="user.password" #password="ngModel" required>
+        </div>
+        <div>
             <label>Confirm Password:</label>
-            <input type="password"  [(ngModel)]="user.confirmpassword" #password="ngModel" required>
-        </p>
-        <p>
+            <input type="password" class = "confirmpassword" [(ngModel)]="user.confirmpassword" #password="ngModel" required>
+        </div>
+        <div>
             <button type="submit" [disabled]="!f.valid">Submit</button>
-        </p>
+        </div>
     </form>
 </div>
