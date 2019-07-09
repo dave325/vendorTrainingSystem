@@ -6,6 +6,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { VendorComponent } from './components/vendor/vendor.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ListEventsComponent } from './components/list-events/list-events.component';
+// import { RegisterComponent } from './modal/register.component';
 
 
 const routes: Routes = [
