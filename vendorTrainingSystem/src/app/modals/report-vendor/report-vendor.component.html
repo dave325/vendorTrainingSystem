@@ -4,14 +4,15 @@
   <form #form="ngForm" (ngSubmit)="onSubmitReport()">
     <div class="form-group">
       <label for="vendorName">Vendor Name:</label>
-      <input type="text" class="form-control" [(ngModel)]="vendorName" #vendorName="ngModel" id="vendorName" required>
+      <input type="text" class="form-control" [(ngModel)]="vendorNameText" #vendorName="ngModel" id="vendorName" required>
     </div>
+    <p>{{errors.vendorName}}</p>
     
     <div class="form-group">
       <label for="violation">Description of the violation</label>
-      <input type="text" class="form-control" [(ngModel)]="violation" #violation="ngModel" id="violation" required>
+      <input type="text" class="form-control" [(ngModel)]="violationText" #violation="ngModel" id="violation" required>
     </div>
- 
+    <p>{{errors.violation}}</p>
     <button type="submit" class="btn btn-success">Submit</button>
  
   </form>
