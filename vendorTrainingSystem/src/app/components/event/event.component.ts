@@ -7,7 +7,7 @@ import { Event } from '../../models/Event';
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css'],
-  host:{"class" : "col-12 col-md-3"},
+  host:{ "[class]" : "classListNames"},
   animations:[
     //animations go here
     trigger('openClose', [
@@ -29,12 +29,30 @@ import { Event } from '../../models/Event';
         animate('0.5s')
       ]),
     ]),
-  ],
-  templateUrl: 'event.component.html',
-  styleUrls: ['event.component.css']
+  ]
 })
 
 export class EventComponent implements OnInit {
+
+  isOpen = false;
+  classListNames;
+  cn = "col-12 col-md-3";;
+  constructor(){
+    this.classListNames = this.cn;
+  }
+  toggle(){
+    this.isOpen = !this.isOpen;
+    if(this.isOpen){
+      this.classListNames  = "col-12"
+    }
+    else{
+      this.classListNames = "col-md-3"
+    }
+  }
+
+  props: {
+
+  }
 
   @Input() event:Event;
 
