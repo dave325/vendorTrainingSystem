@@ -12,7 +12,7 @@ export class ReportVendorComponent implements OnInit {
   ngOnInit() {
   }
 
-  onReport(){
+  onSubmitReport(){
     //pass data to database
   }
 }
