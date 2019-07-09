@@ -7,7 +7,7 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
+      "prefix": "dsol",
       "schematics": {},
       "architect": {
         "build": {
@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "vendorTrainingSystem:build"
+            "browserTarget": "vendorTrainingSystem:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

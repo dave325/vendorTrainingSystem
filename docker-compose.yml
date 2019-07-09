@@ -13,12 +13,21 @@ services:
        MYSQL_PASSWORD: wordpress
   web:
     build: ./vendortraining
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:3000
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "3000:3000"
     depends_on:
       - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_USER: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress
 volumes:
     db_data: {}
