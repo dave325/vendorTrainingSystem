@@ -1,3 +1,44 @@
-<p>
-  contact-info works!
-</p>
+<div>
+  <div *ngIf = "!editing; else editBlock"> 
+    <div class = "row">
+      <p class = "col-10">  </p>
+      <button class = "btn" (click)="editing = true">Edit</button>
+    </div>
+    <h3> Contact Info</h3>
+    <div>
+      Vendor Name: {{name}} 
+    </div>
+    <div>
+      Phone Number: {{phoneNumber}}
+    </div>
+    <div>
+      Email: {{email}}
+    </div>
+  </div>
+  <ng-template #editBlock>
+    <h3> Edit Contact Info </h3>
+    <form #form ="ngForm" (ngSubmit)="editConfirm()">
+      <div class = "form-group">
+        <label for="name"> Vendor Name: </label>
+        <input name="name" class = "form-control" [(ngModel)] = name>
+        <br>
+        <div> {{errorMsgName}}</div>    
+      </div>
+      
+      <div class = "form-group">
+        <label for="phoneNumber"> Phone Number: </label>
+        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber>   
+        <br>
+        <div> {{errorMsgPhoneNumber}}</div> 
+      </div>
+      <div class = "form-group">
+        <label for="email"> Email: </label>
+        <input name="email" class = "form-control" [(ngModel)] = email>    
+        <br>
+        <div> {{errorMsgEmail}}</div>
+      </div>
+      <button type = "submit" class="btn btn-success"> Submit </button>
+    </form>
+    
+  </ng-template>
+</div>
