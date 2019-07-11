@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
+interface ReportVendorModel{
+  vendorName: string;
+  violation: string;
+}
+
 @Component({
   selector: 'dsol-report-vendor',
   templateUrl: './report-vendor.component.html',
   styleUrls: ['./report-vendor.component.css']
 })
 export class ReportVendorComponent implements OnInit {
-  vendorNameText: string;
-  violationText: string;
+  reportVendorModel = <ReportVendorModel>{};
+  showModal:boolean = false;
   constructor() {
     
   }
@@ -17,7 +22,7 @@ export class ReportVendorComponent implements OnInit {
 
   onSubmitReport(){
     let valid: boolean;
-    alert("reported vendor: "+this.vendorNameText+", violation: "+this.violationText);
+    alert("reported vendor: "+this.reportVendorModel.vendorName+", violation: "+this.reportVendorModel.violation);
     
     
   }

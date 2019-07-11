@@ -1,34 +1,51 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+
+
 import { Event } from '../../models/Event';
+import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css'],
-  host:{ "[class]" : "classListNames"},
-  animations:[
+  host: { "[class]": "classListNames" },
+  animations: [
     //animations go here
     trigger('openClose', [
       // ...
       state('open', style({
-        height: '200px',
-        width : "100%",
+        height: '*',
+        width: "100%",
         opacity: 1,
-        backgroundColor: 'yellow'
+        backgroundColor: "#ff000085"
       })),
       state('closed', style({
-        height: '100px',
-        width: "25%",
-        opacity: 0.5,
+        height: '*',
+        width: "1%",
+        opacity: 1,
         backgroundColor: 'green'
       })),
+      state('openV', style({
+        height: '*', // wild card to form fit height        
+      })),
+      state('closedV', style({
+        height: '0px'
+      })),
+      
+      transition('openV => closedV', [
+        animate('3s')
+      ]),
+      
       transition('open => closed', [
-        animate('1s')
+        animate('.5s')
       ]),
       transition('closed => open', [
-        animate('0.5s')
+        animate('10s')
       ]),
     ]),
   ]
@@ -37,26 +54,35 @@ import { Event } from '../../models/Event';
 export class EventComponent implements OnInit {
 
   isOpen = false;
+  isOpenVertical = false;
   classListNames;
   cn = "col-12 col-md-3";;
-  constructor(){
+  constructor(private modalService: NgbModal) {
     this.classListNames = this.cn;
   }
-  toggle(){
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      
+    }, (reason) => {
+
+    });
+  }
+
+  // swap between col-12 and col-3 to give the animation effect -Ed
+  toggle() {
     this.isOpen = !this.isOpen;
-    if(this.isOpen){
+    this.isOpenVertical = ! this.isOpenVertical;
+    if (this.isOpen) {
       this.classListNames  = "col-12"
     }
-    else{
+    else {
       this.classListNames = "col-md-3"
     }
   }
 
-  props: {
 
-  }
-
-  @Input() event:Event;
+  @Input() event: Event;
 
 
   ngOnInit() {

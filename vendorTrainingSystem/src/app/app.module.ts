@@ -17,7 +17,11 @@ import { EventComponent } from './components/event/event.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ReportVendorComponent } from './modals/report-vendor/report-vendor.component';
-import { ContactComponent } from './modals/contact/contact.component';
+import { RegisterComponent } from './modals/register/register.component';
+import { LoginComponent } from './modals/login/login.component';
+import { EventModalComponent } from './modals/event-modal/event-modal.component';
+import { AboutComponent } from './modals/about/about.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,13 +39,19 @@ import { ContactComponent } from './modals/contact/contact.component';
     ContactInfoComponent,
     NavbarComponent,
     ReportVendorComponent,
-    ContactComponent
+    RegisterComponent,
+    LoginComponent,
+    EventModalComponent,
+    AboutComponent,
+    EventModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
+  entryComponents: [EventModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
