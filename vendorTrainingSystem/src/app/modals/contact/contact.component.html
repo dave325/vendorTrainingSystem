@@ -9,9 +9,6 @@
       Vendor Name: {{name}} 
     </div>
     <div>
-      Address: {{address}}
-    </div>
-    <div>
       Phone Number: {{phoneNumber}}
     </div>
     <div>
@@ -23,19 +20,22 @@
     <form #form ="ngForm" (ngSubmit)="editConfirm()">
       <div class = "form-group">
         <label for="name"> Vendor Name: </label>
-        <input name="vendorName" class = "form-control" [(ngModel)] = name>    
+        <input name="name" class = "form-control" [(ngModel)] = name>
+        <br>
+        <div> {{errorMsgName}}</div>    
       </div>
-      <div class = "form-group">
-        <label for="address"> Address: </label>
-        <input name="address" class = "form-control" [(ngModel)] = address>    
-      </div>
+      
       <div class = "form-group">
         <label for="phoneNumber"> Phone Number: </label>
-        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber>    
+        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber>   
+        <br>
+        <div> {{errorMsgPhoneNumber}}</div> 
       </div>
       <div class = "form-group">
         <label for="email"> Email: </label>
         <input name="email" class = "form-control" [(ngModel)] = email>    
+        <br>
+        <div> {{errorMsgEmail}}</div>
       </div>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>
