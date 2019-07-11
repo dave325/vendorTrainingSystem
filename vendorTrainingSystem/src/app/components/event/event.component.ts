@@ -52,7 +52,7 @@ export class EventComponent implements OnInit {
   toggle() {
     this.isOpen = !this.isOpen;
     if (this.isOpen) {
-      //this.classListNames  = "col-12"
+      this.classListNames  = "col-12"
     }
     else {
       this.classListNames = "col-md-3"

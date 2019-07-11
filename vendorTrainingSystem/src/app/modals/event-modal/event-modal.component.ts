@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-modal.component.css']
 })
 export class EventModalComponent implements OnInit {
+  closeResult: string;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  // constructor(private modalService: NgbModal) { }
 
 }
+
