@@ -19,6 +19,7 @@ import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ReportVendorComponent } from './modals/report-vendor/report-vendor.component';
 import { RegisterComponent } from './modals/register/register.component';
 import { LoginComponent } from './modals/login/login.component';
+import { EventModalComponent } from './modals/event-modal/event-modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoginComponent } from './modals/login/login.component';
     NavbarComponent,
     ReportVendorComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    EventModalComponent
   ],
   imports: [
     BrowserModule,
