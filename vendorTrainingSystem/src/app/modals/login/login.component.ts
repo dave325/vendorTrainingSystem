@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
   email1: string;
   password1: string;
   //for error messaging 
-  errorMsgEmail: "";
-  errorMsgPassword: ""; 
   emailRegex = environment.regExTests.emailRegex;
   phoneRegex = environment.regExTests.phoneRegex;
 
@@ -41,9 +39,13 @@ export class LoginComponent implements OnInit {
       valid = false;
     }
     if(this.contactModel.password1 === ""){
-      
       valid = false;
     }
+
+    if(this.contactModel.email === ""){
+      valid = false;
+    }
+
     
     
   }
