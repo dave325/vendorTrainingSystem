@@ -26,7 +26,8 @@ export class ContactInfoComponent implements OnInit {
     this.errorMsgPhoneNumber = "";
     this.errorMsgEmail = "";
 
-   }
+  }
+  
 
   ngOnInit() {
     

@@ -20,16 +20,16 @@
     <form #form ="ngForm" (ngSubmit)="editConfirm()">
       <div class = "form-group">
         <label for="name"> Vendor Name: </label>
-        <input name="name" class = "form-control" [(ngModel)] = name>
+        <input type="text" name="name" class = "form-control" [(ngModel)] = name #vendorName="ngModel" required>
         <br>
-        <div> {{errorMsgName}}</div>    
+        <div *ngIf = "vendorName.invalid && (vendorName.touched || vendorName.dirty)"> Name field cannot be empty </div>    
       </div>
       
       <div class = "form-group">
         <label for="phoneNumber"> Phone Number: </label>
-        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber>   
+        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber #phoneNumberRef="ngModel">   
         <br>
-        <div> {{errorMsgPhoneNumber}}</div> 
+        <div *ngIf="phoneNumber.invalid"> {{errorMsgPhoneNumber}}</div> 
       </div>
       <div class = "form-group">
         <label for="email"> Email: </label>
