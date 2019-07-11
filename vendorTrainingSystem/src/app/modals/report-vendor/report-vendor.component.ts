@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./report-vendor.component.css']
 })
 export class ReportVendorComponent implements OnInit {
-  vendorNameText: String;
-  violationText: String;
+  vendorNameText: string;
+  violationText: string;
   constructor() {
     
   }
@@ -16,7 +16,7 @@ export class ReportVendorComponent implements OnInit {
   }
 
   onSubmitReport(){
-    let valid: Boolean;
+    let valid: boolean;
     alert("reported vendor: "+this.vendorNameText+", violation: "+this.violationText);
     
     

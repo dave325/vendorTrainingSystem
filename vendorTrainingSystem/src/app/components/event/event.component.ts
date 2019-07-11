@@ -58,7 +58,6 @@ export class EventComponent implements OnInit {
 
   @Input() event:Event;
 
-  constructor() { }
 
   ngOnInit() {
   }
