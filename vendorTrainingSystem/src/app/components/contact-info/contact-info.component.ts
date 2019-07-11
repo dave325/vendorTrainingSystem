@@ -5,8 +5,6 @@ interface ContactInfoModel{
   vendorName: string;
   phoneNumber: string;
   email: string;
-  editing: boolean;
-  
 }
 
 @Component({
@@ -15,11 +13,12 @@ interface ContactInfoModel{
   styleUrls: ['./contact-info.component.css']
 })
 export class ContactInfoComponent implements OnInit {
-  contactModel = <ContactInfoModel>{}
+  contactModel = <ContactInfoModel>{};
+  editing: boolean = false;
   emailRegex = environment.regExTests.emailRegex;
   phoneRegex = environment.regExTests.phoneRegex;
   constructor() {
-    this.contactModel.editing = false;
+    
     this.contactModel.vendorName="Google LLC";
     this.contactModel.phoneNumber="123-503-4867";
     this.contactModel.email="ContactGoogle@gmail.com";
@@ -33,11 +32,11 @@ export class ContactInfoComponent implements OnInit {
   editConfirm(){
     let valid: boolean = true;
     
-    if(!environment.regExTests.emailRegex.test(this.contactModel.email)){
+    if(!this.emailRegex.test(this.contactModel.email)){
       
       valid = false;
     }
-    if(!environment.regExTests.phoneRegex.test(this.contactModel.email)){
+    if(!this.phoneRegex.test(this.contactModel.phoneNumber)){
       
       valid = false;
     }
@@ -47,7 +46,7 @@ export class ContactInfoComponent implements OnInit {
     }
     
     if(valid){
-      this.contactModel.editing=false;
+      this.editing=false;
       alert("name: "+ this.contactModel.vendorName+", phoneNumber: "+ this.contactModel.phoneNumber+ ", email: "+this.contactModel.email);
       //ask for confirmation from database
     }
