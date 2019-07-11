@@ -6,36 +6,36 @@
     </div>
     <h3> Contact Info</h3>
     <div>
-      Vendor Name: {{name}} 
+      Vendor Name: {{contactModel.vendorName}} 
     </div>
     <div>
-      Phone Number: {{phoneNumber}}
+      Phone Number: {{contactModel.phoneNumber}}
     </div>
     <div>
-      Email: {{email}}
+      Email: {{contactModel.email}}
     </div>
   </div>
   <ng-template #editBlock>
     <h3> Edit Contact Info </h3>
     <form #form ="ngForm" (ngSubmit)="editConfirm()">
       <div class = "form-group">
-        <label for="name"> Vendor Name: </label>
-        <input type="text" name="name" class = "form-control" [(ngModel)] = name #vendorName="ngModel" required>
+        <label for="vendorName"> Vendor Name: </label>
+        <input type="text" name="vendorName" class = "form-control" [(ngModel)] = "contactModel.vendorName" #vendorName="ngModel" required>
         <br>
         <div *ngIf = "vendorName.invalid && (vendorName.touched || vendorName.dirty)"> Name field cannot be empty </div>    
       </div>
       
       <div class = "form-group">
         <label for="phoneNumber"> Phone Number: </label>
-        <input name="phoneNumber" class = "form-control" [(ngModel)] = phoneNumber #phoneNumberRef="ngModel">   
+        <input name="phoneNumber" class = "form-control" [(ngModel)] = "contactModel.phoneNumber" #phoneNumber="ngModel" required phone>   
         <br>
-        <div *ngIf="phoneNumber.invalid"> {{errorMsgPhoneNumber}}</div> 
+        <div *ngIf="!phoneRegex.test(contactModel.phoneNumber)"> Invalid Phone Number </div> 
       </div>
       <div class = "form-group">
         <label for="email"> Email: </label>
-        <input name="email" class = "form-control" [(ngModel)] = email>    
+        <input name="email" class = "form-control" [(ngModel)] = "contactModel.email" #email="ngModel" required email>    
         <br>
-        <div> {{errorMsgEmail}}</div>
+        <div *ngIf="emailRegex.test(contactModel.emailRegex)"> Invalid Email Address </div>
       </div>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>

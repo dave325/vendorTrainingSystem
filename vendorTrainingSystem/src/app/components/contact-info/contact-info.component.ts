@@ -1,31 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment'
 
+interface ContactInfoModel{
+  vendorName: string;
+  phoneNumber: string;
+  email: string;
+  editing: boolean;
+}
+
 @Component({
   selector: 'app-contact-info',
   templateUrl: './contact-info.component.html',
   styleUrls: ['./contact-info.component.css']
 })
 export class ContactInfoComponent implements OnInit {
-  name: string;
-  phoneNumber: string;
-  email: string;
-  editing: boolean;
-  //probably temporary solution to error messaging
-  errorMsgName: string; 
-  errorMsgPhoneNumber: string;
-  errorMsgEmail: string;
-
+  contactModel = <ContactInfoModel>{}
+  emailRegex = environment.regExTests.emailRegex;
+  phoneRegex = environment.regExTests.phoneRegex;
   constructor() {
-    this.editing = false;
-    this.name="Google LLC";
-    this.phoneNumber="123-503-4867";
-    this.email="ContactGoogle@gmail.com";
-    //error messaging
-    this.errorMsgName = "";
-    this.errorMsgPhoneNumber = "";
-    this.errorMsgEmail = "";
-
+    this.contactModel.editing = false;
+    this.contactModel.vendorName="Google LLC";
+    this.contactModel.phoneNumber="123-503-4867";
+    this.contactModel.email="ContactGoogle@gmail.com";
   }
   
 
@@ -34,30 +30,23 @@ export class ContactInfoComponent implements OnInit {
   }
 
   editConfirm(){
-    let valid: boolean;
-    valid = true;
-
-    if(!environment.regExTests.emailRegex.test(this.email)){
-      this.errorMsgEmail = "Invalid Email Address";
+    let valid: boolean = true;
+    
+    if(!environment.regExTests.emailRegex.test(this.contactModel.email)){
+      
       valid = false;
-    }else{
-      this.errorMsgEmail = "";
     }
-    if(!environment.regExTests.phoneRegex.test(this.phoneNumber)){
-      this.errorMsgPhoneNumber="Invalid Phone Number";
+    if(!environment.regExTests.phoneRegex.test(this.contactModel.email)){
+      
       valid = false;
-    }else{
-      this.errorMsgPhoneNumber = "";
     }
-    if(this.name === ""){
-      this.errorMsgName = "Name field cannot be empty";
+    if(this.contactModel.vendorName === ""){
+      
       valid = false;
-    }else{
-      this.errorMsgName = "";
     }
     
     if(valid){
-      this.editing=false;
+      this.contactModel.editing=false;
       //ask for confirmation from database
     }
     
