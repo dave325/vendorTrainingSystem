@@ -1,3 +1,44 @@
 <div>
-  <h2>Admin Profile Page</h2>
+  <div *ngIf="!editing; else EditBlock">
+    <div class = "row">
+      <h2 class = "col-8">Admin Profile Page</h2>
+      <button>
+        Edit
+      </button>
+
+    </div>
+  
+    <div class = "row">
+      <div class = "col-4">
+        First Name: {{adminProfileModel.firstName}}
+      </div>
+
+      <div class = "col-4">
+        Last Name: {{adminProfileModel.lastName}} 
+      </div>
+    </div>
+
+    <div class = "row">
+      <div>
+        Password: {{adminProfileModel.password}}
+      </div>
+    </div>
+
+    <div class = "row">
+      <div>
+        Email: {{adminProfileModel.email}}
+      </div>
+    </div>
+
+    <div class = "row">
+      <div>
+        Phone Number: {{adminProfileModel.phoneNumber}}
+      </div>
+    </div>
+  <ng-template #editBlock>
+    <form #form="ngForm">
+      
+    </form>
+  </ng-template>
+ </div>
 </div>
