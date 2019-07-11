@@ -16,19 +16,19 @@ import { Event } from '../../models/Event';
         height: '200px',
         width : "100%",
         opacity: 1,
-        backgroundColor: 'yellow'
+        backgroundColor: "#ff000085"
       })),
       state('closed', style({
-        height: '100px',
-        width: "25%",
+        // height: '10px',
+        width: "1%",
         opacity: 0.5,
         backgroundColor: 'green'
       })),
       transition('open => closed', [
-        animate('1s')
+        animate('.5s')
       ]),
       transition('closed => open', [
-        animate('0.5s')
+        animate('.5s')
       ]),
     ]),
   ]
@@ -42,10 +42,12 @@ export class EventComponent implements OnInit {
   constructor(){
     this.classListNames = this.cn;
   }
+
+  // swap between col-12 and col-3 to give the animation effect -Ed
   toggle(){
     this.isOpen = !this.isOpen;
     if(this.isOpen){
-      this.classListNames  = "col-12"
+      //this.classListNames  = "col-12"
     }
     else{
       this.classListNames = "col-md-3"
