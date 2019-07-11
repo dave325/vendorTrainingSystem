@@ -26,10 +26,7 @@
     <!-- <hr> -->
   <div>Start Time: {{ event.start_time }}</div>
   <div>End Time: {{  event.end_time }}</div>
-
-  <!-- modal goes here -->
-  <dsol-event-modal></dsol-event-modal>
-  <!-- end of modal -->
+  <button (click)="openModal()">open the modal</button>
 
 
   <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
