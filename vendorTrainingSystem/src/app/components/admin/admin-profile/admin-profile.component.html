@@ -1,10 +1,8 @@
 <div>
-  <div *ngIf="!editing; else EditBlock">
+  <div *ngIf = "!editing; else editBlock">
     <div class = "row">
       <h2 class = "col-8">Admin Profile Page</h2>
-      <button>
-        Edit
-      </button>
+      <button class = "btn" (click) ="editing = true">Edit</button>
 
     </div>
   
@@ -35,10 +33,54 @@
         Phone Number: {{adminProfileModel.phoneNumber}}
       </div>
     </div>
+  </div>
   <ng-template #editBlock>
-    <form #form="ngForm">
-      
+    <h3> Edit Profile Info </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmitConfirm()">
+      <div class = "form-group">
+        <label for="firstName">First Name:</label>
+        <input name="firstName" class="form-control" [(ngModel)] ="adminProfileModel.firstName" #firstName="ngModel" required>
+        <div *ngIf ="firstName.invalid && (firstName.touched || firstName.dirty)">
+            "First name cannot be empty"
+        </div>
+        <br>
+      </div>
+      <div class = "form-group">
+        <label for="lastName">Last Name:</label>
+        <input name="lastName" class="form-control" [(ngModel)]="adminProfileModel.lastName" #lastName="ngModel" required>
+        <div *ngIf = "lastName.invalid && (lastName.tourched || lastName.dirty)" class="invalid-feedback"> 
+            "Last name cannot be empty"
+        </div>
+        <br>
+      </div>
+      <div class = "form-group">
+        <label for="password">Password:</label>
+        <input name="password" class="form-control" [(ngModel)] ="adminProfileModel.password" #password="ngModel" required>
+        <div *ngIf ="password.invalid && (password.dirty || password.touched)">
+            "Password cannot be empty"
+        </div>
+        <br>
+      </div>
+      <div class = "form-group">
+        <label for="email">Email:</label>
+        <input name="email" class="form-control" [(ngModel)] ="adminProfileModel.email" #email="ngModel" email>
+        <div *ngIf ="form.submitted && !emailRegex.test(email)">
+          "invalid email address"
+        </div>
+        <br>
+      </div>
+      <div class = "form-group">
+        <label for="phoneNumber">phoneNumber:</label>
+        <input name="phoneNumber" class="form-control" [(ngModel)] ="adminProfileModel.phoneNumber" #phoneNumber="ngModel">
+        <div *ngIf ="form.submitted">
+          <div *ngIf = "!phoneRegex.test(phoneNumber)">
+              "Invalid phoneNumber"
+          </div>
+        </div>
+        <br>
+      </div>
+      <button type = "submit" class="btn btn-success"> Submit </button>
     </form>
   </ng-template>
- </div>
+ 
 </div>
