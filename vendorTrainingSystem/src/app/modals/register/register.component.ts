@@ -12,14 +12,24 @@ export class RegisterComponent implements OnInit {
   email1: string;
   password1: string;
   confirmPassword: string;
+  //error messaging
+  errorMsgFirstName = "";
+  errorMsgLastName: "";
+  errorMsgPhone: "";
+  errorMsgEmail: "";
+  errorMsgPassword: "";
+  errorMsgConfirmPassword: "";
 
   constructor() { }
 
   ngOnInit() {
   }
-  //these two lines are temporary 
-  submitted = false;
+  
 
-  ngSubmit() { this.submitted = true; }
+
+  //these two lines are temporary 
+  //submitted = false;
+
+  //ngSubmit() { this.submitted = true; }
 
 }
