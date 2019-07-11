@@ -17,19 +17,19 @@
     </div>
 
     <div class = "row">
-      <div>
+      <div class = "col-4">
         Password: {{adminProfileModel.password}}
       </div>
     </div>
 
     <div class = "row">
-      <div>
+      <div class = "col-4">
         Email: {{adminProfileModel.email}}
       </div>
     </div>
 
     <div class = "row">
-      <div>
+      <div class = "col-4">
         Phone Number: {{adminProfileModel.phoneNumber}}
       </div>
     </div>
@@ -53,6 +53,7 @@
         </div>
         <br>
       </div>
+     
       <div class = "form-group">
         <label for="password">Password:</label>
         <input name="password" class="form-control" [(ngModel)] ="adminProfileModel.password" #password="ngModel" required>
@@ -60,11 +61,12 @@
             "Password cannot be empty"
         </div>
         <br>
+      
       </div>
       <div class = "form-group">
         <label for="email">Email:</label>
-        <input name="email" class="form-control" [(ngModel)] ="adminProfileModel.email" #email="ngModel" email>
-        <div *ngIf ="form.submitted && !emailRegex.test(email)">
+        <input name="email" class="form-control" [(ngModel)] ="adminProfileModel.email" #email="ngModel">
+        <div *ngIf ="!emailRegex.test(adminProfileModel.email) && !(adminProfileModel.email === '')">
           "invalid email address"
         </div>
         <br>
@@ -72,10 +74,8 @@
       <div class = "form-group">
         <label for="phoneNumber">phoneNumber:</label>
         <input name="phoneNumber" class="form-control" [(ngModel)] ="adminProfileModel.phoneNumber" #phoneNumber="ngModel">
-        <div *ngIf ="form.submitted">
-          <div *ngIf = "!phoneRegex.test(phoneNumber)">
-              "Invalid phoneNumber"
-          </div>
+        <div *ngIf ="!phoneRegex.test(adminProfileModel.phoneNumber) && !(adminProfileModel.phoneNumber === '')">
+            "Invalid phoneNumber"
         </div>
         <br>
       </div>

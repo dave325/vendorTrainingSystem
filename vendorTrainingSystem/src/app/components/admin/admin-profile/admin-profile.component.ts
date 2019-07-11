@@ -41,10 +41,10 @@ export class AdminProfileComponent implements OnInit {
     if(this.adminProfileModel.password === ""){ //min req for password?
       valid = false;
     }
-    if(!this.phoneRegex.test(this.adminProfileModel.phoneNumber) ){
+    if(!this.phoneRegex.test(this.adminProfileModel.phoneNumber) && !(this.adminProfileModel.phoneNumber === '')){
       valid = false;
     }
-    if(!this.emailRegex.test(this.adminProfileModel.email)){
+    if(!this.emailRegex.test(this.adminProfileModel.email)  && !(this.adminProfileModel.email === '')){
       valid = false;
     }
     if(valid){
