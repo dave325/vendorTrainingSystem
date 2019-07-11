@@ -6,6 +6,7 @@ interface ContactInfoModel{
   phoneNumber: string;
   email: string;
   editing: boolean;
+  
 }
 
 @Component({
