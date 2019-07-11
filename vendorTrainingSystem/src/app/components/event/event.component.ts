@@ -19,22 +19,33 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     trigger('openClose', [
       // ...
       state('open', style({
-        height: '200px',
+        height: '*',
         width: "100%",
         opacity: 1,
         backgroundColor: "#ff000085"
       })),
       state('closed', style({
-        // height: '10px',
+        height: '*',
         width: "1%",
         opacity: 1,
         backgroundColor: 'green'
       })),
+      state('openV', style({
+        height: '*', // wild card to form fit height        
+      })),
+      state('closedV', style({
+        height: '0px'
+      })),
+      
+      transition('openV => closedV', [
+        animate('3s')
+      ]),
+      
       transition('open => closed', [
         animate('.5s')
       ]),
       transition('closed => open', [
-        animate('.5s')
+        animate('10s')
       ]),
     ]),
   ]
@@ -43,6 +54,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class EventComponent implements OnInit {
 
   isOpen = false;
+  isOpenVertical = false;
   classListNames;
   cn = "col-12 col-md-3";;
   constructor(private modalService: NgbModal) {
@@ -60,6 +72,7 @@ export class EventComponent implements OnInit {
   // swap between col-12 and col-3 to give the animation effect -Ed
   toggle() {
     this.isOpen = !this.isOpen;
+    this.isOpenVertical = ! this.isOpenVertical;
     if (this.isOpen) {
       this.classListNames  = "col-12"
     }
