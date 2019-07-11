@@ -21,6 +21,7 @@ import { RegisterComponent } from './modals/register/register.component';
 import { LoginComponent } from './modals/login/login.component';
 import { EventModalComponent } from './modals/event-modal/event-modal.component';
 import { AboutComponent } from './modals/about/about.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -41,13 +42,16 @@ import { AboutComponent } from './modals/about/about.component';
     RegisterComponent,
     LoginComponent,
     EventModalComponent,
-    AboutComponent
+    AboutComponent,
+    EventModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
+  entryComponents: [EventModalComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

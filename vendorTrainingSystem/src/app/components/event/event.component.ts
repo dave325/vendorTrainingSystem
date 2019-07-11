@@ -5,6 +5,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { Event } from '../../models/Event';
 import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -26,7 +27,7 @@ import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.comp
       state('closed', style({
         // height: '10px',
         width: "1%",
-        opacity: 0.5,
+        opacity: 1,
         backgroundColor: 'green'
       })),
       transition('open => closed', [
@@ -44,8 +45,16 @@ export class EventComponent implements OnInit {
   isOpen = false;
   classListNames;
   cn = "col-12 col-md-3";;
-  constructor() {
+  constructor(private modalService: NgbModal) {
     this.classListNames = this.cn;
+  }
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      
+    }, (reason) => {
+
+    });
   }
 
   // swap between col-12 and col-3 to give the animation effect -Ed
@@ -59,9 +68,6 @@ export class EventComponent implements OnInit {
     }
   }
 
-  props: {
-
-  }
 
   @Input() event: Event;
 

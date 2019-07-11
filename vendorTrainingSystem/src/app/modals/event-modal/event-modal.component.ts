@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'dsol-event-modal',
@@ -8,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class EventModalComponent implements OnInit {
   closeResult: string;
 
-  // constructor(private modalService: NgbModal) { }
+   constructor() { }
+
+   ngOnInit():void{
+
+   }
 
 }
 
