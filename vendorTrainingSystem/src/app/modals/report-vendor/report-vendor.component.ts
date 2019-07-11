@@ -12,6 +12,7 @@ interface ReportVendorModel{
 })
 export class ReportVendorComponent implements OnInit {
   reportVendorModel = <ReportVendorModel>{};
+  showModal:boolean = false;
   constructor() {
     
   }
