@@ -1,20 +1,25 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
+
+
 import { Event } from '../../models/Event';
+import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.component';
+
+
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
   styleUrls: ['./event.component.css'],
-  host:{ "[class]" : "classListNames"},
-  animations:[
+  host: { "[class]": "classListNames" },
+  animations: [
     //animations go here
     trigger('openClose', [
       // ...
       state('open', style({
         height: '200px',
-        width : "100%",
+        width: "100%",
         opacity: 1,
         backgroundColor: "#ff000085"
       })),
@@ -39,17 +44,17 @@ export class EventComponent implements OnInit {
   isOpen = false;
   classListNames;
   cn = "col-12 col-md-3";;
-  constructor(){
+  constructor() {
     this.classListNames = this.cn;
   }
 
   // swap between col-12 and col-3 to give the animation effect -Ed
-  toggle(){
+  toggle() {
     this.isOpen = !this.isOpen;
-    if(this.isOpen){
+    if (this.isOpen) {
       //this.classListNames  = "col-12"
     }
-    else{
+    else {
       this.classListNames = "col-md-3"
     }
   }
@@ -58,7 +63,7 @@ export class EventComponent implements OnInit {
 
   }
 
-  @Input() event:Event;
+  @Input() event: Event;
 
 
   ngOnInit() {
