@@ -17,6 +17,8 @@ import { EventComponent } from './components/event/event.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ReportVendorComponent } from './modals/report-vendor/report-vendor.component';
+import { RegisterComponent } from './modals/register/register.component';
+import { LoginComponent } from './modals/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ReportVendorComponent } from './modals/report-vendor/report-vendor.comp
     EventComponent,
     ContactInfoComponent,
     NavbarComponent,
-    ReportVendorComponent
+    ReportVendorComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

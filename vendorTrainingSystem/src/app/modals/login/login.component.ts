@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  email1: string;
+  password1: string;
 
   constructor() { }
 
   ngOnInit() {
+    /*these are temporary 
+  submitted = false;
+
+  ngSubmit() { this.submitted = true; }
+  */
   }
 
 }
