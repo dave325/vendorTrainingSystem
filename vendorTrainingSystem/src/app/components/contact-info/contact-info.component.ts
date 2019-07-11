@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {globals} from '../../globals'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-contact-info',
@@ -36,13 +36,13 @@ export class ContactInfoComponent implements OnInit {
     let valid: boolean;
     valid = true;
 
-    if(!globals.regExTests.emailRegex.test(this.email)){
+    if(!environment.regExTests.emailRegex.test(this.email)){
       this.errorMsgEmail = "Invalid Email Address";
       valid = false;
     }else{
       this.errorMsgEmail = "";
     }
-    if(!globals.regExTests.phoneRegex.test(this.phoneNumber)){
+    if(!environment.regExTests.phoneRegex.test(this.phoneNumber)){
       this.errorMsgPhoneNumber="Invalid Phone Number";
       valid = false;
     }else{
