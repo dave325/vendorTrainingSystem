@@ -20,6 +20,7 @@ import { ReportVendorComponent } from './modals/report-vendor/report-vendor.comp
 import { RegisterComponent } from './modals/register/register.component';
 import { LoginComponent } from './modals/login/login.component';
 import { EventModalComponent } from './modals/event-modal/event-modal.component';
+import { AboutComponent } from './modals/about/about.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { EventModalComponent } from './modals/event-modal/event-modal.component'
     ReportVendorComponent,
     RegisterComponent,
     LoginComponent,
-    EventModalComponent
+    EventModalComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
    </div>
   <div>
           <label>Phone Number: {{phone1}}</label>
-          <input type="phone" class = "form-control" [(ngModel)]="phone1" #phone="ngModel" required>
+          <input type="phone" class = "form-control" [(ngModel)]="phone1" #phone="ngModel" required minlength="10">
           <div *ngIf="p.submitted && phone.invalid" class="errors">
               <div *ngIf="phone.errors.required">{{errorMsgPhone}}</div>
       </div>
@@ -31,15 +31,15 @@
    </div>
       <div>
           <label>Password: {{password1}}</label>
-          <input type="password" class = "form-control" [(ngModel)]="password1" #password="ngModel" required>
+          <input type="password" class = "form-control" [(ngModel)]="password1" #password="ngModel" required minlength="6">
           <div *ngIf="password.submitted && password.invalid" class="errors">
               <div *ngIf="password.errors.required">{{errorMsgPassword}}</div>
       </div>
       </div>
       <div>
           <label>Confirm Password: {{confirmPassword}}</label>
-          <input type="password" class = "form-control" [(ngModel)]="confirmPassword" #password="ngModel" required>
-          <div *ngIf="password.submitted && password.invalid" class="errors">
+          <input type="password" class = "form-control" [(ngModel)]="confirmPassword" #password="ngModel" required minlength="6">
+          <div *ngIf="password.submitted && password.invalid && password1 === confirmPassword"  class="errors">
               <div *ngIf="password.errors.required">{{errorMsgConfirmPassword}}</div>
       </div>
       </div>

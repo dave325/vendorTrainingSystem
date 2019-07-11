@@ -13,23 +13,21 @@ export class RegisterComponent implements OnInit {
   password1: string;
   confirmPassword: string;
   //error messaging
-  errorMsgFirstName = "";
-  errorMsgLastName: "";
-  errorMsgPhone: "";
-  errorMsgEmail: "";
-  errorMsgPassword: "";
-  errorMsgConfirmPassword: "";
+  errorMsgFirstName = "You must enter a valid First Name";
+  errorMsgLastName: "You must enter a valid Last Name";
+  errorMsgPhone: "You must enter a valid Phone Number";
+  errorMsgEmail: "You must enter a valid Email";
+  errorMsgPassword: "You must enter a valid Password";
+  errorMsgConfirmPassword: "Passwords do not match";
 
   constructor() { }
 
   ngOnInit() {
   }
   
-
-
   //these two lines are temporary 
-  //submitted = false;
+  submitted = false;
 
-  //ngSubmit() { this.submitted = true; }
+  ngSubmit() { this.submitted = true; }
 
 }
