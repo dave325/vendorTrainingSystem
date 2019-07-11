@@ -6,6 +6,7 @@ interface ContactInfoModel{
   phoneNumber: string;
   email: string;
   editing: boolean;
+  
 }
 
 @Component({
@@ -47,6 +48,7 @@ export class ContactInfoComponent implements OnInit {
     
     if(valid){
       this.contactModel.editing=false;
+      alert("name: "+ this.contactModel.vendorName+", phoneNumber: "+ this.contactModel.phoneNumber+ ", email: "+this.contactModel.email);
       //ask for confirmation from database
     }
     
