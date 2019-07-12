@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'dsol-register',
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
   errorMsgPassword: "You must enter a valid Password";
   errorMsgConfirmPassword: "Passwords do not match";
 
-  constructor() { }
+  constructor(public modalService: NgbActiveModal) { }
 
   ngOnInit() {
   }

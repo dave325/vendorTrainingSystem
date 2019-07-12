@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment'
 
-interface ContactInfoModel{
-  vendorName: string;
-  phoneNumber: string;
-  email: string;
-}
+import {Vendor} from '../../models/Vendor'
 
 @Component({
   selector: 'app-contact-info',
@@ -13,15 +9,17 @@ interface ContactInfoModel{
   styleUrls: ['./contact-info.component.css']
 })
 export class ContactInfoComponent implements OnInit {
-  contactModel = <ContactInfoModel>{};
+  contactModel = <Vendor>{};
   editing: boolean = false;
   emailRegex = environment.regExTests.emailRegex;
   phoneRegex = environment.regExTests.phoneRegex;
+  addressRegex = environment.regExTests.addressRegex;
   constructor() {
     
-    this.contactModel.vendorName="Google LLC";
-    this.contactModel.phoneNumber="123-503-4867";
+    this.contactModel.name="Google LLC";
+    this.contactModel.phone="123-503-4867";
     this.contactModel.email="ContactGoogle@gmail.com";
+    this.contactModel.address="123 Hollow St, Queens, New York 86351"
   }
   
 
@@ -36,18 +34,18 @@ export class ContactInfoComponent implements OnInit {
       
       valid = false;
     }
-    if(!this.phoneRegex.test(this.contactModel.phoneNumber)){
+    if(!this.phoneRegex.test(this.contactModel.phone)){
       
       valid = false;
     }
-    if(this.contactModel.vendorName === ""){
+    if(this.contactModel.name === ""){
       
       valid = false;
     }
     
     if(valid){
       this.editing=false;
-      alert("name: "+ this.contactModel.vendorName+", phoneNumber: "+ this.contactModel.phoneNumber+ ", email: "+this.contactModel.email);
+      alert("name: "+ this.contactModel.name+", phone: "+ this.contactModel.phone+ ", email: "+this.contactModel.email+", address: "+this.contactModel.address);
       //ask for confirmation from database
     }
     

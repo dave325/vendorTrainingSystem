@@ -22,6 +22,7 @@ import { LoginComponent } from './modals/login/login.component';
 import { EventModalComponent } from './modals/event-modal/event-modal.component';
 import { AboutComponent } from './modals/about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventEditComponent } from './modals/event-edit/event-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +40,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactInfoComponent,
     NavbarComponent,
     ReportVendorComponent,
-    RegisterComponent,
     LoginComponent,
     EventModalComponent,
     AboutComponent,
-    EventModalComponent
+    EventModalComponent,
+    EventEditComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent],
+  entryComponents: [EventModalComponent,RegisterComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

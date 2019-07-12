@@ -1,26 +1,17 @@
 <div>
   <div *ngIf = "!editing; else editBlock">
     <div class = "row">
-      <h2 class = "col-8">Admin Profile Page</h2>
-      <button class = "btn" (click) ="editing = true">Edit</button>
-
+      <p class = "col-10">  </p>
+      <button class = "btn" (click)="editing = true">Edit</button>
     </div>
+    <h2>Admin Profile Page</h2>
   
     <div class = "row">
       <div class = "col-4">
-        First Name: {{adminProfileModel.firstName}}
-      </div>
-
-      <div class = "col-4">
-        Last Name: {{adminProfileModel.lastName}} 
+        Vendor Name: {{adminProfileModel.vendorName}}
       </div>
     </div>
 
-    <div class = "row">
-      <div class = "col-4">
-        Password: {{adminProfileModel.password}}
-      </div>
-    </div>
 
     <div class = "row">
       <div class = "col-4">
@@ -38,30 +29,12 @@
     <h3> Edit Profile Info </h3>
     <form #form="ngForm" (ngSubmit) = "onSubmitConfirm()">
       <div class = "form-group">
-        <label for="firstName">First Name:</label>
-        <input name="firstName" class="form-control" [(ngModel)] ="adminProfileModel.firstName" #firstName="ngModel" required>
-        <div *ngIf ="firstName.invalid && (firstName.touched || firstName.dirty)">
-            "First name cannot be empty"
+        <label for="vendorName">Vendor Name:</label>
+        <input name="vendorName" class="form-control" [(ngModel)] ="adminProfileModel.vendorName" #vendorName="ngModel" required>
+        <div *ngIf ="vendorName.invalid && (vendorName.touched || vendorName.dirty)">
+            "Vendor name cannot be empty"
         </div>
-        <br>
-      </div>
-      <div class = "form-group">
-        <label for="lastName">Last Name:</label>
-        <input name="lastName" class="form-control" [(ngModel)]="adminProfileModel.lastName" #lastName="ngModel" required>
-        <div *ngIf = "lastName.invalid && (lastName.tourched || lastName.dirty)" class="invalid-feedback"> 
-            "Last name cannot be empty"
-        </div>
-        <br>
-      </div>
-     
-      <div class = "form-group">
-        <label for="password">Password:</label>
-        <input name="password" class="form-control" [(ngModel)] ="adminProfileModel.password" #password="ngModel" required>
-        <div *ngIf ="password.invalid && (password.dirty || password.touched)">
-            "Password cannot be empty"
-        </div>
-        <br>
-      
+        
       </div>
       <div class = "form-group">
         <label for="email">Email:</label>
@@ -69,7 +42,6 @@
         <div *ngIf ="!emailRegex.test(adminProfileModel.email) && !(adminProfileModel.email === '')">
           "invalid email address"
         </div>
-        <br>
       </div>
       <div class = "form-group">
         <label for="phoneNumber">phoneNumber:</label>
@@ -77,7 +49,6 @@
         <div *ngIf ="!phoneRegex.test(adminProfileModel.phoneNumber) && !(adminProfileModel.phoneNumber === '')">
             "Invalid phoneNumber"
         </div>
-        <br>
       </div>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>

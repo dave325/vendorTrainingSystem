@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment} from '../../../../environments/environment'
 interface AdminProfileModel{
-  firstName: string,
-  lastName: string,
+  vendorName: string,
   email: string,
-  phoneNumber: string,
-  password: string
+  phoneNumber: string
 }
 
 @Component({
@@ -19,11 +17,9 @@ export class AdminProfileComponent implements OnInit {
   phoneRegex = environment.regExTests.phoneRegex;
   emailRegex = environment.regExTests.emailRegex;
   constructor() {
-    this.adminProfileModel.firstName = "John";
-    this.adminProfileModel.lastName = "Smith";
+    this.adminProfileModel.vendorName = "curlfest";
     this.adminProfileModel.email = "sdsds@gmail.com";
     this.adminProfileModel.phoneNumber = "123-456-7890";
-    this.adminProfileModel.password = "hello123";
   }
   
   ngOnInit() {
@@ -31,14 +27,8 @@ export class AdminProfileComponent implements OnInit {
 
   onSubmitConfirm(){
     let valid:boolean = true;
-    console.log(this.adminProfileModel.firstName)
-    if(this.adminProfileModel.firstName === ""){//trim before check
-      valid = false;
-    }
-    if(this.adminProfileModel.lastName === ""){
-      valid = false;
-    }
-    if(this.adminProfileModel.password === ""){ //min req for password?
+    console.log(this.adminProfileModel.vendorName)
+    if(this.adminProfileModel.vendorName === ""){//trim before check
       valid = false;
     }
     if(!this.phoneRegex.test(this.adminProfileModel.phoneNumber) && !(this.adminProfileModel.phoneNumber === '')){
@@ -48,6 +38,7 @@ export class AdminProfileComponent implements OnInit {
       valid = false;
     }
     if(valid){
+      alert("name: "+ this.adminProfileModel.vendorName+", phoneNumber: "+ this.adminProfileModel.phoneNumber+ ", email: "+this.adminProfileModel.email);
       this.editing = false;
     }
     
