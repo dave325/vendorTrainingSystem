@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment} from '../../../../environments/environment'
-import { Vendor } from '../../../models/Vendor'
+import { Admin } from '../../../models/Admin'
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Vendor } from '../../../models/Vendor'
   styleUrls: ['./admin-profile.component.css']
 })
 export class AdminProfileComponent implements OnInit {
-  adminProfileModel = <Vendor>{};
+  adminProfileModel = <Admin>{};
   editing: boolean = false;
   phoneRegex = environment.regExTests.phoneRegex;
   emailRegex = environment.regExTests.emailRegex;
