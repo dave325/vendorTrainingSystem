@@ -13,6 +13,8 @@ import { ListEventsComponent } from './components/list-events/list-events.compon
 import { ReportVendorComponent} from './modals/report-vendor/report-vendor.component';
 import { ContactInfoComponent} from './components/contact-info/contact-info.component';
 import { EventEditComponent } from './modals/event-edit/event-edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
 
 const routes: Routes = [
   { path: '', component: FrontPageComponent },
@@ -22,7 +24,8 @@ const routes: Routes = [
   { path: 'list-events', component: ListEventsComponent },
   { path: 'reportVendor', component: ReportVendorComponent },
   { path: 'editEvent', component: EventEditComponent },
-  { path: 'contact', component: ContactInfoComponent }
+  { path: 'contact', component: ContactInfoComponent },
+  { path: 'profile', component: ProfileComponent}
 ];
 
 @NgModule({

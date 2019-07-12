@@ -23,6 +23,7 @@ import { EventModalComponent } from './modals/event-modal/event-modal.component'
 import { AboutComponent } from './modals/about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventEditComponent } from './modals/event-edit/event-edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EventEditComponent } from './modals/event-edit/event-edit.component';
     AboutComponent,
     EventModalComponent,
     EventEditComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
