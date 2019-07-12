@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes, sequence } from '@angular/animations';
 
 
 
@@ -19,13 +19,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     trigger('openClose', [
       // ...
       state('open', style({
-        height: '*',
+        height: '200px',
         width: "100%",
         opacity: 1,
         backgroundColor: "#ff000085"
       })),
       state('closed', style({
-        height: '*',
+        height: '1px',
         width: "1%",
         opacity: 1,
         backgroundColor: 'green'
@@ -35,13 +35,23 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         animate('.5s')
       ]),
       transition('closed => open', [
-        animate('10s')
+        animate('10s'
+          , keyframes([
+          // style({ width: "100%" , offset: .5}),
+          // style({ height: "100%", offset: .5}),
+          style({ backgroundColor: 'black', height: "1%", offset: 0}),
+          style({ backgroundColor: 'orange', height: "100%", offset: 0}),
+          style({ backgroundColor: 'red',  width: "100%", offset: 0.2}),
+          style({ backgroundColor: 'blue', width: "1%", offset: 1.0})])
+        )
       ]),
     ]),
   ]
 })
 
-export class EventComponent implements OnInit {
+
+
+      export class EventComponent implements OnInit {
 
   isOpen = false;
   isOpenVertical = false;
@@ -53,7 +63,7 @@ export class EventComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content).result.then((result) => {
-      
+
     }, (reason) => {
 
     });
@@ -62,9 +72,9 @@ export class EventComponent implements OnInit {
   // swap between col-12 and col-3 to give the animation effect -Ed
   toggle() {
     this.isOpen = !this.isOpen;
-    this.isOpenVertical = ! this.isOpenVertical;
+    this.isOpenVertical = !this.isOpenVertical;
     if (this.isOpen) {
-      this.classListNames  = "col-12"
+      this.classListNames = "col-12"
     }
     else {
       this.classListNames = "col-md-3"
