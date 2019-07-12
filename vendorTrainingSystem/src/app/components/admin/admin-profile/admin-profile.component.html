@@ -8,7 +8,7 @@
   
     <div class = "row">
       <div class = "col-4">
-        Vendor Name: {{adminProfileModel.vendorName}}
+        Vendor Name: {{adminProfileModel.name}}
       </div>
     </div>
 
@@ -21,16 +21,19 @@
 
     <div class = "row">
       <div class = "col-4">
-        Phone Number: {{adminProfileModel.phoneNumber}}
+        Phone Number: {{adminProfileModel.phone}}
       </div>
     </div>
+
+    
+
   </div>
   <ng-template #editBlock>
     <h3> Edit Profile Info </h3>
     <form #form="ngForm" (ngSubmit) = "onSubmitConfirm()">
       <div class = "form-group">
         <label for="vendorName">Vendor Name:</label>
-        <input name="vendorName" class="form-control" [(ngModel)] ="adminProfileModel.vendorName" #vendorName="ngModel" required>
+        <input name="vendorName" class="form-control" [(ngModel)] ="adminProfileModel.name" #vendorName="ngModel" required>
         <div *ngIf ="vendorName.invalid && (vendorName.touched || vendorName.dirty)">
             "Vendor name cannot be empty"
         </div>
@@ -45,9 +48,9 @@
       </div>
       <div class = "form-group">
         <label for="phoneNumber">phoneNumber:</label>
-        <input name="phoneNumber" class="form-control" [(ngModel)] ="adminProfileModel.phoneNumber" #phoneNumber="ngModel">
-        <div *ngIf ="!phoneRegex.test(adminProfileModel.phoneNumber) && !(adminProfileModel.phoneNumber === '')">
-            "Invalid phoneNumber"
+        <input name="phoneNumber" class="form-control" [(ngModel)] ="adminProfileModel.phone" #phoneNumber="ngModel">
+        <div *ngIf ="!phoneRegex.test(adminProfileModel.phone) && !(adminProfileModel.phone === '')">
+            "Invalid phone number"
         </div>
       </div>
       <button type = "submit" class="btn btn-success"> Submit </button>

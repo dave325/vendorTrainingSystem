@@ -53,7 +53,7 @@ import { EventEditComponent } from './modals/event-edit/event-edit.component';
     FormsModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent,RegisterComponent],
+  entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
