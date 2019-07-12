@@ -1,7 +1,7 @@
 export interface Vendor{
-  _id:Number;
-  name:String;
-  address:String;
-  phone:String;
-  email:String;
+  _id:number;
+  name:string;
+  address:string;
+  phone:string;
+  email:string;
 }
