@@ -48,6 +48,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     EventEditComponent,
     RegisterComponent,
     ProfileComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +56,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     FormsModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent,RegisterComponent],
+  entryComponents: [EventModalComponent,RegisterComponent, LoginComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
