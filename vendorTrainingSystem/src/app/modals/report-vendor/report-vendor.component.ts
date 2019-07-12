@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 interface ReportVendorModel{
   vendorName: string;
@@ -12,8 +13,8 @@ interface ReportVendorModel{
 })
 export class ReportVendorComponent implements OnInit {
   reportVendorModel = <ReportVendorModel>{};
-  showModal:boolean = false;
-  constructor() {
+  
+  constructor(activeModal: NgbActiveModal) {
     
   }
 
