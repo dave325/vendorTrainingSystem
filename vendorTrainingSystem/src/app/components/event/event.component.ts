@@ -30,16 +30,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         opacity: 1,
         backgroundColor: 'green'
       })),
-      state('openV', style({
-        height: '*', // wild card to form fit height        
-      })),
-      state('closedV', style({
-        height: '0px'
-      })),
-      
-      transition('openV => closedV', [
-        animate('3s')
-      ]),
       
       transition('open => closed', [
         animate('.5s')
