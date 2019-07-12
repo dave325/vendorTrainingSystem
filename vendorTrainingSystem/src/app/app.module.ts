@@ -45,7 +45,8 @@ import { EventEditComponent } from './modals/event-edit/event-edit.component';
     AboutComponent,
     EventModalComponent,
     EventEditComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,7 @@ import { EventEditComponent } from './modals/event-edit/event-edit.component';
     FormsModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent,RegisterComponent],
+  entryComponents: [EventModalComponent,RegisterComponent, LoginComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '../../modals/register/register.component'
+import { LoginComponent } from '../../modals/login/login.component'
+
 
 @Component({
   selector: 'app-front-page',
@@ -8,6 +10,8 @@ import { RegisterComponent } from '../../modals/register/register.component'
   styleUrls: ['./front-page.component.css']
 })
 export class FrontPageComponent implements OnInit {
+  rc = RegisterComponent;
+  lc = LoginComponent;
 
   constructor(private modalService: NgbModal) { }
 
@@ -15,7 +19,7 @@ export class FrontPageComponent implements OnInit {
   }
 
   open(component: Component) {
-    let modalReg = this.modalService.open(RegisterComponent);
+    let modalReg = this.modalService.open(component);
   }
 
 }
