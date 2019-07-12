@@ -12,7 +12,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ListEventsComponent } from './components/list-events/list-events.component';
 import { ReportVendorComponent} from './modals/report-vendor/report-vendor.component';
 import { ContactInfoComponent} from './components/contact-info/contact-info.component';
-
+import { EventEditComponent } from './modals/event-edit/event-edit.component';
 
 const routes: Routes = [
   { path: '', component: FrontPageComponent },
@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'list-events', component: ListEventsComponent },
   { path: 'reportVendor', component: ReportVendorComponent },
+  { path: 'editEvent', component: EventEditComponent },
   { path: 'contact', component: ContactInfoComponent }
 ];
 
