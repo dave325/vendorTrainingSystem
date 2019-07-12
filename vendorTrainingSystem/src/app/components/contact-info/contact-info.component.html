@@ -21,21 +21,24 @@
       <div class = "form-group">
         <label for="vendorName"> Vendor Name: </label>
         <input type="text" name="vendorName" class = "form-control" [(ngModel)] = "contactModel.vendorName" #vendorName="ngModel" required>
-        <br>
-        <div *ngIf = "vendorName.invalid && (vendorName.touched || vendorName.dirty)"> Name field cannot be empty </div>    
+        
+        <div *ngIf = "vendorName.invalid && (vendorName.touched || vendorName.dirty)"> Name field cannot be empty </div>
+        <br>    
       </div>
       
       <div class = "form-group">
         <label for="phoneNumber"> Phone Number: </label>
-        <input name="phoneNumber" class = "form-control" [(ngModel)] = "contactModel.phoneNumber" #phoneNumber="ngModel" required phone>   
-        <br>
+        <input name="phoneNumber" class = "form-control" [(ngModel)] = "contactModel.phoneNumber" #phoneNumber="ngModel" required>   
+        
         <div *ngIf="!phoneRegex.test(contactModel.phoneNumber)"> Invalid Phone Number </div> 
+        <br>
       </div>
       <div class = "form-group">
         <label for="email"> Email: </label>
-        <input name="email" class = "form-control" [(ngModel)] = "contactModel.email" #email="ngModel" required email>    
+        <input name="email" class = "form-control" [(ngModel)] = "contactModel.email" #email="ngModel" required>    
+        
+        <div *ngIf="!emailRegex.test(contactModel.email)"> Invalid Email Address </div>
         <br>
-        <div *ngIf="emailRegex.test(contactModel.emailRegex)"> Invalid Email Address </div>
       </div>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>

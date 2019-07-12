@@ -5,6 +5,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 
 import { Event } from '../../models/Event';
 import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -18,22 +19,23 @@ import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.comp
     trigger('openClose', [
       // ...
       state('open', style({
-        height: '200px',
+        height: '*',
         width: "100%",
         opacity: 1,
         backgroundColor: "#ff000085"
       })),
       state('closed', style({
-        // height: '10px',
+        height: '*',
         width: "1%",
-        opacity: 0.5,
+        opacity: 1,
         backgroundColor: 'green'
       })),
+      
       transition('open => closed', [
         animate('.5s')
       ]),
       transition('closed => open', [
-        animate('.5s')
+        animate('10s')
       ]),
     ]),
   ]
@@ -42,15 +44,25 @@ import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.comp
 export class EventComponent implements OnInit {
 
   isOpen = false;
+  isOpenVertical = false;
   classListNames;
   cn = "col-12 col-md-3";;
-  constructor() {
+  constructor(private modalService: NgbModal) {
     this.classListNames = this.cn;
+  }
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      
+    }, (reason) => {
+
+    });
   }
 
   // swap between col-12 and col-3 to give the animation effect -Ed
   toggle() {
     this.isOpen = !this.isOpen;
+    this.isOpenVertical = ! this.isOpenVertical;
     if (this.isOpen) {
       this.classListNames  = "col-12"
     }
@@ -59,9 +71,6 @@ export class EventComponent implements OnInit {
     }
   }
 
-  props: {
-
-  }
 
   @Input() event: Event;
 

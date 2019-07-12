@@ -21,7 +21,7 @@ export class ReportVendorComponent implements OnInit {
   }
 
   onSubmitReport(){
-    let valid: Boolean;
+    let valid: boolean;
     alert("reported vendor: "+this.reportVendorModel.vendorName+", violation: "+this.reportVendorModel.violation);
     
     
