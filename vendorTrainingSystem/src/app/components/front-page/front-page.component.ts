@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '../../modals/register/register.component'
 import { LoginComponent } from '../../modals/login/login.component'
-
+import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.component'
 
 @Component({
   selector: 'app-front-page',
@@ -12,7 +12,7 @@ import { LoginComponent } from '../../modals/login/login.component'
 export class FrontPageComponent implements OnInit {
   rc = RegisterComponent;
   lc = LoginComponent;
-
+  reportVendorComponent = ReportVendorComponent;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {

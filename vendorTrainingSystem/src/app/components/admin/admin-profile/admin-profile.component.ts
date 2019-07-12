@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment} from '../../../../environments/environment'
-interface AdminProfileModel{
-  vendorName: string,
-  email: string,
-  phoneNumber: string
-}
+import { Vendor } from '../../../models/Vendor'
+
 
 @Component({
   selector: 'app-admin-profile',
@@ -12,14 +9,14 @@ interface AdminProfileModel{
   styleUrls: ['./admin-profile.component.css']
 })
 export class AdminProfileComponent implements OnInit {
-  adminProfileModel = <AdminProfileModel>{};
+  adminProfileModel = <Vendor>{};
   editing: boolean = false;
   phoneRegex = environment.regExTests.phoneRegex;
   emailRegex = environment.regExTests.emailRegex;
   constructor() {
-    this.adminProfileModel.vendorName = "curlfest";
+    this.adminProfileModel.name = "curlfest";
     this.adminProfileModel.email = "sdsds@gmail.com";
-    this.adminProfileModel.phoneNumber = "123-456-7890";
+    this.adminProfileModel.phone = "123-456-7890";
   }
   
   ngOnInit() {
@@ -27,18 +24,18 @@ export class AdminProfileComponent implements OnInit {
 
   onSubmitConfirm(){
     let valid:boolean = true;
-    console.log(this.adminProfileModel.vendorName)
-    if(this.adminProfileModel.vendorName === ""){//trim before check
+    console.log(this.adminProfileModel.name)
+    if(this.adminProfileModel.name === ""){//trim before check
       valid = false;
     }
-    if(!this.phoneRegex.test(this.adminProfileModel.phoneNumber) && !(this.adminProfileModel.phoneNumber === '')){
+    if(!this.phoneRegex.test(this.adminProfileModel.phone) && !(this.adminProfileModel.phone === '')){
       valid = false;
     }
     if(!this.emailRegex.test(this.adminProfileModel.email)  && !(this.adminProfileModel.email === '')){
       valid = false;
     }
     if(valid){
-      alert("name: "+ this.adminProfileModel.vendorName+", phoneNumber: "+ this.adminProfileModel.phoneNumber+ ", email: "+this.adminProfileModel.email);
+      alert("name: "+ this.adminProfileModel.name+", phoneNumber: "+ this.adminProfileModel.phone+ ", email: "+this.adminProfileModel.email);
       this.editing = false;
     }
     
