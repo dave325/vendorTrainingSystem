@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from '../../modals/register/register.component'
 
 @Component({
   selector: 'app-front-page',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  open(component: Component) {
+    let modalReg = this.modalService.open(RegisterComponent);
   }
 
 }

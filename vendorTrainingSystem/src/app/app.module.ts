@@ -39,11 +39,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ContactInfoComponent,
     NavbarComponent,
     ReportVendorComponent,
-    RegisterComponent,
     LoginComponent,
     EventModalComponent,
     AboutComponent,
-    EventModalComponent
+    EventModalComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent],
+  entryComponents: [EventModalComponent,RegisterComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,4 @@
-<h2>Login</h2>
 <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-    <button class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">Let's login!</button>
     <div>
         <label for="email">Email {{email}} </label>
         <input type="email" class="form-control" [(ngModel)]="email1" #email="ngModel" required>
@@ -16,6 +14,6 @@
         </div>
     </div>
     <div>
-        <button [disabled]="loading" class="btn btn-primary">Login</button>
+        <button type = "submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="modal.dismiss('Cross click')">Let's login!</button>
     </div>
 </form>
