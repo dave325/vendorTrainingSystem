@@ -47,7 +47,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     EventModalComponent,
     EventEditComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
     LoginComponent
   ],
   imports: [
