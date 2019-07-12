@@ -31,15 +31,15 @@
   <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
     <!-- <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p> -->
     <!-- <div [@childAnimation]="isOpenVertical ? 'openV' : 'closedV'"> -->
-      <button type="button" class="btn btn-primary" (click)="toggle()">More Info</button>
-      <span *ngIf="isOpen">
-        <div>Created At: {{ event.created_at }}</div>
-        <div>Modified At: {{ event.modified_at }}</div>
-        <div>Published At: {{ event.published_at }}</div>
-        <div>Status: {{ event.status }}</div>
-        <div>Created By: {{ event.created_by }}</div>
-        <div>Modified By: {{ event.modified_by }}</div>
-      </span>
+    <button type="button" class="btn btn-primary" (click)="toggle()">More Info</button>
+    <span *ngIf="isOpen">
+      <div>Created At: {{ event.created_at }}</div>
+      <div>Modified At: {{ event.modified_at }}</div>
+      <div>Published At: {{ event.published_at }}</div>
+      <div>Status: {{ event.status }}</div>
+      <div>Created By: {{ event.created_by }}</div>
+      <div>Modified By: {{ event.modified_by }}</div>
+    </span>
     <!-- </div> -->
   </div>
 
