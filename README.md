@@ -1,3 +1,3 @@
 ### To Run python server
-`docker container ls`
-`docker exec -it [container name of python server running ...] /bin/bash`
+1. `docker container ls`
+2. `docker exec -it [container name of python server running ...] /bin/bash`
