@@ -1,0 +1,20 @@
+<h1> {{first_name}} {{last_name}}'s  profile </h1>
+
+<div class="row">
+  <div class="card col-md-8">
+    <div class="row">
+      <h3 class="col-md-8 card-title">Contact Info</h3>
+      <button type="button" class="col-md-4 btn btn-primary" (click)="toggle()">More Info</button>
+    </div>
+    <div class="row">
+      <div class="card-body col-md-12">
+        <p> Here is where the content of the Contact info card will go</p>
+      </div>
+    </div>
+  </div>
+  <div class="card col-md-4">
+    <h3 class="card-title"> Preferences </h3>
+    <div class="card-body"> Here is all my preferences </div>
+  </div>
+  <button type="submit" [disabled]="!f.valid">Submit</button>
+</div>

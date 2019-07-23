@@ -17,6 +17,13 @@ import { EventComponent } from './components/event/event.component';
 import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { NavbarComponent } from './components/header/navbar/navbar.component';
 import { ReportVendorComponent } from './modals/report-vendor/report-vendor.component';
+import { RegisterComponent } from './modals/register/register.component';
+import { LoginComponent } from './modals/login/login.component';
+import { EventModalComponent } from './modals/event-modal/event-modal.component';
+import { AboutComponent } from './modals/about/about.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventEditComponent } from './modals/event-edit/event-edit.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +40,23 @@ import { ReportVendorComponent } from './modals/report-vendor/report-vendor.comp
     EventComponent,
     ContactInfoComponent,
     NavbarComponent,
-    ReportVendorComponent
+    ReportVendorComponent,
+    LoginComponent,
+    EventModalComponent,
+    AboutComponent,
+    EventModalComponent,
+    EventEditComponent,
+    RegisterComponent,
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
+  entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

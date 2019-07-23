@@ -1,3 +1,60 @@
 <div>
-  <h2>Admin Profile Page</h2>
+  <div *ngIf = "!editing; else editBlock">
+    <div class = "row">
+      <p class = "col-10">  </p>
+      <button class = "btn" (click)="editing = true">Edit</button>
+    </div>
+    <h2>Admin Profile Page</h2>
+  
+    <div class = "row">
+      <div class = "col-4">
+        Admin Name: {{adminProfileModel.name}}
+      </div>
+    </div>
+
+
+    <div class = "row">
+      <div class = "col-4">
+        Email: {{adminProfileModel.email}}
+      </div>
+    </div>
+
+    <div class = "row">
+      <div class = "col-4">
+        Phone Number: {{adminProfileModel.phone}}
+      </div>
+    </div>
+
+    
+
+  </div>
+  <ng-template #editBlock>
+    <h3> Edit Profile Info </h3>
+    <form #form="ngForm" (ngSubmit) = "onSubmitConfirm()">
+      <div class = "form-group">
+        <label for="adminName">Vendor Name:</label>
+        <input name="adminName" class="form-control" [(ngModel)] ="adminProfileModel.name" #adminName="ngModel" required>
+        <div *ngIf ="adminName.invalid && (adminName.touched || adminName.dirty)">
+            "Admin name cannot be empty"
+        </div>
+        
+      </div>
+      <div class = "form-group">
+        <label for="email">Email:</label>
+        <input name="email" class="form-control" [(ngModel)] ="adminProfileModel.email" #email="ngModel">
+        <div *ngIf ="!emailRegex.test(adminProfileModel.email) && !(adminProfileModel.email === '')">
+          "invalid email address"
+        </div>
+      </div>
+      <div class = "form-group">
+        <label for="phoneNumber">phoneNumber:</label>
+        <input name="phoneNumber" class="form-control" [(ngModel)] ="adminProfileModel.phone" #phoneNumber="ngModel">
+        <div *ngIf ="!phoneRegex.test(adminProfileModel.phone) && !(adminProfileModel.phone === '')">
+            "Invalid phone number"
+        </div>
+      </div>
+      <button type = "submit" class="btn btn-success"> Submit </button>
+    </form>
+  </ng-template>
+ 
 </div>

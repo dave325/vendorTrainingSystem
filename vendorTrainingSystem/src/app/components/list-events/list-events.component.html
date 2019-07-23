@@ -1,9 +1,9 @@
 <div>
   <h2>List of Events</h2>
   <app-search-event></app-search-event>
-  <app-event 
-    *ngFor="let event of Events"
-    [event] = "event"
-  ></app-event>
-</div>
+  <div class="row">
+    <app-event *ngFor="let event of Events" [event]="event"></app-event>
 
+  </div>
+
+</div>

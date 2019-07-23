@@ -1,11 +1,11 @@
 export class User {
-  _id:Number;
-  email:String;
-  first_name:String;
-  last_name:String;
-  role_id:Number;
-  phone:String;
-  address:String;
-  public:Boolean;
-  password:String;
+  _id:number;
+  email:string;
+  first_name:string;
+  last_name:string;
+  role_id:number;
+  phone:string;
+  address:string;
+  public:boolean;
+  password:string;
 }
