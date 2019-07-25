@@ -6,13 +6,13 @@
       <label for="vendorName">Vendor Name:</label>
       <input type="text" name="vendorName" class="form-control" [(ngModel)]="reportVendorModel.vendorName" #vendorName="ngModel" id="vendorName" required>
     </div>
-    <div *ngIf = "vendorName.invalid && (vendorName.dirty || vendorName.touched)">Please enter the name of the vendor</div>
+    <div *ngIf = "vendorName.invalid && (vendorName.dirty || vendorName.touched)">Vendor Name must be specified</div> <!-- show msg after pressing submit-->
     
     <div class="form-group">
       <label for="violation">Description of the violation</label>
       <textarea name="Violation" class="form-control" [(ngModel)]="reportVendorModel.violation" #violation="ngModel" id="violation" required></textarea>
     </div>
-    <div *ngIf = "violation.invalid && (violation.dirty || violation.touched)">Please provide the description of violation</div>
+    <div *ngIf = "violation.invalid && (violation.dirty || violation.touched)">Violation cannot be empty</div>
 
     <button type="submit" class="btn btn-success" [disabled] = "vendorName.invalid || violation.invalid">Submit</button> <!--dont disable? and check with ngSubmit-->
  
