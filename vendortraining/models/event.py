@@ -9,7 +9,7 @@ class Event(models.Model):
     on_delete=models.CASCADE
   )
   created_by = models.ForeignKey(
-    User,
+    Vendor,
     related_name='created_by',
     on_delete=models.CASCADE
   )

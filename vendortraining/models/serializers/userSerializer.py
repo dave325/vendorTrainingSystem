@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from vendortraining.models import User
 
-class userSerializer(serializers.Serializer):
+class UserSerializer(serializers.Serializer):
     user_id=serializers.IntegerField()
     email=serializers.CharField(max_length=45, min_length=None)
     first_name=serializers.CharField(max_length=45, min_length=None)
