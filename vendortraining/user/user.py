@@ -16,12 +16,15 @@ class UserView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    @action(detail=False, methods=['post'])
+
+
+    """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
         serializer_class = userSerializer.UserSerializer(queryset)
-        return Response(serializer_class.data)
+        return Response(serializer_class.data) """
     
+    # modified this, but we only need one across user, vendor, and admin
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
         queryset = Event.objects.all()
@@ -35,7 +38,23 @@ class UserView(viewsets.ModelViewSet):
         serializer_class = userSerializer
     
     @action(detail=False, methods=['post'])
-    def deleteEvent(self, request, *args, **kwargs):
-        return Response("Hello3")
-        queryset = User.objects.all()
+    def joinEvent(self, request, *args, **kwargs):
+        if 'eventid' in kwargs:
+            a = Attendance(event_id = kwargs.get('eventid'), )
+
+            queryset = User.objects.get(event_id = kwargs.get('eventid'))
+            serializer_class = userSerializer
+            return Response("Event Joined!")
+            
+
+    """ @action(detail=False, methods=['post'])
+    def reportEvent(self, request, *args, **kwargs):
+        queryset = User.objects.get(event_id = input)
         serializer_class = userSerializer
+        return Response("YOU ARE IN THE DOG HOUSE") """
+    
+    """ @action(detail=False, methods=['post'])
+    def reportVendor(self, request, *args, **kwargs):
+        queryset = User.objects.get(event_id = input)
+        serializer_class = userSerializer
+        return Response("welcome to jail kind sir") """
