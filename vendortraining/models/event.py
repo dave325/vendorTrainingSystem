@@ -16,3 +16,4 @@ class Event(models.Model):
     on_delete=models.CASCADE
   )
   modified_at = models.DateField(auto_now=True)
+  isApproved = models.BooleanField(default=false)

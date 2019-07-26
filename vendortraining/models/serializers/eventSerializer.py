@@ -9,3 +9,4 @@ class EventSerializer(serializers.Serializer):
     modified_by= serializers.IntegerField()
     modified_at= serializers.DateField()
     created_at= serializers.DateField()
+    isApproved = serializers.BooleanField()

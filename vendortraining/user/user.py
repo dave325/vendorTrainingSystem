@@ -24,7 +24,6 @@ class UserView(viewsets.ModelViewSet):
         serializer_class = userSerializer.UserSerializer(queryset)
         return Response(serializer_class.data) """
     
-    # modified this, but we only need one across user, vendor, and admin
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
         queryset = Event.objects.all()
