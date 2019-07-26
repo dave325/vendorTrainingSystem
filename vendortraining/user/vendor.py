@@ -15,6 +15,7 @@ class VendorView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
+    queryset = Vendor.objects.all()
     #serializer_class = userSerializer # not sure why this is needed -- Ed
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
@@ -22,14 +23,13 @@ class VendorView(viewsets.ModelViewSet):
     
     @action(detail=False, methods=['post'])
     def getAll(self, request, *args, **kwargs):
-        queryset = Vendor.objects.all()
-        s = vendorSerializer.VendorSerializer(queryset, many=True)
+        s = vendorSerializer.VendorSerializer(self.queryset, many=True)
         return Response(s.data)
 
     @action(detail=False, methods=['post'])
     def getProfile(self, request, *args, **kwargs):
-        queryset = Vendor(vendor_id = 1)
-        s = vendorSerializer.VendorSerializer(self.queryset, many=True)
+        qset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id')) #self.request.data is a python dictionary. use get return the value
+        s = vendorSerializer.VendorSerializer(qset, many=True)
         return Response(s.data)
     
     @action(detail=False, methods=['get'])
