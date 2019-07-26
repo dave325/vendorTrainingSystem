@@ -15,14 +15,20 @@ class VendorView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = Vendor.objects.all()
     #serializer_class = userSerializer # not sure why this is needed -- Ed
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         return Response("Hello from vendor")
     
     @action(detail=False, methods=['post'])
+    def getAll(self, request, *args, **kwargs):
+        queryset = Vendor.objects.all()
+        s = vendorSerializer.VendorSerializer(queryset, many=True)
+        return Response(s.data)
+
+    @action(detail=False, methods=['post'])
     def getProfile(self, request, *args, **kwargs):
+        queryset = Vendor(vendor_id = 1)
         s = vendorSerializer.VendorSerializer(self.queryset, many=True)
         return Response(s.data)
     
