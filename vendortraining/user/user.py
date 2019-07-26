@@ -18,14 +18,9 @@ class UserView(viewsets.ModelViewSet):
     """
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
-<<<<<<< HEAD
-        # return Response(self.queryset)
-        return Response ("Hello from User highlight")
-=======
         queryset = User.objects.all()
         serializer_class = userSerializer.UserSerializer(queryset)
         return Response(serializer_class.data)
->>>>>>> 17b367d36134456c54088e6536f5e418bc729868
     
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):

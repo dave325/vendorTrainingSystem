@@ -1,28 +1,33 @@
-from django.shortcuts import render
+# TODO:
+#     SET UP ROUTES IN urls.py SO THAT EACH ROUTE IN EVERY FILE (I.E. 'vendor', 'admin', 'user') IS UNIQUE.
 
-# Create your views here.
+
+
+
+from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from vendortraining.models import User
-from vendortraining.models.serializers import userSerializer
+from vendortraining.models import Vendor
+from vendortraining.models.serializers import vendorSerializer
 
-class UserView(viewsets.ModelViewSet):
+class VendorView(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = User.objects.all()
-    serializer_class = userSerializer
+    queryset = Vendor.objects.all()
+    #serializer_class = userSerializer # not sure why this is needed -- Ed
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
-        return Response("Hello")
+        return Response("Hello from vendor")
     
-    @action(detail=False, methods=['get'])
-    def listAllEvents(self, request, *args, **kwargs):
-        return Response("Hello1")
+    @action(detail=False, methods=['post'])
+    def getProfile(self, request, *args, **kwargs):
+        s = vendorSerializer.VendorSerializer(self.queryset, many=True)
+        return Response(s.data)
     
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
