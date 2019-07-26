@@ -23,14 +23,14 @@ class UserView(viewsets.ModelViewSet):
         return Response ("Hello from User highlight")
 =======
         queryset = User.objects.all()
-        serializer_class = userSerializer.UserSerializer(User)
+        serializer_class = userSerializer.UserSerializer(queryset)
         return Response(serializer_class.data)
 >>>>>>> 17b367d36134456c54088e6536f5e418bc729868
     
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
         queryset = Event.objects.all()
-        serializer_class = eventSerializer.EventSerializer(Event)
+        serializer_class = eventSerializer.EventSerializer(queryset)
         return Response(serializer_class.data)
     
     @action(detail=False, methods=['get'])
