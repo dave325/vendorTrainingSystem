@@ -34,19 +34,19 @@ class UserView(viewsets.ModelViewSet):
 #user seeing ONE event    
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
-        return Response("Hello2")
+        return Response("Helevent is listed")
         queryset = User.objects.all()
         serializer_class = userSerializer
     
 #user joining an event. dont know how to change/update database where the attedance would change    
     @action(detail=False, methods=['post'])
     def joinEvent(self, request, *args, **kwargs):
-        if 'eventid' in kwargs:
-            a = Attendance(event_id = kwargs.get('eventid'), )
+      #  if 'eventid' in kwargs:
+       #     a = Attendance(event_id = kwargs.get('eventid'), )
 
             queryset = User.objects.get(event_id = kwargs.get('eventid'))
-            serializer_class = userSerializer
-            return Response("Event Joined!")
+            serializer_class = eventSerializer.EventSerializer(queryset)
+            return Response(serializer_class.data)
             
 #reporting an event 
     """ @action(detail=False, methods=['post'])
@@ -63,29 +63,30 @@ class UserView(viewsets.ModelViewSet):
         return Response("welcome to jail kind sir") """
 
 #view user profile        
-        @action(detail=False, methods=['get'])
+        @action(detail=False, methods=['post'])
         def profile(self, request, *args, **kwargs):
-        return Response("viewing your profile")
         queryset = User.objects.all()
         serializer_class = userSerializer
+        return Response(serializer_class.data)
 
 #deleting a user profile
         @action(detail=False, methods=['get'])
         def profileDelete(self, request, *args, **kwargs):
-        return Response("delete user profile")
         queryset = User.objects.all()
         serializer_class = userSerializer
+        return Response(serializer_class.data)
+
 
 #editing a user profile
         @action(detail=False, methods=['get'])
         def profileEdit(self, request, *args, **kwargs):
-        return Response("edit user profile")
         queryset = User.objects.all()
         serializer_class = userSerializer
+        return Response(serializer_class.data)
 
 #view events currently signed up for 
-        @action(detail=False, methods=['get'])
+        @action(detail=False, methods=['post'])
         def profileEvents(self, request, *args, **kwargs):
-        return Response("view your events")
         queryset = User.objects.all()
-        serializer_class = userSerializer
+        serializer_class = eventSerializer.EventSerializer(queryset)
+        return Response(serializer_class.data)
