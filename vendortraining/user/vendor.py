@@ -1,9 +1,6 @@
 # TODO:
 #     SET UP ROUTES IN urls.py SO THAT EACH ROUTE IN EVERY FILE (I.E. 'vendor', 'admin', 'user') IS UNIQUE.
 
-
-
-
 from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
