@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from vendortraining.models import User
 from vendortraining.models.serializers import userSerializer
+from vendortraining.models import Event 
+from vendortraining.models.serializers import EventSerializer
 
 class UserView(viewsets.ModelViewSet):
     """
@@ -14,8 +16,6 @@ class UserView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = User.objects.all()
-    serializer_class = userSerializer
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         # return Response(self.queryset)
@@ -24,12 +24,17 @@ class UserView(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
         return Response("Hello1")
+        queryset = Event.objects.all()
+        serializer_class = EventSerializer
     
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
         return Response("Hello2")
+        queryset = User.objects.all()
+        serializer_class = userSerializer
     
     @action(detail=False, methods=['post'])
     def deleteEvent(self, request, *args, **kwargs):
         return Response("Hello3")
-        
+        queryset = User.objects.all()
+        serializer_class = userSerializer
