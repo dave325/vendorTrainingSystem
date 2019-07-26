@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -15,7 +13,7 @@ class UserView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = User.objects.all()
+    queryset = User.objects.all() # imports the user object from vendortraining.models
     #serializer_class = userSerializer
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):

@@ -7,7 +7,7 @@ from rest_framework import status, viewsets
 from vendortraining.models import User
 from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Event 
-from vendortraining.models.serializers import EventSerializer
+from vendortraining.models.serializers import eventSerializer
 
 class UserView(viewsets.ModelViewSet):
     """
@@ -19,14 +19,14 @@ class UserView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
-        serializer_class = userSerializer
-        return Response(self.queryset)
+        serializer_class = userSerializer.UserSerializer(queryset)
+        return Response(serializer_class.data)
     
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
-        return Response("Hello1")
         queryset = Event.objects.all()
-        serializer_class = EventSerializer
+        serializer_class = eventSerializer.EventSerializer(queryset)
+        return Response(serializer_class.data)
     
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
