@@ -6,4 +6,4 @@ class Vendor(models.Model):
   address = models.TextField()
   phone = models.CharField(max_length=100) 
   email = models.EmailField(max_length=254)
-  isApproved = models.BooleanField()
+  isApproved = models.BooleanField(default=False)

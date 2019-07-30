@@ -110,7 +110,17 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['get'])
     def ApproveVendor(self, request, *args, **kwargs):
         if self.request.data['approval'] and self.request.data['vendorid']:
-            User.objects.get(vendor_id = vendorid).update(isApproved = self.request.data['approval'])
+            Vendor.objects.get(vendor_id = vendorid).update(isApproved = self.request.data['approval'])
 
+        else:
+            return Response('invalid input')
+    
+    @action(detail=False, methods=['get'])
+    def RemoveVendor(self, request, *args, **kwargs):
+        if self.request.data['vendorid']:
+            Vendor.objects.get(vendor_id = vendorid).update(address = '')
+            Vendor.objects.get(vendor_id = vendorid).update(phone = '')
+            Vendor.objects.get(vendor_id = vendorid).update(email = '')
+        
         else:
             return Response('invalid input')
