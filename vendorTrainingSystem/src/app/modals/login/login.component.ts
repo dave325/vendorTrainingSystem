@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'dsol-login',
@@ -8,10 +7,18 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  email1: string;
-  password1: string;
 
-  constructor(public modalService: NgbActiveModal) { }
+  login = {
+    email:<string> null,
+    password: <string> null
+  }
+    
+
+  constructor(public modalService: NgbModal) { }
+
+
+
+ 
 
   ngOnInit() {
   }

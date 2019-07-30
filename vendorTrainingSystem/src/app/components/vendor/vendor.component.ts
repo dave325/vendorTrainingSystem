@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Vendor } from '../../models/Vendor';
+import { dummy_vendors } from '../../dummy-data/dummy-vendors';
 
 @Component({
   selector: 'app-vendor',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendorComponent implements OnInit {
 
-  constructor() { }
+  Vendors:Vendor[] = dummy_vendors;
+
+  constructor() {
+    
+   }
 
   ngOnInit() {
   }
