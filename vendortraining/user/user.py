@@ -94,3 +94,4 @@ class UserView(viewsets.ModelViewSet):
         queryset = Event.objects.filter(event_id = self.request.data.get('event_id'))
         serializer_class = eventSerializer.EventSerializer(queryset,many = true)
         return Response(serializer_class.data)
+
