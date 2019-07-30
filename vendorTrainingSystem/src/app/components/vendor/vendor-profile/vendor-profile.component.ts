@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Vendor } from 'src/app/models/Vendor';
 
 @Component({
   selector: 'app-vendor-profile',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VendorProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input() vendor:Vendor; 
+
+  constructor() { 
+  }
 
   ngOnInit() {
   }
 
+  
 }
