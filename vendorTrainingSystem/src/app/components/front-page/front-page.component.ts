@@ -11,7 +11,6 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
   styleUrls: ['./front-page.component.css']
 })
 export class FrontPageComponent implements OnInit {
-
   eventEditComponent = EventEditComponent;
 
   constructor(

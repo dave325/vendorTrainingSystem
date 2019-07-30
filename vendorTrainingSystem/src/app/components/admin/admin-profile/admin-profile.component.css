@@ -1,0 +1,16 @@
+.container-fluid {
+  margin-top: 10px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.event-title {
+  text-align: center;
+}
+
+.row {
+  margin-top: 10px;
+}
