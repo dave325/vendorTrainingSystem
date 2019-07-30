@@ -17,21 +17,42 @@ class VendorView(viewsets.ModelViewSet):
     """
     queryset = Vendor.objects.all()
     #serializer_class = userSerializer # not sure why this is needed -- Ed
-    @action(detail=False, methods=['post'])
+    @action(detail=True, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         return Response("Hello from vendor")
     
-    @action(detail=False, methods=['post'])
+    @action(detail=False, methods=['get'])
     def getAll(self, request, *args, **kwargs):
         s = vendorSerializer.VendorSerializer(self.queryset, many=True)
         return Response(s.data)
 
     @action(detail=False, methods=['post'])
-    def getProfile(self, request, *args, **kwargs):
-        qset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id')) #self.request.data is a python dictionary. use get return the value
-        s = vendorSerializer.VendorSerializer(qset, many=True)
-        return Response(s.data)
+    def getMyProfile(self, request, *args, **kwargs):
+        # qset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id')) #self.request.data is a python dictionary. use get return the value
+        # s = vendorSerializer.VendorSerializer(qset, many=True)
+        # return Response(s.data)
+        return()
     
+    @action(detail=False, methods=['post'])
+    def deleteMyProfile(self, request, *args, **kwargs):
+        return()
+
+    @action(detail=False, methods=['post'])
+    def editMyProfile(self, request, *args, **kwargs):
+        return()
+
+    @action(detail=False, methods=['post'])
+    def viewMyEvents(self, request, *args, **kwargs):
+        return()
+    
+    @action(detail=False, methods=['post'])
+    def editMyEvents(self, request, *args, **kwargs):
+        return()
+    
+    @action(detail=False, methods=['post'])
+    def deleteMyEvents(self, request, *args, **kwargs):
+        return()
+
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
         eventset = Event.objects.filter(id = self.request.data.get('event_id'))
