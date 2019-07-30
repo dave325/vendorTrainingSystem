@@ -7,3 +7,4 @@ class VendorSerializer(serializers.Serializer):
     address = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
     phone = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
     email = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
+    isApproved = serializers.BooleanField()
