@@ -9,6 +9,6 @@ class User(models.Model):
     Role, 
     on_delete=models.CASCADE)
   phone = models.CharField(max_length=100)
-  address = models.TextField()
+  address = models.CharField()
   public = models.BooleanField(default=True)
   password = models.CharField(max_length=100)
