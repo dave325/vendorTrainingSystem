@@ -11,14 +11,13 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
   styleUrls: ['./front-page.component.css']
 })
 export class FrontPageComponent implements OnInit {
-  
-  reportVendorComponent = ReportVendorComponent;
   eventEditComponent = EventEditComponent;
 
   constructor(
     private modalService: NgbModal,
-    private rc: RegisterComponent,
-    private ls:LoginComponent
+    private registerComponent: RegisterComponent,
+    private loginComponent: LoginComponent,
+    private reportVendorComponent: ReportVendorComponent
     ) { }
 
   ngOnInit() {

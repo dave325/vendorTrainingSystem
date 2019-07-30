@@ -1,9 +1,11 @@
 from rest_framework import serializers
 from vendortraining.models import Vendor
 
-class vendorSerializer(serializers.Serializer):
+#vendor is considered deleted if address, phone, and email is blank
+class VendorSerializer(serializers.Serializer):
     vendor_id = serializers.IntegerField()
-    name = serializers.CharField(max_length=45, min_length=None)
-    address = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
-    phone = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
-    email = serializers.CharField(max_length=45, min_length=None, allow_blank=False)
+    name = serializers.CharField(max_length=100, min_length=None)
+    address = serializers.CharField(max_length=254, min_length=None, allow_blank=True)
+    phone = serializers.CharField(max_length=100, min_length=None, allow_blank=True)
+    email = serializers.EmailField(max_length=254, min_length=None, allow_blank=True)
+    isApproved = serializers.BooleanField()

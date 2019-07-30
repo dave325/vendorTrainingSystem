@@ -6,6 +6,10 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from vendortraining.models import User
 from vendortraining.models.serializers import userSerializer
+from vendortraining.models import Event 
+from vendortraining.models.serializers import eventSerializer
+from vendortraining.models import Vendor 
+from vendortraining.models.serializers import vendorSerializer
 
 class UserView(viewsets.ModelViewSet):
     """
@@ -15,20 +19,79 @@ class UserView(viewsets.ModelViewSet):
     Additionally we also provide an extra `highlight` action.
     """
     queryset = User.objects.all()
-    serializer_class = userSerializer
-    @action(detail=False, methods=['post'])
+    serializer_class = userSerializer.UserSerializer
+
+    """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
-        return Response(self.queryset)
+        queryset = User.objects.all()
+        serializer_class = userSerializer.UserSerializer(queryset)
+        return Response(serializer_class.data) """
     
+#user seeing ALL listed events    
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
-        return Response("Hello1")
+        eventSet = Event.objects.all()
+        serializer_class = eventSerializer.EventSerializer(eventSet, many=True)
+        return Response(serializer_class.data)
     
+#user seeing ONE event    
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
-        return Response("Hello2")
+        eventset = Event.objects.filter(id = self.request.data.get('event_id'))
+        results = eventSerializer.EventSerializer(eventset)
+        return Response(results.data)
     
+#user joining ONE event. dont know if we should include the change to the attendance table somehow   
     @action(detail=False, methods=['post'])
-    def deleteEvent(self, request, *args, **kwargs):
-        return Response("Hello3")
+    def joinEvent(self, request, *args, **kwargs):
+        queryset = Event.objects.filter(event_id = self.request.data.get('event_id'))
+        serializer_class = eventSerializer.EventSerializer(queryset)
+        return Response(serializer_class.data)
+            
+#reporting an event 
+    @action(detail=False, methods=['post'])
+    def reportEvent(self, request, *args, **kwargs):
+        queryset = Event.objects.filter(event_id = self.request.data.get('event_id'))
+        serializer_class = eventSerializer.EventSerializer(queryset)
+        return Response(serializer_class.data)
+    
+#reporting a vendor    
+    @action(detail=False, methods=['post'])
+    def reportVendor(self, request, *args, **kwargs):
+        queryset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
+        serializer_class = vendorSerializer.VendorSerializer(queryset)
+        return Response(serializer_class.data)
         
+    @action(detail=False, methods=['post'])
+    def profile(self, request, *args, **kwargs):
+        user = User.objects.filter(id = self.request.data.get('user_id'))
+        if len(user) > 0:
+            res = userSerializer.UserSerializer(user)
+            return Response(res.data)
+        else:
+            return Response([], status=status.HTTP_404_NOT_FOUND)
+
+#deleting a user profile
+    @action(detail=False, methods=['get'])
+    def profileDelete(self, request, *args, **kwargs):
+        try:
+            user = User.objects.filter(user_id = self.request.data.get('user_id')).delete()
+            return Response("Successfully Deleted")
+        except Exception:
+            return Exception
+
+#editing a user profile
+## MAKE SURE TO USE THE RIGHT METHOD
+    @action(detail=False, methods=['get'])
+    def profileEdit(self, request, *args, **kwargs):
+        user = User.objects.filter(id = self.request.data.get('user_id'))
+        user.email = request.data.get('email')
+        return Response(res.data)
+
+#view events currently signed up for by the user
+    @action(detail=False, methods=['post'])
+    def userEvents(self, request, *args, **kwargs):
+        queryset = Event.objects.filter(event_id = self.request.data.get('event_id'))
+        serializer_class = eventSerializer.EventSerializer(queryset,many = true)
+        return Response(serializer_class.data)
+

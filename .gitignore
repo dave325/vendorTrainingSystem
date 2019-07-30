@@ -9,6 +9,12 @@ vendorTrainingSystem/out-tsc
 
 # dependencies
 vendorTrainingSystem/node_modules
+vendortraining/__pycache__
+vendortraining/models/__pycache__
+vendortraining/user/__pycache__
+vendortraining/user/migrations
+vendortraining/migrations
+*.pyc
 
 # profiling files
 chrome-profiler-events.json
