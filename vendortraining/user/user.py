@@ -10,7 +10,7 @@ from vendortraining.models import Event
 from vendortraining.models.serializers import eventSerializer
 from vendortraining.models import Vendor 
 from vendortraining.models.serializers import vendorSerializer
-
+from django.forms.models import model_to_dict
 class UserView(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -64,12 +64,13 @@ class UserView(viewsets.ModelViewSet):
         
     @action(detail=False, methods=['post'])
     def profile(self, request, *args, **kwargs):
-        user = User.objects.filter(id = self.request.data.get('user_id'))
-        if len(user) > 0:
+        user = User.objects.get(id = self.request.data.get('user_id'))
+        user.events.all()
+        try:
             res = userSerializer.UserSerializer(user)
             return Response(res.data)
-        else:
-            return Response([], status=status.HTTP_404_NOT_FOUND)
+        except NameError:
+            return Response(user, status=status.HTTP_404_NOT_FOUND)
 
 #deleting a user profile
     @action(detail=False, methods=['get'])
