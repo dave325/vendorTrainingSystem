@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-rom rest_framework.decorators import action
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from vendortraining.models import User
@@ -13,36 +13,114 @@ from vendortraining.models.serializers import vendorSerializer
 
 
 class AdminView(viewset.ModelViewSet):
-    @action(detail=false, method['get'])
+    #TODO: check if can be imported from other classes
+    @action(detail=False, methods=['get'])
     def profile(self, request, *args, **kwargs):
-        if 'uid' in kwargs:
-            queryset = User.objects.get(id = kwargs.get(uid))
-            s = userSerializer.UserSerializer(queryset)
-            return Response(s.data)
+        if self.request.data['uid']:
+            query = User.objects.get(id = self.request.data['uid'])
+            if(Role.objects.get(role_id = query.role_id).role_name != 'admin'):
+                return Response('User is not an admin')
+            else:
+                serial = userSerializer.UserSerializer(query)
+                return Response(serial.data)
+        else:
+            return Response('invalid input')
            
-    
-    @action(detail=false, method['get']) 
-    def approveEvent(self, request, *args, **kwargs):
-        queryset = Event.objects.all()
-        s = eventSerializer.EventSerializer(queryset)
-        return Response(s.data)
-    
-    @action(detail=false, method['get'])
+    #TODO: make sure users are customers, test output
+    @action(detail=False, methods=['get'])
     def listCustomers(self, request, *args, **kwargs):
-        queryset = User.objects.all()
-        s = userSerializer.UserSerializer(queryset)
-        return Response(s.data)   
-
-    @action(detail=false, method['get'])
+        query = User.objects.filter(Role.objects.filter(role_name = "customer").role_id = role_id)
+        serial = userSerializer.UserSerializer(query)
+        return Response(serial.data)   
+    #TODO: make sure users are vendors
+    @action(detail=False, methods=['get'])
     def listVendors(self, request, *args, **kwargs):
-        queryset = Vendor.objects.all()
-        s = vendorSerializer.VendorSerializer(queryset)
-        return Response(s.data)  
+        query = Vendor.objects.all()
+        serial = vendorSerializer.VendorSerializer(query)
+        return Response(serial.data)  
     #approval status in event? = isApproved
-    @action(detail=false, method['post'])
+    @action(detail=False, methods=['post'])
     def approveEvent(self, request, *args, **kwargs):
-        if 'approval' in kwargs:
-            queryset = Event.objects.all().update(isApproved = kwargs.get('approval'))
-            e = eventSerializer.EventSerializer(queryset)
-            return Response()
+        if self.request.data['approval'] and self.request.data['eventid']:
+            Event.objects.get(event_id = self.request.data['eventid']).update(isApproved = self.request.data['approval'])
+            #check updated info
+            query = Event.objects.all()
+            serial = eventSerializer.EventSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input type')
+
+    @action(detail=False, methods=['post'])
+    def deleteEvent(self, request, *args, **kwargs):
+        if self.request.data['eventid']:
+            Event.objects.get(event_id = self.request.data['eventid']).delete()
+            query = Event.objects.all()
+            serial = eventSerializer.EventSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input type')
+    #TODO: change fields to values in input
+    @action(detail=False, methods=['post'])
+    def editEvent(self, request, *args, **kwargs):
+        if self.request.data['eventid']:
+            Event.objects.get(event_id = self.request.data['eventid']).update()
+            #check updated info
+            query = Event.objects.all()
+            serial = eventSerializer.EventSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input type')
+
+    @action(detail=False, methods=['get'])
+    def listEvent(self, request, *args, **kwargs):
+        if self.request.data['eventid']:
+            query = Event.objects.get(event_id = self.request.data['eventid'])
+            serial = eventSerializer.EventSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input type')
+
+    @action(detail=False, methods=['get'])
+    def viewCustomer(self, request, *args, **kwargs):
+        if self.request.data['customerid']:
+            query = User.objects.get(id = self.request.data['customerid'])
+            serial = UserSerializer.userSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response("invalid input type")
+    
+    @action(detail=False, methods=['get'])
+    def viewEvent(self, request, *args, **kwargs):
+        if self.request.data['eventid']:
+            query = Event.objects.get(event_id = self.request.data['eventid'])
+            serial = EventSerializer.eventSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input type')
+
+    @action(detail=False, methods=['get'])
+    def viewUserInfo(self, request, *args, **kwargs):
+        if self.request.data['uid']:
+            query = User.objects.get(id = self.request.data['uid'])
+            serial = userSerializer.UserSerializer(query)
+            return Response(serial.data)
+        else:
+            return Response('invalid input')
+
+    @action(detail=False, methods=['get'])
+    def ApproveVendor(self, request, *args, **kwargs):
+        if self.request.data['approval'] and self.request.data['vendorid']:
+            Vendor.objects.get(vendor_id = vendorid).update(isApproved = self.request.data['approval'])
+
+        else:
+            return Response('invalid input')
+    
+    @action(detail=False, methods=['get'])
+    def RemoveVendor(self, request, *args, **kwargs):
+        if self.request.data['vendorid']:
+            Vendor.objects.get(vendor_id = vendorid).update(address = '')
+            Vendor.objects.get(vendor_id = vendorid).update(phone = '')
+            Vendor.objects.get(vendor_id = vendorid).update(email = '')
         
+        else:
+            return Response('invalid input')
