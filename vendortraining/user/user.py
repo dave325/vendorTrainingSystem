@@ -61,25 +61,31 @@ class UserView(viewsets.ModelViewSet):
         queryset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
         serializer_class = vendorSerializer.VendorSerializer(queryset)
         return Response(serializer_class.data)
+        
     @action(detail=False, methods=['post'])
     def profile(self, request, *args, **kwargs):
         user = User.objects.filter(id = self.request.data.get('user_id'))
-        res = userSerializer.UserSerializer(user)
-        return Response(res.data)
+        if len(user) > 0:
+            res = userSerializer.UserSerializer(user)
+            return Response(res.data)
+        else:
+            return Response([], status=status.HTTP_404_NOT_FOUND)
 
 #deleting a user profile
     @action(detail=False, methods=['get'])
     def profileDelete(self, request, *args, **kwargs):
-        user = User.objects.filter(user_id = self.request.data.get('user_id'))
-        serializer_class = userSerializer.UserSerializer(user)
-        return Response(serializer_class.data)
+        try:
+            user = User.objects.filter(user_id = self.request.data.get('user_id')).delete()
+            return Response("Successfully Deleted")
+        except Exception:
+            return Exception
 
 #editing a user profile
 ## MAKE SURE TO USE THE RIGHT METHOD
     @action(detail=False, methods=['get'])
     def profileEdit(self, request, *args, **kwargs):
         user = User.objects.filter(id = self.request.data.get('user_id'))
-        res = userSerializer
+        user.email = request.data.get('email')
         return Response(res.data)
 
 #view events currently signed up for by the user
