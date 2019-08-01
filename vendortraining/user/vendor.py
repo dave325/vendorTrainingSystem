@@ -65,16 +65,4 @@ class VendorView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def deleteMyEvents(self, request, *args, **kwargs):
         return()
-
-    @action(detail=False, methods=['get'])
-    def listEvent(self, request, *args, **kwargs):
-        eventset = Event.objects.filter(id = self.request.data.get('event_id'))
-        results = eventSerializer.EventSerializer(eventset)
-        return Response(results.data)
-    
-    @action(detail=False, methods=['post'])
-    def deleteEvent(self, request, *args, **kwargs):
-        eventset = Event.objects.filter(id = self.request.data.get('event_id'))
-        eventSet.delete()
-        return Response("Hello3")
         

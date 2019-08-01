@@ -6,9 +6,11 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from vendortraining.models import Vendor
+from vendortraining.models.event import Event
 from vendortraining.models.serializers import vendorSerializer
+from vendortraining.models.serializers import eventSerializer
 
-class VendorView(viewsets.ModelViewSet):
+class SuperView(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
