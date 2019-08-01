@@ -3,7 +3,7 @@ from django.utils import timezone
 from .vendor import Vendor
 
 class Event(models.Model):
-  vendor = models.ForeignKey(
+  vendor_id = models.ForeignKey(
     Vendor,
     related_name="vendor_name",
     on_delete=models.CASCADE
