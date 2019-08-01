@@ -8,12 +8,13 @@ vendorTrainingSystem/out-tsc
 /bazel-out
 
 # dependencies
-vendorTrainingSystem/node_modules
-vendortraining/__pycache__
-vendortraining/models/__pycache__
-vendortraining/user/__pycache__
-vendortraining/user/migrations
-vendortraining/migrations
+vendorTrainingSystem/node_modules/
+vendortraining/__pycache__/
+vendortraining/models/__pycache__/
+vendortraining/models/serializers/__pycache__/
+vendortraining/user/__pycache__/
+vendortraining/user/migrations/
+vendortraining/migrations/
 *.pyc
 
 # profiling files
