@@ -20,10 +20,16 @@ class AdminView(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def adminProfile(self, request, *args, **kwargs):
         #query = User.objects.get(id = self.request.data.get('id'))
-        query = User.objects.all()
-        serial = userSerializer.UserSerializer(query, many=True)
+        query = User.objects.get(id = self.request.data.get('id'))
+        serial = userSerializer.UserSerializer(query)
         return Response(serial.data)
-         
+
+    @actino(detail=False, methods=['post'])
+    def editAdminProfile(self, request, *args, **kwargs):
+        admin = User.objects.get(id = self.request.data.get('id'))
+        #use this syntax for other fields
+        admin.email = "sample@email.com"
+        admin.save()
     #TODO: make sure users are customers, test output
     @action(detail=False, methods=['get'])
     def listCustomers(self, request, *args, **kwargs):
@@ -39,7 +45,8 @@ class AdminView(viewsets.ModelViewSet):
     #approval status in event? = isApproved
     @action(detail=False, methods=['post'])
     def approveEvent(self, request, *args, **kwargs):
-        Event.objects.get(event_id = self.request.data.get('eventid')).update(is_approved = self.request.data.get('approval'))
+        event = Event.objects.get(event_id = self.request.data.get('eventid'))
+        event.is_approved = self.request.data.get('approval')
         #check updated info
         query = Event.objects.all()
         serial = eventSerializer.EventSerializer(query, many=True)
@@ -47,7 +54,9 @@ class AdminView(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def deleteEvent(self, request, *args, **kwargs):
-        Event.objects.get(event_id = self.request.data.get('eventid')).delete()
+        event = Event.objects.get(event_id = self.request.data.get('eventid'))
+        event.delete()
+        event.save()
         #check updated info
         query = Event.objects.all()
         serial = eventSerializer.EventSerializer(query)
