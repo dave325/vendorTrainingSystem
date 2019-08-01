@@ -14,35 +14,35 @@ from vendortraining.models import Role
 
 
 
-class AdminView(viewset.ModelViewSet):
-    
+class AdminView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
     #TODO: check if the user is admin
     @action(detail=False, methods=['get'])
     def adminProfile(self, request, *args, **kwargs):
-        query = User.objects.filter(role_id__role_name = 'admin').get(id = self.request.data.get('id'))
+        query = User.objects.get(id = self.request.data.get('id'))
         serial = userSerializer.UserSerializer(query)
         return Response(serial.data)
-           
+         
     #TODO: make sure users are customers, test output
     @action(detail=False, methods=['get'])
     def listCustomers(self, request, *args, **kwargs):
         query = User.objects.filter(role_id__role_name = 'customer')
-        serial = userSerializer.UserSerializer(query)
+        serial = userSerializer.UserSerializer(query, many=True)
         return Response(serial.data)   
     #TODO: make sure users are vendors
     @action(detail=False, methods=['get'])
     def listVendors(self, request, *args, **kwargs):
         query = Vendor.objects.all()
-        serial = vendorSerializer.VendorSerializer(query)
+        serial = vendorSerializer.VendorSerializer(query, many=True)
         return Response(serial.data)  
     #approval status in event? = isApproved
     @action(detail=False, methods=['post'])
     def approveEvent(self, request, *args, **kwargs):
         if self.request.data['approval'] and self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data.get('eventid')).update(isApproved = self.request.data.get('approval'))
+            Event.objects.get(event_id = self.request.data.get('eventid')).update(is_approved = self.request.data.get('approval'))
             #check updated info
             query = Event.objects.all()
-            serial = eventSerializer.EventSerializer(query)
+            serial = eventSerializer.EventSerializer(query, many=True)
             return Response(serial.data)
         else:
             return Response('invalid input type')
@@ -109,7 +109,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['post'])
     def ApproveVendor(self, request, *args, **kwargs):
         if self.request.data.get('approval') and self.request.data.get('vendorid'):
-            Vendor.objects.get(vendor_id = vendorid).update(isApproved = self.request.data.get('approval'))
+            Vendor.objects.get(vendor_id = vendorid).update(is_approved = self.request.data.get('approval'))
 
         else:
             return Response('invalid input')
