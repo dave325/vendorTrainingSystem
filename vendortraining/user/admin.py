@@ -19,12 +19,9 @@ class AdminView(viewset.ModelViewSet):
     #TODO: check if the user is admin
     @action(detail=False, methods=['get'])
     def adminProfile(self, request, *args, **kwargs):
-        if self.request.data['uid']:
-            query = User.objects.filter(role_id__role_name = 'admin').get(id = self.request.data['uid'])
-            serial = userSerializer.UserSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input')
+        query = User.objects.filter(role_id__role_name = 'admin').get(id = self.request.data.get('id'))
+        serial = userSerializer.UserSerializer(query)
+        return Response(serial.data)
            
     #TODO: make sure users are customers, test output
     @action(detail=False, methods=['get'])
@@ -42,7 +39,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['post'])
     def approveEvent(self, request, *args, **kwargs):
         if self.request.data['approval'] and self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data['eventid']).update(isApproved = self.request.data['approval'])
+            Event.objects.get(event_id = self.request.data.get('eventid')).update(isApproved = self.request.data.get('approval'))
             #check updated info
             query = Event.objects.all()
             serial = eventSerializer.EventSerializer(query)
@@ -53,7 +50,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['post'])
     def deleteEvent(self, request, *args, **kwargs):
         if self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data['eventid']).delete()
+            Event.objects.get(event_id = self.request.data.get('eventid')).delete()
             #check updated info
             query = Event.objects.all()
             serial = eventSerializer.EventSerializer(query)
@@ -63,19 +60,20 @@ class AdminView(viewset.ModelViewSet):
     #TODO: change fields to values in input
     @action(detail=False, methods=['post'])
     def editEvent(self, request, *args, **kwargs):
-        if self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data['eventid']).update()
-            #check updated info
-            query = Event.objects.get(event_id = self.request.data['eventid'])
-            serial = eventSerializer.EventSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input type')
+        eventEdit = Event.objects.filter(event_id = self.request.data.get('event_id'))
+        d = {}
+        for x in self.request.data:
+            if len(str(self.request.data.get(x))) == 0:
+                continue
+            d[x] = self.request.data.get(x)
+
+        vendorProfile.update(**d)
+        return Response(d)
 
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
         if self.request.data['eventid']:
-            query = Event.objects.get(event_id = self.request.data['eventid'])
+            query = Event.objects.get(event_id = self.request.data.get('eventid'))
             serial = eventSerializer.EventSerializer(query)
             return Response(serial.data)
         else:
@@ -84,7 +82,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['get'])
     def viewCustomer(self, request, *args, **kwargs):
         if self.request.data['customerid']:
-            query = User.objects.filter(role_id__role_name = 'customer').get(id = self.request.data['customerid'])
+            query = User.objects.filter(role_id__role_name = 'customer').get(id = self.request.data.get('customerid'))
             serial = UserSerializer.userSerializer(query)
             return Response(serial.data)
         else:
@@ -93,7 +91,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['get'])
     def viewEvent(self, request, *args, **kwargs):
         if self.request.data['eventid']:
-            query = Event.objects.get(event_id = self.request.data['eventid'])
+            query = Event.objects.get(event_id = self.request.data.get('eventid'))
             serial = EventSerializer.eventSerializer(query)
             return Response(serial.data)
         else:
@@ -102,7 +100,7 @@ class AdminView(viewset.ModelViewSet):
     @action(detail=False, methods=['get'])
     def viewUserInfo(self, request, *args, **kwargs):
         if self.request.data['uid']:
-            query = User.objects.get(id = self.request.data['uid'])
+            query = User.objects.get(id = self.request.data.get('uid'))
             serial = userSerializer.UserSerializer(query)
             return Response(serial.data)
         else:
@@ -110,25 +108,25 @@ class AdminView(viewset.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def ApproveVendor(self, request, *args, **kwargs):
-        if self.request.data['approval'] and self.request.data['vendorid']:
-            Vendor.objects.get(vendor_id = vendorid).update(isApproved = self.request.data['approval'])
+        if self.request.data.get('approval') and self.request.data.get('vendorid'):
+            Vendor.objects.get(vendor_id = vendorid).update(isApproved = self.request.data.get('approval'))
 
         else:
             return Response('invalid input')
     
     @action(detail=False, methods=['post'])
     def RemoveVendor(self, request, *args, **kwargs):
-        if self.request.data['vendorid']:
+        if self.request.data.get('vendorid'):
             Vendor.objects.get(vendor_id = vendorid).update(address = '')
             Vendor.objects.get(vendor_id = vendorid).update(phone = '')
             Vendor.objects.get(vendor_id = vendorid).update(email = '')
-        
+            #reduce database call
         else:
             return Response('invalid input')
     
 
     @action(detail=False, methods=['post'])
     def addVendor(self, request, *args, **kwargs):
-        newVendor = Vendor(name = self.request.data['name'], address=self.request.data['address'], phone = self.request.data['phone'], email = self.request.data['email'])
+        newVendor = Vendor(name = self.request.data.get('name'), address=self.request.data.get('address'), phone = self.request.data.get('phone'), email = self.request.data.get('email'))
         newVendor.save()
 
