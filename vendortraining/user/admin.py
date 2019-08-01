@@ -19,10 +19,17 @@ class AdminView(viewsets.ModelViewSet):
     #TODO: check if the user is admin
     @action(detail=False, methods=['get'])
     def adminProfile(self, request, *args, **kwargs):
+        #query = User.objects.get(id = self.request.data.get('id'))
         query = User.objects.get(id = self.request.data.get('id'))
         serial = userSerializer.UserSerializer(query)
         return Response(serial.data)
-         
+
+    @actino(detail=False, methods=['post'])
+    def editAdminProfile(self, request, *args, **kwargs):
+        admin = User.objects.get(id = self.request.data.get('id'))
+        #use this syntax for other fields
+        admin.email = "sample@email.com"
+        admin.save()
     #TODO: make sure users are customers, test output
     @action(detail=False, methods=['get'])
     def listCustomers(self, request, *args, **kwargs):
@@ -38,25 +45,22 @@ class AdminView(viewsets.ModelViewSet):
     #approval status in event? = isApproved
     @action(detail=False, methods=['post'])
     def approveEvent(self, request, *args, **kwargs):
-        if self.request.data['approval'] and self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data.get('eventid')).update(is_approved = self.request.data.get('approval'))
-            #check updated info
-            query = Event.objects.all()
-            serial = eventSerializer.EventSerializer(query, many=True)
-            return Response(serial.data)
-        else:
-            return Response('invalid input type')
+        event = Event.objects.get(event_id = self.request.data.get('eventid'))
+        event.is_approved = self.request.data.get('approval')
+        #check updated info
+        query = Event.objects.all()
+        serial = eventSerializer.EventSerializer(query, many=True)
+        return Response(serial.data)
 
     @action(detail=False, methods=['post'])
     def deleteEvent(self, request, *args, **kwargs):
-        if self.request.data['eventid']:
-            Event.objects.get(event_id = self.request.data.get('eventid')).delete()
-            #check updated info
-            query = Event.objects.all()
-            serial = eventSerializer.EventSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input type')
+        event = Event.objects.get(event_id = self.request.data.get('eventid'))
+        event.delete()
+        event.save()
+        #check updated info
+        query = Event.objects.all()
+        serial = eventSerializer.EventSerializer(query)
+        return Response(serial.data)
     #TODO: change fields to values in input
     @action(detail=False, methods=['post'])
     def editEvent(self, request, *args, **kwargs):
@@ -72,57 +76,45 @@ class AdminView(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
-        if self.request.data['eventid']:
-            query = Event.objects.get(event_id = self.request.data.get('eventid'))
-            serial = eventSerializer.EventSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input type')
+        query = Event.objects.get(event_id = self.request.data.get('eventid'))
+        serial = eventSerializer.EventSerializer(query)
+        return Response(serial.data)
 
     @action(detail=False, methods=['get'])
     def viewCustomer(self, request, *args, **kwargs):
-        if self.request.data['customerid']:
-            query = User.objects.filter(role_id__role_name = 'customer').get(id = self.request.data.get('customerid'))
-            serial = UserSerializer.userSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response("invalid input type")
+        query = User.objects.filter(role_id__role_name = 'customer').get(id = self.request.data.get('customerid'))
+        serial = UserSerializer.userSerializer(query)
+        return Response(serial.data)
     
     @action(detail=False, methods=['get'])
     def viewEvent(self, request, *args, **kwargs):
-        if self.request.data['eventid']:
-            query = Event.objects.get(event_id = self.request.data.get('eventid'))
-            serial = EventSerializer.eventSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input type')
+        query = Event.objects.get(event_id = self.request.data.get('eventid'))
+        serial = EventSerializer.eventSerializer(query)
+        return Response(serial.data)
 
     @action(detail=False, methods=['get'])
     def viewUserInfo(self, request, *args, **kwargs):
-        if self.request.data['uid']:
-            query = User.objects.get(id = self.request.data.get('uid'))
-            serial = userSerializer.UserSerializer(query)
-            return Response(serial.data)
-        else:
-            return Response('invalid input')
-
+        query = User.objects.get(id = self.request.data.get('uid'))
+        serial = userSerializer.UserSerializer(query)
+        return Response(serial.data)
     @action(detail=False, methods=['post'])
     def ApproveVendor(self, request, *args, **kwargs):
-        if self.request.data.get('approval') and self.request.data.get('vendorid'):
-            Vendor.objects.get(vendor_id = vendorid).update(is_approved = self.request.data.get('approval'))
-
-        else:
-            return Response('invalid input')
+        #Vendor.objects.get(vendor_id = self.request.data.get('vendorid')).update(is_approved = self.request.data.get('approval'))
+        vendor = Vendor.objects.get(vendor_id = self.request.data.get('vendorid'))
+        vendor.is_approved = self.request.data.get('approval')
+        vendor.save()
+        #check updated vendor
+        query = Vendor.objects.get(vendor_id = self.request.data.get('vendorid'))
+        serial = vendorSerializer.VendorSerializer(query)
+        return Response(serial.data)
     
     @action(detail=False, methods=['post'])
     def RemoveVendor(self, request, *args, **kwargs):
-        if self.request.data.get('vendorid'):
-            Vendor.objects.get(vendor_id = vendorid).update(address = '')
-            Vendor.objects.get(vendor_id = vendorid).update(phone = '')
-            Vendor.objects.get(vendor_id = vendorid).update(email = '')
-            #reduce database call
-        else:
-            return Response('invalid input')
+        vendor = Vendor.objects.get(vendor_id = vendorid)
+        vendor.address = self.request.data.get('address')
+        vendor.phone = self.request.data.get('phone')
+        vendor.email =self.request.data.get(email)
+        vendor.save()
     
 
     @action(detail=False, methods=['post'])
