@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment} from '../../../../environments/environment'
 import { Admin } from '../../../models/Admin'
+import { Event } from '../../../models/Event';
+import { dummy_events } from '../../../dummy-data/dummy-events';
 
 
 @Component({
@@ -9,6 +11,7 @@ import { Admin } from '../../../models/Admin'
   styleUrls: ['./admin-profile.component.css']
 })
 export class AdminProfileComponent implements OnInit {
+  Events:Event[] = dummy_events;
   adminProfileModel = <Admin>{};
   editing: boolean = false;
   phoneRegex = environment.regExTests.phoneRegex;

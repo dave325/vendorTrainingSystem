@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_mysql',
     "rest_framework",
     "vendortraining",
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,15 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
     ]
+
+    
 }
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases

@@ -14,3 +14,4 @@ class User(models.Model):
   public = models.BooleanField(default=True)
   password = models.CharField(max_length=100)
   events = models.ManyToManyField(Event, through=u'Attendance')
+
