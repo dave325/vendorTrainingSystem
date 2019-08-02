@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { RegisterComponent } from '../../modals/register/register.component'
-import { LoginComponent } from '../../modals/login/login.component'
-import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.component'
-import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
+// import { RegisterComponent } from '../../modals/register/register.component'
+// import { LoginComponent } from '../../modals/login/login.component'
+// import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.component'
+// import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
 
 @Component({
   selector: 'app-front-page',
@@ -11,20 +11,15 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
   styleUrls: ['./front-page.component.css']
 })
 export class FrontPageComponent implements OnInit {
-  eventEditComponent = EventEditComponent;
+  // eventEditComponent = EventEditComponent;
 
-  constructor(
-    private modalService: NgbModal,
-    private registerComponent: RegisterComponent,
-    private loginComponent: LoginComponent,
-    private reportVendorComponent: ReportVendorComponent
-    ) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  open(component: Component) {
-    let modalReg = this.modalService.open(component);
-  }
+  // open(component: Component) {
+  //   let modalReg = this.modalService.open(component);
+  // }
 
 }
