@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Event } from '../../../models/Event';
+import { dummy_events } from '../../../dummy-data/dummy-events';
 
 @Component({
   selector: 'app-customer-profile',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerProfileComponent implements OnInit {
 
+  Events:Event[] = dummy_events;
+  
   constructor() { }
 
   ngOnInit() {
