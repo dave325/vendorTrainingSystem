@@ -11,5 +11,5 @@ class EventSerializer(serializers.Serializer):
     #is_approved = serializers.BooleanField()
     #total_attendance = serializers.IntegerField()
     class Meta:
-        model: Event
-        fields: '__all__'
+        model= Event
+        fields= '__all__'

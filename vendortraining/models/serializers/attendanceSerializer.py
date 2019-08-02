@@ -3,5 +3,5 @@ from vendortraining.models import Attendance
 
 class AttendanceSerializer(serializers.Serializer):
     class Meta:
-        model: Attendance
-        fields: '__all__'
+        model= Attendance
+        fields= '__all__'
