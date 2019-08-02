@@ -3,11 +3,11 @@ from .vendor import Vendor
 from .user import User
 
 class Member(models.Model):
-  user_id = models.ForeignKey(
+  user = models.ForeignKey(
     User, 
     on_delete=models.CASCADE
   )
-  vendor_id = models.ForeignKey(
+  vendor = models.ForeignKey(
     Vendor, 
     on_delete=models.CASCADE
   )

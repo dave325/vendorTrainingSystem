@@ -6,7 +6,7 @@ class User(models.Model):
   email = models.CharField(max_length=100)
   first_name = models.CharField(max_length=100)
   last_name = models.CharField(max_length=100)
-  role_id = models.ForeignKey(
+  role = models.ForeignKey(
     Role, 
     on_delete=models.CASCADE)
   phone = models.CharField(max_length=100)
