@@ -171,17 +171,17 @@
         <div class="col-md-4">
           <div class="card ">
             <div class="card-header ">
-              <h5 class="card-title">Bob Dylan</h5>
-              <p class="card-category">Your Admin Information</p>
+              <h5 class="card-title"> Dave Dataram </h5>
+              <p class="card-category"> Davids Information </p>
             </div>
             <div class="card-body ">
-              <p>bobbydylan@gmail.com</p>
-              <p>1-347-1234</p>
-              <p>123 Baker Street</p>
+              <p>Email Address abc123@any.com </p>
+              <p> Phone Number: 123-456-7890 </p>
+              <p> Address: 100-100 100 Avenue</p>
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4" *ngFor="let event of Events">
           <div class="card card-chart">
             <div class="card-header">
               <h5 class="card-title">Events</h5>
@@ -189,10 +189,10 @@
             </div>
             <div class="card-body">
               <div>
-                <div>Bob Dylan</div>
-                <div>1-347-1234</div>
-                <div>123 Baker Street</div>
-                <div>Head of Lettuce Quality Assurance</div>
+                <div>{{ event.v_id }}</div>
+                <div>{{ event.status }}</div>
+                <div>{{ event.name }}</div>
+                <a href="#"> {{ event.url }}</a>
               </div>
             </div>
             <div class="card-footer">
