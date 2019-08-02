@@ -24,7 +24,7 @@ class AdminView(viewsets.ModelViewSet):
         serial = userSerializer.UserSerializer(query)
         return Response(serial.data)
 
-    @actino(detail=False, methods=['post'])
+    @action(detail=False, methods=['post'])
     def editAdminProfile(self, request, *args, **kwargs):
         admin = User.objects.get(id = self.request.data.get('id'))
         #use this syntax for other fields
@@ -113,7 +113,7 @@ class AdminView(viewsets.ModelViewSet):
         vendor = Vendor.objects.get(vendor_id = vendorid)
         vendor.address = self.request.data.get('address')
         vendor.phone = self.request.data.get('phone')
-        vendor.email =self.request.data.get(email)
+        vendor.email =self.request.data.get('email')
         vendor.save()
     
 
