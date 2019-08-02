@@ -2,7 +2,7 @@ from rest_framework import serializers
 from vendortraining.models import Event
 
 
-class EventSerializer(serializers.Serializer):
+class EventSerializer(serializers.ModelSerializer):
     #vendor_id = serializers.IntegerField()
     #created_by = serializers.CharField()
     #created_at = serializers.DateField()
