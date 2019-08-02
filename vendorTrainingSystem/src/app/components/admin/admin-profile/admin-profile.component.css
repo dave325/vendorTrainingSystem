@@ -22,3 +22,11 @@ img {
 .vendors {
   border: 10px solid green;
 } */
+
+.event-card {
+  margin: 5px;
+}
+
+.vendor-card {
+  margin: 5px;
+}
