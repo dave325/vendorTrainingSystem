@@ -30,6 +30,7 @@ class AdminView(viewsets.ModelViewSet):
         #use this syntax for other fields
         admin.email = "sample@email.com"
         admin.save()
+        
     #TODO: make sure users are customers, test output
     @action(detail=False, methods=['get'])
     def listCustomers(self, request, *args, **kwargs):
