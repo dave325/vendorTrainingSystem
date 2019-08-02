@@ -32,12 +32,14 @@ class VendorView(viewsets.ModelViewSet):
         s = vendorSerializer.VendorSerializer(qset, many=True)
         return Response(s.data)
     
+    #delete methods vs post methods
     @action(detail=False, methods=['delete'])
     def deleteMyProfile(self, request, *args, **kwargs):
         vendorProfile = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
         vendorProfile.delete()
         return("profile deleted")
 
+    #no error message
     @action(detail=False, methods=['post'])
     def editMyProfile(self, request, *args, **kwargs):
         vendorProfile = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
