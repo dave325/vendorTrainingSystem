@@ -18,10 +18,8 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 
-from .views import login    #for token test
 urlpatterns = [
     path('', include('vendortraining.user.urls')),
     path('api-token-auth/', views.obtain_auth_token),
     path('admin/', admin.site.urls),
-    path('api/login', login)    #testing token generation
 ]
