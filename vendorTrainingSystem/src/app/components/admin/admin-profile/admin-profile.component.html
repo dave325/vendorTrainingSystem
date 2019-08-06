@@ -209,7 +209,7 @@
 <div class='container-fluid'>
     <div class="row">
        <div class="col-lg-3 col-md-6 col-sm-6 " >
-          <div class="card card-stats border-danger text-white bg-dark mb-3" style="max-width: 18rem;">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -234,7 +234,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-danger text-white bg-dark mb-3" style="max-width: 18rem;">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -259,7 +259,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-danger text-white bg-dark mb-3" style="max-width: 18rem;">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -284,7 +284,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-danger text-white bg-dark mb-3" style="max-width: 18rem;">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -348,27 +348,29 @@
         <div class="col-md-8">
           <div class="row">
               <div class="col-md-6 events">
-                  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" *ngFor="let event of Events">
+                  <div class="card border-danger" style="max-width: 18rem;" *ngFor="let event of Events">
                     <div class="card-body">
-                      <h5 class="card-text text-danger">{{ event.name }}</h5>
+                      <h5 class="card-text">{{ event.name }}</h5>
                       <hr>
                       <p class="card-text"> {{event.end_time }}</p>
                       <p class="card-text">{{ event.created_at }}</p>
                       <p class="card-text">{{ event.status }}</p>
                       <p class="card-text">{{ event.created_by }}</p>
                       <p class="card-text"> {{ event.capacity }}</p>
-                      <a href="#" target="_blank" class="text-danger"> {{ event.url }}</a>
+                      <div class = "card-footer">
+                      <a href="#" target="_blank" class = "text-danger"> {{ event.url }}</a>
+                      </div>
                     </div>
                   </div>
               </div>
             <div class="col-md-6 vendors">
-              <div class="card bg-danger mb-3" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
+              <div class="card border-danger" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
                 <div class="card-body">
-                    <h5 class="card-text">{{ vendor.name }}</h5>
+                    <h5 class="card-text card-header">{{ vendor.name }}</h5>
                     <hr>
-                    <p class="card-title text-white">{{ vendor.phone }} </p>
-                    <p class="card-title text-white">{{ vendor.address }} </p>
-                    <p class="card-title text-white">{{ vendor.email }} </p>
+                    <p class="card-title ">{{ vendor.phone }} </p>
+                    <p class="card-title ">{{ vendor.address }} </p>
+                    <p class="card-title ">{{ vendor.email }} </p>
                 </div>
               </div>
             </div>
