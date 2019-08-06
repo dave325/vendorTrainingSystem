@@ -3,7 +3,8 @@ import { environment} from '../../../../environments/environment'
 import { Admin } from '../../../models/Admin'
 import { Event } from '../../../models/Event';
 import { dummy_events } from '../../../dummy-data/dummy-events';
-
+import { Vendor } from '../../../models/Vendor';
+import { dummy_vendors } from '../../../dummy-data/dummy-vendors';
 
 @Component({
   selector: 'app-admin-profile',
@@ -12,6 +13,9 @@ import { dummy_events } from '../../../dummy-data/dummy-events';
 })
 export class AdminProfileComponent implements OnInit {
   Events:Event[] = dummy_events;
+  Vendors:Vendor[] = dummy_vendors;
+
+
   adminProfileModel = <Admin>{};
   editing: boolean = false;
   phoneRegex = environment.regExTests.phoneRegex;

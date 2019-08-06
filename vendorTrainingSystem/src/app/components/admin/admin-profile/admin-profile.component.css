@@ -14,3 +14,27 @@ img {
 .row {
   margin-top: 10px;
 }
+
+/* .events {
+  border: 10px solid red;
+}
+
+.vendors {
+  border: 10px solid green;
+} */
+
+.event-card {
+  margin: 5px;
+}
+
+.vendor-card {
+  margin: 5px;
+}
+
+
+/* red black white header 
+links are red, 
+card body is white, card fotoer is black/dark grey, 
+card outline canbe red - try and lets see
+*/
+
