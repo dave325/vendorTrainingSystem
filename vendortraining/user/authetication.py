@@ -1,4 +1,4 @@
-from vendortraining.models import user
+from vendortraining import models
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -7,7 +7,15 @@ from vendortraining.models.serializers import userSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from rest_framework import permissions 
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.authtoken.models import Token
 
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
 
 #jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 #jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -15,7 +23,8 @@ from rest_framework import permissions
 class UserAuthetication(viewsets.ModelViewSet):
     
     queryset = User.objects.all()
-    permission_classes = (permissions.IsAuthenticated,)
+    #authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = (permissions.AllowAny,)
     @action(detail=False, methods=['post'])
     def checkUser(self, request, *args, **kwargs):
         baseUser = user.User.objects.get(id = self.request.data.get('user_id'))
@@ -32,19 +41,17 @@ class UserAuthetication(viewsets.ModelViewSet):
             return False
     @action(detail=False, methods=['post'])
     def viewAuthUser(self, request, *args, **kwargs):
-        username = request.data.get("username", "")
-        password = request.data.get("password", "")
-        baseUser = authenticate(request, username=username, password=password)
-        if baseUser is not None:
-            # login saves the user’s ID in the session,
-            # using Django’s session framework.
-            login(request, baseUser)
-            serializer = TokenSerializer(data={
-                # using drf jwt utility functions to generate a token
-                "token": jwt_encode_handler(
-                    jwt_payload_handler(baseUser)
-                )})
-            serializer.is_valid()
-            return Response(serializer.data)
-        return Response(status=status.HTTP_401_UNAUTHORIZED)
+        username = request.data.get("username")
+        password = request.data.get("password")
+        if username is None or password is None:
+            return Response({'error': 'Please provide both username and password'},
+                        status=HTTP_400_BAD_REQUEST)
+        user = authenticate(username=username, password=password)
+        if not user:
+            return Response({'error': 'Invalid Credentials'},
+                        status=HTTP_404_NOT_FOUND)
+        token, _ = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key},
+                    status=HTTP_200_OK)
+
     
