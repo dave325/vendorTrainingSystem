@@ -72,7 +72,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vendortraining.wsgi.application'
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+}
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
 #        'rest_framework_simplejwt.authentication.JWTAuthentication',
