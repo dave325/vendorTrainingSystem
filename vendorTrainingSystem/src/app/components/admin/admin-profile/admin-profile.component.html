@@ -210,16 +210,16 @@
   <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 ">
       <div class="card card-stats border-danger" style="max-width: 18rem;">
-        <div class="card-body ">
+        <div class="card-body bg-dark text-white ">
           <div class="row">
             <div class="col-5 col-md-4">
               <div class="icon-big text-center icon-warning">
                 <i class="nc-icon nc-money-coins text-success"></i>
               </div>
             </div>
-            <div class="col-7 col-md-8">
+            <div class="col-7 col-md-8 ">
               <div class="numbers">
-                <p class="card-category">Vendors</p>
+                <p class="card-category text-danger font-weight-bold">Vendors</p>
                 <p class="card-title">50
                   <p>
               </div>
@@ -235,7 +235,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats border-danger" style="max-width: 18rem;">
-        <div class="card-body ">
+        <div class="card-body bg-dark text-white ">
           <div class="row">
             <div class="col-5 col-md-4">
               <div class="icon-big text-center icon-warning">
@@ -244,7 +244,7 @@
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
-                <p class="card-category">Events</p>
+                <p class="card-category text-danger font-weight-bold">Events</p>
                 <p class="card-title">100
                   <p>
               </div>
@@ -260,7 +260,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats border-danger" style="max-width: 18rem;">
-        <div class="card-body ">
+        <div class="card-body bg-dark text-white">
           <div class="row">
             <div class="col-5 col-md-4">
               <div class="icon-big text-center icon-warning">
@@ -269,7 +269,7 @@
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
-                <p class="card-category">Members</p>
+                <p class="card-category text-danger font-weight-bold">Members</p>
                 <p class="card-title">23
                   <p>
               </div>
@@ -285,7 +285,7 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats border-danger" style="max-width: 18rem;">
-        <div class="card-body ">
+        <div class="card-body bg-dark text-white ">
           <div class="row">
             <div class="col-5 col-md-4">
               <div class="icon-big text-center icon-warning">
@@ -294,7 +294,7 @@
             </div>
             <div class="col-7 col-md-8">
               <div class="numbers">
-                <p class="card-category">Customers</p>
+                <p class="card-category text-danger font-weight-bold">Customers</p>
                 <p class="card-title">50
                   <p>
               </div>
@@ -329,11 +329,13 @@
           </div>
         </div>
       </div> -->
+
   <div class="row">
+    <!--Admin card-->
     <div class="col-md-4">
-      <div class="card border-danger">
+      <div class="card border-danger text-white bg-dark mb-3">
         <div class="card-header ">
-          <h5 class="card-title text-danger ">Admin Information</h5>
+          <h5 class="card-title text-danger font-weight-bold ">Admin Information</h5>
           <p class="card-category">John Doe</p>
         </div>
         <div class="card-body">
@@ -345,39 +347,75 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-md-6 events">
-          <div class="card border-danger" style="max-width: 18rem;" *ngFor="let event of Events">
-            <div class="card-body">
-              <h5 class="card-text">{{ event.name }}</h5>
-              <hr>
-              <p class="card-text"> {{event.end_time }}</p>
-              <p class="card-text">{{ event.created_at }}</p>
-              <p class="card-text">{{ event.status }}</p>
-              <p class="card-text">{{ event.created_by }}</p>
-              <p class="card-text"> {{ event.capacity }}</p>
-              <div class="card-footer">
-                <a href="#" target="_blank" class="text-danger"> {{ event.url }}</a>
+    <!--Admin card end-->
+    <!--Events card-->
+    <div class="col-md-4 ">
+      <div class="card border-danger mb-3 " *ngFor="let event of Events">
+        <div id="accordion">
+          <div class="card text-white bg-dark  ">
+            <div class="card-header " id="headingOne">
+              <h5 class="mb-0">
+                <button class="btn btn-link text-danger font-weight-bold " data-toggle="collapse" data-target="#collapseOne"
+                  aria-expanded="false" aria-controls="collapseOne ">
+                  Event 
+                </button>
+              </h5>
+            </div>
+            <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body text-white bg-dark mb-3" >
+                <h5 class="card-text">{{ event.name }}</h5>
+                <hr>
+                <p class="card-text">{{ event.end_time }}</p>
+                <p class="card-text">{{ event.created_at }}</p>
+                <p class="card-text">{{ event.status }}</p>
+                <p class="card-text">{{ event.created_by }}</p>
+                <p class="card-text">{{ event.capacity }}</p>
+                <div class="card-footer">
+                  <a href="#" target="_blank" class="text-danger"> {{ event.url }}</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-6 vendors">
-          <div class="card border-danger" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
+      </div>
+    </div>
+    <!--Vendors Card-->
+    <div class="col-md-4">         
+      <div class="card border-danger text-white bg-dark mb-3" *ngFor="let vendor of Vendors">
+        <div id="accordion">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link text-danger font-weight-bold" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="false" aria-controls="collapseTwo">
+                Vendor
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
-              <h5 class="card-text card-header">{{ vendor.name }}</h5>
-              <hr>
-              <p class="card-title ">{{ vendor.phone }} </p>
-              <p class="card-title ">{{ vendor.address }} </p>
-              <p class="card-title ">{{ vendor.email }} </p>
+                <h5 class="card-text">{{ vendor.name }}</h5>
+                <hr>
+                <p class="card-text ">{{ vendor.phone }} </p>
+                <p class="card-text ">{{ vendor.address }} </p>
+                <p class="card-text ">{{ vendor.email }} </p>
             </div>
           </div>
+
+          <!-- KEEP THIS AS WELL . THIS BRINGS IN THE DUMMY DATA FROM THE DATABASE-->
+
+          <!-- <div class="col-md-6 vendors">
+            <div class="card border-danger" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
+              <div class="card-body">
+                <h5 class="card-text card-header">{{ vendor.name }}</h5>
+                <hr>
+                <p class="card-title ">{{ vendor.phone }} </p>
+                <p class="card-title ">{{ vendor.address }} </p>
+                <p class="card-title ">{{ vendor.email }} </p>
+              </div>
+            </div>
+          </div> -->
         </div>
       </div>
-<<<<<<< HEAD
-</div>
-=======
+      <!--card end-->
     </div>
-  </div>
->>>>>>> c5046bc00ba84bd2ac592e1d0e147c21b71b4598
+    <!--col end-->
