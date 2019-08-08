@@ -1,6 +1,17 @@
+
+
 img {
   max-width: 100%;
   max-height: 100%;
+}
+
+a{
+  text-decoration-color: red;
+}
+
+a:hover{
+  text-decoration-color: red;
+  transition: tranform 2s;
 }
 
 .event-title {
@@ -14,4 +25,14 @@ img {
 
 #bottomContainer{
   background-color: rgb(43, 42, 42);
+}
+
+#bottomContainerHeader{
+  font-size: 150%;
+}
+
+@media (max-width: 414px){
+  #bottomContainerHeader{
+    font-size:100%;
+  }
 }
