@@ -1,22 +1,50 @@
-.container-fluid {
-  margin: 5px;
-}
 
-.my-2{
-  margin-top: ($spacer * .5) !important;
-  margin-bottom: ($spacer * .5) !important;
-}
+
+/* .my-2{
+  /* margin-top: ($spacer * 1.0) !important;
+  margin-bottom: ($spacer * 1.0) !important;
+} */ 
 
 img {
   max-width: 100%;
   max-height: 100%;
 }
 
+a{
+  text-decoration-color: red;
+}
+
+a:hover{
+  text-decoration-color: red;
+  transition: tranform 2s;
+}
+
+
 .event-title {
   text-align: center;
 }
 
 
-.events { 
-  margin-top: 10px;
+
+#companyName{
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+
+#topContainer{
+  background-color: rgb(46, 46, 46);
+}
+
+#bottomContainer{
+  background-color: rgb(43, 42, 42);
+}
+
+#bottomContainerHeader{
+  font-size: 150%;
+}
+
+@media (max-width: 414px){
+  #bottomContainerHeader{
+    font-size:100%;
+  }
 }
