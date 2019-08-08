@@ -25,7 +25,8 @@ class UserAuthetication(viewsets.ModelViewSet):
     
     queryset = User.objects.all()
     #authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
+    #todo: with login cred, check db
     @action(detail=False, methods=['post'])
     def checkUser(self, request, *args, **kwargs):
         baseUser = user.User.objects.get(id = self.request.data.get('user_id'))
@@ -40,6 +41,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             return True
         else:
             return False
+    #Todo: verify token key and check with db. refresh if correct
     @action(detail=False, methods=['get'])
     def viewAuthUser(self, request, *args, **kwargs):
         auth = self.request.data.get('jwt')

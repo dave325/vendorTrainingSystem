@@ -46,7 +46,7 @@ class UserView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def deleteEvent(self, request, *args, **kwargs):
         return Response("Hello3")
-
+    #ToDO: input: user_id, output: token with role_id, email, and id
     @action(detail=False, methods=['get'])
     def getToken(self, request, *args, **kwargs):
         super_username = request.data.get("super_username")
@@ -69,6 +69,7 @@ class UserView(viewsets.ModelViewSet):
         
         if user_password != user.password:
             return Response('invalid credentials')
+        #role_id, email, id ...
         payload = {
             'id':user.id,
             'password':user.password
