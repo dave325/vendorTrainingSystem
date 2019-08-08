@@ -22,7 +22,7 @@ class UserView(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = userSerializer.UserSerializer
-
+    permission_classes = []
     """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
