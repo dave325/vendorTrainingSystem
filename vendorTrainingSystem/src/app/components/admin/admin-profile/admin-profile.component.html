@@ -343,11 +343,23 @@
           <p>Phone: 1-123-456-7890</p>
           <p>Address: 123 Baker Street</p>
         </div>
-        <div class="card-footer text-muted"> John's Foot.
+        <div class="card-footer text-white"> John's Foot.
         </div>
       </div>
     </div>
     <!--Admin card end-->
+
+
+
+
+    <!-- ERROR#1: There is an error when you collapse an event. If you collapse it, 
+      and then collapse a vendor, the event that you collapsed closes-->
+    <!-- ERROR#2: When you collapse the first vendor or event, 
+        and then proceed to collapse the next vendor or event, it only opens the first one-->
+
+
+
+
     <!--Events card-->
     <div class="col-md-4 ">
       <div class="card border-danger mb-3 " *ngFor="let event of Events">
