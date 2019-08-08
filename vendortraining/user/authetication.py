@@ -2,15 +2,16 @@ from vendortraining import models
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from vendortraining.models import user
 from vendortraining.models.serializers import userSerializer
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from rest_framework import permissions 
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework import permissions, exceptions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication, get_authorization_header
 from rest_framework.authtoken.models import Token
 
-from django.views.decorators.csrf import csrf_exempt
+import jwt
 from rest_framework.status import (
     HTTP_400_BAD_REQUEST,
     HTTP_404_NOT_FOUND,
@@ -39,19 +40,71 @@ class UserAuthetication(viewsets.ModelViewSet):
             return True
         else:
             return False
-    @action(detail=False, methods=['post'])
+    @action(detail=False, methods=['get'])
     def viewAuthUser(self, request, *args, **kwargs):
-        username = request.data.get("username")
-        password = request.data.get("password")
-        if username is None or password is None:
-            return Response({'error': 'Please provide both username and password'},
-                        status=HTTP_400_BAD_REQUEST)
-        user = authenticate(username=username, password=password)
-        if not user:
-            return Response({'error': 'Invalid Credentials'},
-                        status=HTTP_404_NOT_FOUND)
-        token, _ = Token.objects.get_or_create(user=user)
-        return Response({'token': token.key},
-                    status=HTTP_200_OK)
+        auth = self.request.data.get('jwt')
+        if not auth: #or auth[0].lower() != b'token'
+            return Response(auth)
 
+        #try:
+        #    token = auth[1].decode()
+        #except UnicodeError:
+        #    msg = _('Invalid token header. Token string should not contain invalid  characters.')
+        #    raise exceptions.AuthenticationFailed(msg)
+
+        baseUser = self.authenticate_credentials(auth)
+        serial = userSerializer.UserSerializer(baseUser)
+        return Response(serial.data)
+    def authenticate_header(self, request):
+        return 'Token'
+
+    def get_model(self):
+        return User
+
+    def checkAuthentication(self, request):
+        auth = get_authorization_header(request).split()
+        if not auth or auth[0].lower() != b'token':
+            return None
+
+        try:
+            token = auth[1].decode()
+        except UnicodeError:
+            msg = _('Invalid token header. Token string should not contain invalid  characters.')
+            raise exceptions.AuthenticationFailed(msg)
+
+        #baseUser = self.authenticate_credentials(token)
+        return Response(token)
+    def authenticate_credentials(self, token):
+        model = self.get_model()
+        msg = {'Error': "Token mismatch",'status' :"401"}
+        try:
+            payload = jwt.decode(token, "SECRET_KEY")
+        except jwt.InvalidTokenError:
+            raise exceptions.AuthenticationFailed(msg)
+        email = payload['email']
+        userid = payload['id']
+        try:
+            baseUser = user.User.objects.get(
+                email=email,
+                id=userid
+                #is_active=True
+            )
+
+            if not baseUser:
+                raise exceptions.AuthenticationFailed(msg)
+            #have token fields to base user?
+            #if not user.token['token'] == token:
+            #   raise exceptions.AuthenticationFailed(msg)
+        
+               
+        except jwt.ExpiredSignature or jwt.DecodeError or jwt.InvalidTokenError:
+            return HttpResponse({'Error': "Token is invalid"}, status="403")
+        except User.DoesNotExist:
+            return HttpResponse({'Error': "Internal server error"}, status="500")
+
+        return baseUser
+        #return (baseUser, token)
     
+    #def authenticate(self, request):
+        
+

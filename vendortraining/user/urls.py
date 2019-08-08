@@ -5,6 +5,7 @@ from . import vendor
 from . import authetication
 from . import super
 from . import admin
+from . import views
 from django.urls import include, path
 
 router = DefaultRouter()
@@ -13,6 +14,7 @@ router.register('vendor', vendor.VendorView) #-- 192.168.99.100:3000/vendor/<fun
 # router.register('super', super.SuperView) #-- 192.168.99.100:3000/vendor/<functionName>/
 router.register('test', authetication.UserAuthetication) #-- 192.168.99.100:3000/vendor/<functionName>/
 router.register('admin', admin.AdminView)
+router.register('views', views.UserView)
 
 
 # The API URLs are now determined automatically by the router.

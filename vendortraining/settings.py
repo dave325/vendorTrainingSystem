@@ -72,14 +72,20 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'vendortraining.wsgi.application'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated', 
     )
+}
+
+JWT_AUTH = {                
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'vendortraining.user.views.jwt_response_payload_handler',
 }
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
