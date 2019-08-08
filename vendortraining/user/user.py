@@ -22,7 +22,7 @@ class UserView(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = userSerializer.UserSerializer
-
+    permission_classes = []
     """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
@@ -61,7 +61,7 @@ class UserView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def reportVendor(self, request, *args, **kwargs):
         queryset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
-        serializer_class = vendorSerializer.VendorSerializer(queryset)
+        serializer_class = vendorSerializer.VendorSerializer(queryset, many=True)
         return Response(serializer_class.data)
         
     @action(detail=False, methods=['post'])
