@@ -1,6 +1,4 @@
-.container-fluid {
-  margin: 5px;
-}
+
 
 /* .my-2{
   /* margin-top: ($spacer * 1.0) !important;
@@ -17,14 +15,20 @@ img {
 }
 
 
-.events { 
-  margin-top: 10px;
-}
-
 #topContainer{
   background-color: rgb(46, 46, 46);
 }
 
 #bottomContainer{
   background-color: rgb(43, 42, 42);
+}
+
+#bottomContainerHeader{
+  font-size: 150%;
+}
+
+@media (max-width: 414px){
+  #bottomContainerHeader{
+    font-size:100%;
+  }
 }
