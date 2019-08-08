@@ -24,7 +24,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     
     queryset = User.objects.all()
     #authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.IsAuthenticated,)
     @action(detail=False, methods=['post'])
     def checkUser(self, request, *args, **kwargs):
         baseUser = user.User.objects.get(id = self.request.data.get('user_id'))
