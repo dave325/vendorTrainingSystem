@@ -12,6 +12,7 @@ from vendortraining.models import Vendor
 from vendortraining.models.serializers import vendorSerializer
 from django.forms.models import model_to_dict
 from rest_framework.authtoken.models import Token
+
 class UserView(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -67,7 +68,8 @@ class UserView(viewsets.ModelViewSet):
     def profile(self, request, *args, **kwargs):
         user = User.objects.get(id = self.request.data.get('user_id'))
         user.events.all()
-        token = Token.objects.create(user=user)
+        token = Token.objects.get_or_create(user=user)
+
         try:
             res = userSerializer.UserSerializer(user)
             item = dict[res.data,token]

@@ -87,8 +87,13 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 col-sm-6">
+=======
         </div> 
         <div class="col-lg-4 col-md-6 col-sm-6">
+>>>>>>> 1d6209cbfe223ba73cd353e183e6fffe231b72f6
           <div class="card card-stats">
             <div class="card-body ">
               <div class="row">
@@ -113,8 +118,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        </div> -->
+        <!-- <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-body ">
               <div class="row">
@@ -139,8 +144,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
+        </div> -->
+        <!-- --><div class="col-lg-4 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-body ">
               <div class="row">
@@ -166,13 +171,12 @@
             </div>
           </div>
         </div>
-    </div> -->
       <!-- <div class="row">
         <div class="col-md-12">
           <div class="card">
             <div class="card-header ">
               <h5 class="card-title"> Dave Dataram </h5>
-              <p class="card-category"> Davids Information </p>
+              <p class="card-category"> Admin Information </p>
             </div>
             <div class="card-body ">
               <p>Email Address abc123@any.com </p>
@@ -182,6 +186,15 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let event of Events">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-title">Events</h5>
+              <p class="card-category"></p>
+=======
       <div class="row">
         <div class="col-md-6">
             <div class="" *ngFor="let event of Events">
@@ -206,11 +219,10 @@
         </div>
       </div>
 </div> -->
-
 <div class='container-fluid'>
     <div class="row">
-       <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-dark">
+       <div class="col-lg-3 col-md-6 col-sm-6 " >
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -226,6 +238,7 @@
                   </div>
                 </div>
               </div>
+>>>>>>> 1d6209cbfe223ba73cd353e183e6fffe231b72f6
             </div>
             <div class="card-footer ">
               <div class="stats">
@@ -235,7 +248,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-dark">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -260,7 +273,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stat border-dark">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -285,7 +298,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats border-dark">
+          <div class="card card-stats border-danger" style="max-width: 18rem;">
             <div class="card-body ">
               <div class="row">
                 <div class="col-5 col-md-4">
@@ -334,22 +347,22 @@
         <div class="col-md-4">
           <div class="card border-danger">
             <div class="card-header ">
-              <h5 class="card-title">Admin Information</h5>
+              <h5 class="card-title text-danger ">Admin Information</h5>
               <p class="card-category">John Doe</p>
             </div>
-            <div class="card-body ">
+            <div class="card-body">
               <p>Email: Johndoe@gmail.com</p>
               <p>Phone: 1-123-456-7890</p>
               <p>Address: 123 Baker Street</p>
             </div>
-            <div class="card-footer ">
+            <div class="card-footer text-muted"> John's Foot. 
             </div>
           </div>
         </div>
         <div class="col-md-8">
           <div class="row">
               <div class="col-md-6 events">
-                  <div class="card event-card border-primary" *ngFor="let event of Events">
+                  <div class="card border-danger" style="max-width: 18rem;" *ngFor="let event of Events">
                     <div class="card-body">
                       <h5 class="card-text">{{ event.name }}</h5>
                       <hr>
@@ -358,23 +371,23 @@
                       <p class="card-text">{{ event.status }}</p>
                       <p class="card-text">{{ event.created_by }}</p>
                       <p class="card-text"> {{ event.capacity }}</p>
-                      <a href="#" target="_blank"> {{ event.url }}</a>
+                      <div class = "card-footer">
+                      <a href="#" target="_blank" class = "text-danger"> {{ event.url }}</a>
+                      </div>
                     </div>
                   </div>
               </div>
             <div class="col-md-6 vendors">
-              <div class="card vendor-card border-primary" *ngFor="let vendor of Vendors">
+              <div class="card border-danger" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
                 <div class="card-body">
-                    <h5 class="card-text">{{ vendor.name }}</h5>
+                    <h5 class="card-text card-header">{{ vendor.name }}</h5>
                     <hr>
-                    <p class="card-title">{{ vendor.phone }} </p>
-                    <p class="card-title">{{ vendor.address }} </p>
-                    <p class="card-title">{{ vendor.email }} </p>
+                    <p class="card-title ">{{ vendor.phone }} </p>
+                    <p class="card-title ">{{ vendor.address }} </p>
+                    <p class="card-title ">{{ vendor.email }} </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-</div>

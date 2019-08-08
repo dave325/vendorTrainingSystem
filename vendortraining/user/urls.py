@@ -12,7 +12,6 @@ router.register('user', user.UserView) #-- user profile route -- to access any f
 router.register('vendor', vendor.VendorView) #-- 192.168.99.100:3000/vendor/<functionName>/
 # router.register('super', super.SuperView) #-- 192.168.99.100:3000/vendor/<functionName>/
 router.register('test', authetication.UserAuthetication) #-- 192.168.99.100:3000/vendor/<functionName>/
-
 router.register('admin', admin.AdminView)
 
 
