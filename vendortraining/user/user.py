@@ -12,6 +12,7 @@ from vendortraining.models import Vendor
 from vendortraining.models.serializers import vendorSerializer
 from django.forms.models import model_to_dict
 from rest_framework.authtoken.models import Token
+
 class UserView(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
@@ -21,7 +22,7 @@ class UserView(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = userSerializer.UserSerializer
-
+    permission_classes = []
     """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
@@ -60,14 +61,15 @@ class UserView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def reportVendor(self, request, *args, **kwargs):
         queryset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
-        serializer_class = vendorSerializer.VendorSerializer(queryset)
+        serializer_class = vendorSerializer.VendorSerializer(queryset, many=True)
         return Response(serializer_class.data)
         
     @action(detail=False, methods=['post'])
     def profile(self, request, *args, **kwargs):
         user = User.objects.get(id = self.request.data.get('user_id'))
         user.events.all()
-        token = Token.objects.create(user=user)
+        token = Token.objects.get_or_create(user=user)
+
         try:
             res = userSerializer.UserSerializer(user)
             item = dict[res.data,token]

@@ -2,6 +2,10 @@
   margin: 5px;
 }
 
+.my-2{
+  margin-top: ($spacer * .5) !important;
+  margin-bottom: ($spacer * .5) !important;
+}
 
 img {
   max-width: 100%;
