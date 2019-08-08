@@ -1,71 +1,72 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="col-md-5">
-          <div class="card border-danger card-user">
-            <div class="card-body">
-              <div class="author">
-                <a href="#">
-                  <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
-                  <h5 class="name">Samantha Smith</h5>
-                </a>
-                <p class="description">
-                  @samsmith123
-                </p>
+    <div class="col-md-12">
+      <div class="card border-danger card-user">
+        <div class="card-body">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
+              <h5 class="name">Samantha Smith</h5>
+            </a>
+            <p class="description">
+              @samsmith123
+            </p>
+          </div>
+          <p class="description">
+            "I love to browse the internet
+            <br> No diggity
+            <br> I wanna bag it up"
+          </p>
+        </div>
+        <div class="card-footer">
+          <hr>
+          <div class="button-container">
+            <div class="row">
+              <div class="col-12">
+                <h6>123 York Ave.
+                  <br>
+                  <small>Address</small>
+                </h6>
               </div>
-              <p class="description">
-                "I love to browse the internet
-                <br> No diggity
-                <br> I wanna bag it up"
-              </p>
-            </div>
-            <div class="card-footer">
-              <hr>
-              <div class="button-container">
-                <div class="row">
-                  <div class="col-12">
-                    <h6>123 York Ave.
-                      <br>
-                      <small>Address</small>
-                    </h6>
-                  </div>
-                  <div class="col-12">
-                    <h6>1-800-1234
-                      <br>
-                      <small>Phone</small>
-                    </h6>
-                  </div>
-                  <div class="col-12">
-                    <h6>spring123@gmail.com
-                      <br>
-                      <small>Email</small>
-                    </h6>
-                  </div>
-                </div>
+              <div class="col-12">
+                <h6>1-800-1234
+                  <br>
+                  <small>Phone</small>
+                </h6>
+              </div>
+              <div class="col-12">
+                <h6>spring123@gmail.com
+                  <br>
+                  <small>Email</small>
+                </h6>
               </div>
             </div>
           </div>
-      </div>
-      <div class="col-md-7 events">
-        <h5 class="event-title">Upcoming Events</h5>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6" *ngFor="let event of Events" >
-                    <div class="card border-primary">
-                      <div class="card-body">
-                        <h5 class="card-text">{{ event.name }}</h5>
-                        <p class="card-title">{{ event._id }} </p>
-                        <p class="card-text">{{ event.v_id }}</p>
-                        <p class="card-text"> {{event.end_time }}</p>
-                        <p class="card-text">{{ event.created_at }}</p>
-                        <p class="card-text">{{ event.status }}</p>
-                        <p class="card-text">{{ event.created_by }}</p>
-                        <p class="card-text"> {{ event.capacity }}</p>
-                        <a href="#"> {{ event.url }}</a>
-                      </div>
-                    </div>
-                </div>
-              </div>
         </div>
+      </div>
     </div>
-  </div>      
+  </div>
+
+  <div id = "bottomContainer" class="row">
+    <div class="col-md-12 events">
+      <h1 id = "bottomContainerHeader" class="text-danger event-title">Upcoming Events</h1>
+      <div class="row">
+        <div class="col-sm-4 col-md-6 col-lg-4 mb-3" *ngFor="let event of Events">
+          <div class="card border-primary">
+            <div class="card-body">
+              <h5 class="card-text">{{ event.name }}</h5>
+              <p class="card-title">{{ event._id }} </p>
+              <p class="card-text">{{ event.v_id }}</p>
+              <p class="card-text"> {{event.end_time }}</p>
+              <p class="card-text">{{ event.created_at }}</p>
+              <p class="card-text">{{ event.status }}</p>
+              <p class="card-text">{{ event.created_by }}</p>
+              <p class="card-text"> {{ event.capacity }}</p>
+              <a href="#"> {{ event.url }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -10,8 +10,24 @@ img {
   max-height: 100%;
 }
 
+a{
+  text-decoration-color: red;
+}
+
+a:hover{
+  text-decoration-color: red;
+  transition: tranform 2s;
+}
+
+
 .event-title {
   text-align: center;
+}
+
+
+
+#companyName{
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 
