@@ -3,3 +3,7 @@
 .default-background{
     background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
 }
+
+.default-card-background{
+    background-color: rgb(66, 66, 66);
+}
