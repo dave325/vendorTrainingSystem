@@ -59,6 +59,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         baseUser = self.authenticate_credentials(token)
         #serial = userSerializer.UserSerializer(baseUser)
         return Response(baseUser)
+    
     def authenticate_header(self, request):
         return 'Token'
 
@@ -94,9 +95,9 @@ class UserAuthetication(viewsets.ModelViewSet):
         except User.DoesNotExist:
             return HttpResponse({'Error': "Internal server error"}, status="500")
         
-        role_query = Role.objects.get(role_id = role)
+        role_query = Role.objects.get(id = role)
         serial = roleSerializer.RoleSerializer(role_query)
-        return role
+        return serial.data['role_name']
         #return baseUser
         #return (baseUser, token)
     
