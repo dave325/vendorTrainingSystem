@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from vendortraining.models import user
 from vendortraining.models.serializers import userSerializer
+from vendortraining.models import Role
+from vendortraining.models.serializers import roleSerializer
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -63,30 +65,16 @@ class UserAuthetication(viewsets.ModelViewSet):
     def get_model(self):
         return User
 
-    def checkAuthentication(self, request):
-        auth = get_authorization_header(request).split()
-        if not auth or auth[0].lower() != b'token':
-            return None
-
-        try:
-            token = auth[1].decode()
-        except UnicodeError:
-            msg = _('Invalid token header. Token string should not contain invalid  characters.')
-            raise exceptions.AuthenticationFailed(msg)
-
-        #baseUser = self.authenticate_credentials(token)
-        return Response(token)
     def authenticate_credentials(self, token):
         model = self.get_model()
         msg = {'Error': "Token mismatch",'status' :"401"}
         try:
-            payload = jwt.decode(token, "SECRET_KEY")
+            payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
         except jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed(msg)
         email = payload['email']
         userid = payload['id']
         role = payload['role']
-        password = payload['password']
         try:
             baseUser = user.User.objects.get(
                 #email=email,
@@ -106,6 +94,8 @@ class UserAuthetication(viewsets.ModelViewSet):
         except User.DoesNotExist:
             return HttpResponse({'Error': "Internal server error"}, status="500")
         
+        role_query = Role.objects.get(role_id = role)
+        serial = roleSerializer.RoleSerializer(role_query)
         return role
         #return baseUser
         #return (baseUser, token)
