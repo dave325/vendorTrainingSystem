@@ -43,8 +43,22 @@ a:hover{
   font-size: 150%;
 }
 
+#eventContainer{
+  height: 75vh;
+  overflow: scroll;
+}
+
 @media (max-width: 414px){
   #bottomContainerHeader{
     font-size:100%;
   }
+
+}
+
+@media (max-width: 768px){ /* Ipad */
+
+  #eventContainer{
+    height: 50vh;
+  }
+
 }
