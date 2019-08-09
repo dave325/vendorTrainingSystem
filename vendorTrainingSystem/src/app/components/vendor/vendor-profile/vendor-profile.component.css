@@ -32,7 +32,7 @@ a:hover{
 
 
 #topContainer{
-   background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
+  background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
 }
 
 #bottomContainer{
@@ -44,21 +44,23 @@ a:hover{
 }
 
 #eventContainer{
-  height: 75vh;
+  height: 100vh;
   overflow: scroll;
 }
 
-@media (max-width: 414px){
-  #bottomContainerHeader{
+@media (max-width: 414px){ /* phone */
+  #bottomContainerHeader{ 
     font-size:100%;
+  }
+
+  #eventContainer{
+    height: 200vh;
   }
 
 }
 
 @media (max-width: 768px){ /* Ipad */
-
   #eventContainer{
-    height: 50vh;
+    height: 100vh;
   }
-
 }
