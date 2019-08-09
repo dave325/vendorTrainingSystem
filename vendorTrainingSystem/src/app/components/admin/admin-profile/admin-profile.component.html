@@ -334,17 +334,17 @@
     <div class="col-md-4 ">
       <div class="card border-danger mb-3 " *ngFor="let event of Events; index as i">
         <div id="accordion">
-          <div class="card  ">
+          <div class="card  text-white bg-dark ">
             <div class="card-header " id="headingOne">
               <h5 class="mb-0">
-                <button class="btn btn-link text-danger font-weight-bold " data-toggle="collapse" [attr.data-target]="'#collapse-' + i"
-                  aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+                <button class="btn btn-link text-danger font-weight-bold " data-toggle="collapse" [attr.data-target]="'#collapseEvent-' + i"
+                  aria-expanded="false" [attr.aria-controls]="'collapseEvent-' + i">
                   Event 
                 </button>
               </h5>
             </div>
-            <div [attr.id]="'collapse-' + i" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body" >
+            <div [attr.id]="'collapseEvent-' + i" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body bg-white text-dark" >
                 <h5 class="card-text">{{ event.name }}</h5>
                 <hr>
                 <p class="card-text">{{ event.end_time }}</p>
@@ -367,14 +367,14 @@
         <div id="accordion">
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-              <button class="btn btn-link text-danger font-weight-bold" data-toggle="collapse" [attr.data-target]="'#collapse-' + i"
-                aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
+              <button class="btn btn-link text-danger font-weight-bold" data-toggle="collapse" [attr.data-target]="'#collapseVendor-' + i"
+                aria-expanded="false" [attr.aria-controls]="'collapseVendor-' + i">
                 Vendor
               </button>
             </h5>
           </div>
-          <div [attr.id]="'collapse-' + i" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
+          <div [attr.id]="'collapseVendor-' + i" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body bg-white text-dark">
                 <h5 class="card-text">{{ vendor.name }}</h5>
                 <hr>
                 <p class="card-text ">{{ vendor.phone }} </p>
