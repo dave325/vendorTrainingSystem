@@ -7,7 +7,7 @@ from vendortraining.models import User
 from vendortraining.models.serializers import userSerializer
 from vendortraining.user import authetication
 
-import jwt, json
+import jwt, json, datetime
 
 from django.contrib.auth import authenticate, login
 from rest_framework import permissions 
@@ -49,34 +49,33 @@ class UserView(viewsets.ModelViewSet):
     #ToDO: input: user_id, output: token with role_id, email, and id
     @action(detail=False, methods=['get'])
     def getToken(self, request, *args, **kwargs):
-        super_username = request.data.get("super_username")
-        super_password = request.data.get("super_password")
-        user_password = request.data.get("user_password")
+        #super user check
+        #super_username = request.data.get("super_username")
+        #super_password = request.data.get("super_password")
+        #if super_username is None or super_password is None:
+        #    return Response({'error': 'Please provide both username and password'},
+        #                status=HTTP_400_BAD_REQUEST)
+        #superUser = authenticate(username=super_username, password=super_password)
+        #if not superUser:
+        #    return Response({'error': 'Invalid Credentials'},
+        #                status=HTTP_404_NOT_FOUND)
+        #token, _ = Token.objects.get_or_create(user=superUser)
+
         user = User.objects.get(id = self.request.data.get('user_id'))
-
-        if super_username is None or super_password is None:
-            return Response({'error': 'Please provide both username and password'},
-                        status=HTTP_400_BAD_REQUEST)
-        superUser = authenticate(username=super_username, password=super_password)
-        if not superUser:
-            return Response({'error': 'Invalid Credentials'},
-                        status=HTTP_404_NOT_FOUND)
-        token, _ = Token.objects.get_or_create(user=superUser)
-
 
         if user is None:
             return Response('user not found')
         
-        if user_password != user.password:
-            return Response('invalid credentials')
         #role_id, email, id ...
         payload = {
             'id':user.id,
-            'password':user.password
+            'email':user.email,
+            'role':user.role_id,
+            'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
 
         jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}
-        jwt_token.update({'superToken':token.key})
+        
         return Response(jwt_token)
         #return Response({'token': jwt_token.get('token')}, status=HTTP_200_OK)
     

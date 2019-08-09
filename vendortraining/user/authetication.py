@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from vendortraining.models import user
 from vendortraining.models.serializers import userSerializer
+from vendortraining.models import Role
+from vendortraining.models.serializers import roleSerializer
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -44,50 +46,38 @@ class UserAuthetication(viewsets.ModelViewSet):
     #Todo: verify token key and check with db. refresh if correct
     @action(detail=False, methods=['get'])
     def viewAuthUser(self, request, *args, **kwargs):
-        auth = self.request.data.get('jwt')
+        auth = get_authorization_header(request).split()
         if not auth: #or auth[0].lower() != b'token'
             return Response(auth)
 
-        #try:
-        #    token = auth[1].decode()
-        #except UnicodeError:
-        #    msg = _('Invalid token header. Token string should not contain invalid  characters.')
-        #    raise exceptions.AuthenticationFailed(msg)
-
-        baseUser = self.authenticate_credentials(auth)
-        serial = userSerializer.UserSerializer(baseUser)
-        return Response(serial.data)
+        try:
+            token = auth[1].decode()
+        except UnicodeError:                                               
+            msg = _('Invalid token header. Token string should not contain invalid  characters.')
+            raise exceptions.AuthenticationFailed(msg)
+        
+        baseUser = self.authenticate_credentials(token)
+        #serial = userSerializer.UserSerializer(baseUser)
+        return Response(baseUser)
     def authenticate_header(self, request):
         return 'Token'
 
     def get_model(self):
         return User
 
-    def checkAuthentication(self, request):
-        auth = get_authorization_header(request).split()
-        if not auth or auth[0].lower() != b'token':
-            return None
-
-        try:
-            token = auth[1].decode()
-        except UnicodeError:
-            msg = _('Invalid token header. Token string should not contain invalid  characters.')
-            raise exceptions.AuthenticationFailed(msg)
-
-        #baseUser = self.authenticate_credentials(token)
-        return Response(token)
     def authenticate_credentials(self, token):
         model = self.get_model()
         msg = {'Error': "Token mismatch",'status' :"401"}
         try:
-            payload = jwt.decode(token, "SECRET_KEY")
+            payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
         except jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed(msg)
         email = payload['email']
         userid = payload['id']
+        role = payload['role']
         try:
             baseUser = user.User.objects.get(
-                email=email,
+                #email=email,
                 id=userid
                 #is_active=True
             )
@@ -103,8 +93,11 @@ class UserAuthetication(viewsets.ModelViewSet):
             return HttpResponse({'Error': "Token is invalid"}, status="403")
         except User.DoesNotExist:
             return HttpResponse({'Error': "Internal server error"}, status="500")
-
-        return baseUser
+        
+        role_query = Role.objects.get(role_id = role)
+        serial = roleSerializer.RoleSerializer(role_query)
+        return role
+        #return baseUser
         #return (baseUser, token)
     
     #def authenticate(self, request):
