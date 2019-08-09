@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 my-4">
+    <div class="col-md-3 my-4">
       <div class="card border-danger card-user">
         <div class="card-body">
           <div class="author">
@@ -45,12 +45,10 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <div id = "bottomContainer" class="row">
-    <div class="col-md-12 events">
+    <div class=col-md-9>
       <h1 class="text-danger event-title mt-3 mb-5">
-        <p id = "bottomContainerHeader" >Upcoming Events</p>
+        <p id="bottomContainerHeader">Upcoming Events</p>
       </h1>
       <div class="row">
         <div class="col-sm-4 col-md-6 col-lg-4 mb-3" *ngFor="let event of Events">
@@ -64,7 +62,7 @@
               <p class="card-text">{{ event.status }}</p>
               <p class="card-text">{{ event.created_by }}</p>
               <p class="card-text"> {{ event.capacity }}</p>
-              <a class = "text-danger" href="#"> {{ event.url }}</a>
+              <a class="text-danger" href="#"> {{ event.url }}</a>
             </div>
           </div>
         </div>

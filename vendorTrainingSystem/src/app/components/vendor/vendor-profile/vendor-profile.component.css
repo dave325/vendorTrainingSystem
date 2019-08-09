@@ -32,11 +32,11 @@ a:hover{
 
 
 #topContainer{
-  background-color: rgb(46, 46, 46);
+   background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
 }
 
 #bottomContainer{
-  background-color: rgb(43, 42, 42);
+   background-color:  rgb(238, 238, 238);  /* backup -- rgb(43, 42, 42); */
 }
 
 #bottomContainerHeader{
