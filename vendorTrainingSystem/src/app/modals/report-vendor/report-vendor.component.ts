@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserService} from '../../user.service';
 
 interface ReportVendorModel{
   vendorName: string;
@@ -13,8 +14,11 @@ interface ReportVendorModel{
 })
 export class ReportVendorComponent implements OnInit {
   reportVendorModel = <ReportVendorModel>{};
-  
-  constructor(activeModal: NgbActiveModal) {
+  info = null;
+  error = null;
+  constructor(activeModal: NgbActiveModal,
+    private userService: UserService
+    ) {
     
   }
 
