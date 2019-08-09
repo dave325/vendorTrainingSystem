@@ -29,9 +29,9 @@ export class UserService {
 
   }
 
-  getUser(): Promise<HttpEvent<User>> {
+  getUser(user): Promise<HttpEvent<User>> {
 
-    return this.http.post<User>(this.getUserRoute, {}, this.httpOptions).toPromise();
+    return this.http.post<User>(this.getUserRoute, user, this.httpOptions).toPromise();
   } 
 
   public getToken() {
