@@ -310,30 +310,11 @@
     </div>
   </div>
   <hr>
-  <!-- <div class="row">
-        <div class="col-md-12">
-          <div class="card ">
-            <div class="card-header ">
-              <h5 class="card-title">Users Behavior</h5>
-              <p class="card-category">24 Hours performance</p>
-            </div>
-            <div class="card-body ">
-              <canvas id=chartHours width="400" height="100"></canvas>
-            </div>
-            <div class="card-footer ">
-              <hr>
-              <div class="stats">
-                <i class="fa fa-history"></i> Updated 3 minutes ago
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
 
   <div class="row">
     <!--Admin card-->
     <div class="col-md-4">
-      <div class="card border-danger text-white bg-dark mb-3">
+      <div class="card border-danger ">
         <div class="card-header ">
           <h5 class="card-title text-danger font-weight-bold ">Admin Information</h5>
           <p class="card-category">John Doe</p>
@@ -349,32 +330,21 @@
     </div>
     <!--Admin card end-->
 
-
-
-
-    <!-- ERROR#1: There is an error when you collapse an event. If you collapse it, 
-      and then collapse a vendor, the event that you collapsed closes-->
-    <!-- ERROR#2: When you collapse the first vendor or event, 
-        and then proceed to collapse the next vendor or event, it only opens the first one-->
-
-
-
-
     <!--Events card-->
     <div class="col-md-4 ">
-      <div class="card border-danger mb-3 " *ngFor="let event of Events">
+      <div class="card border-danger mb-3 " *ngFor="let event of Events; index as i">
         <div id="accordion">
-          <div class="card text-white bg-dark  ">
+          <div class="card  ">
             <div class="card-header " id="headingOne">
               <h5 class="mb-0">
-                <button class="btn btn-link text-danger font-weight-bold " data-toggle="collapse" data-target="#collapseOne"
-                  aria-expanded="false" aria-controls="collapseOne ">
+                <button class="btn btn-link text-danger font-weight-bold " data-toggle="collapse" [attr.data-target]="'#collapse-' + i"
+                  aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
                   Event 
                 </button>
               </h5>
             </div>
-            <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body text-white bg-dark mb-3" >
+            <div [attr.id]="'collapse-' + i" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body" >
                 <h5 class="card-text">{{ event.name }}</h5>
                 <hr>
                 <p class="card-text">{{ event.end_time }}</p>
@@ -393,17 +363,17 @@
     </div>
     <!--Vendors Card-->
     <div class="col-md-4">         
-      <div class="card border-danger text-white bg-dark mb-3" *ngFor="let vendor of Vendors">
+      <div class="card border-danger text-white bg-dark mb-3" *ngFor="let vendor of Vendors; index as i">
         <div id="accordion">
           <div class="card-header" id="headingTwo">
             <h5 class="mb-0">
-              <button class="btn btn-link text-danger font-weight-bold" data-toggle="collapse" data-target="#collapseTwo"
-                aria-expanded="false" aria-controls="collapseTwo">
+              <button class="btn btn-link text-danger font-weight-bold" data-toggle="collapse" [attr.data-target]="'#collapse-' + i"
+                aria-expanded="false" [attr.aria-controls]="'collapse-' + i">
                 Vendor
               </button>
             </h5>
           </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div [attr.id]="'collapse-' + i" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
                 <h5 class="card-text">{{ vendor.name }}</h5>
                 <hr>
@@ -412,20 +382,6 @@
                 <p class="card-text ">{{ vendor.email }} </p>
             </div>
           </div>
-
-          <!-- KEEP THIS AS WELL . THIS BRINGS IN THE DUMMY DATA FROM THE DATABASE-->
-
-          <!-- <div class="col-md-6 vendors">
-            <div class="card border-danger" style="max-width: 18rem;" *ngFor="let vendor of Vendors">
-              <div class="card-body">
-                <h5 class="card-text card-header">{{ vendor.name }}</h5>
-                <hr>
-                <p class="card-title ">{{ vendor.phone }} </p>
-                <p class="card-title ">{{ vendor.address }} </p>
-                <p class="card-title ">{{ vendor.email }} </p>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
       <!--card end-->
