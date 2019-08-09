@@ -1,9 +1,9 @@
-<div class="container-fluid">
-  <h2>List of Events</h2>
+<div class="container-fluid default-background">
+  
+  <h2 class = "text-danger">List of Events</h2>
   <app-search-event></app-search-event>
   <div class="row">
     <app-event *ngFor="let event of Events" [event]="event"></app-event>
-
   </div>
 
 </div>

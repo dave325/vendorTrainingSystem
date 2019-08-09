@@ -15,6 +15,9 @@ img {
   margin-top: 10px;
 }
 
+.container-fluid{
+  background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
+}
 /* .events {
   border: 10px solid red;
 }
