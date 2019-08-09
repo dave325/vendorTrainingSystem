@@ -66,13 +66,16 @@ class UserView(viewsets.ModelViewSet):
 
         if user is None:
             return Response('user not found')
-        
+        '''
         if user_password != user.password:
             return Response('invalid credentials')
+        '''
         #role_id, email, id ...
         payload = {
             'id':user.id,
-            'password':user.password
+            'password':user.password,
+            'email':user.email,
+            'role':user.role_id,
         }
 
         jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}

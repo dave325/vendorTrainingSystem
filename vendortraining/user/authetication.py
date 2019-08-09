@@ -44,19 +44,19 @@ class UserAuthetication(viewsets.ModelViewSet):
     #Todo: verify token key and check with db. refresh if correct
     @action(detail=False, methods=['get'])
     def viewAuthUser(self, request, *args, **kwargs):
-        auth = self.request.data.get('jwt')
+        auth = get_authorization_header(request).split()
         if not auth: #or auth[0].lower() != b'token'
             return Response(auth)
 
-        #try:
-        #    token = auth[1].decode()
-        #except UnicodeError:
-        #    msg = _('Invalid token header. Token string should not contain invalid  characters.')
-        #    raise exceptions.AuthenticationFailed(msg)
-
-        baseUser = self.authenticate_credentials(auth)
-        serial = userSerializer.UserSerializer(baseUser)
-        return Response(serial.data)
+        try:
+            token = auth[1].decode()
+        except UnicodeError:                                               
+            msg = _('Invalid token header. Token string should not contain invalid  characters.')
+            raise exceptions.AuthenticationFailed(msg)
+        
+        baseUser = self.authenticate_credentials(token)
+        #serial = userSerializer.UserSerializer(baseUser)
+        return Response(baseUser)
     def authenticate_header(self, request):
         return 'Token'
 
@@ -85,9 +85,11 @@ class UserAuthetication(viewsets.ModelViewSet):
             raise exceptions.AuthenticationFailed(msg)
         email = payload['email']
         userid = payload['id']
+        role = payload['role']
+        password = payload['password']
         try:
             baseUser = user.User.objects.get(
-                email=email,
+                #email=email,
                 id=userid
                 #is_active=True
             )
@@ -103,8 +105,9 @@ class UserAuthetication(viewsets.ModelViewSet):
             return HttpResponse({'Error': "Token is invalid"}, status="403")
         except User.DoesNotExist:
             return HttpResponse({'Error': "Internal server error"}, status="500")
-
-        return baseUser
+        
+        return role
+        #return baseUser
         #return (baseUser, token)
     
     #def authenticate(self, request):
