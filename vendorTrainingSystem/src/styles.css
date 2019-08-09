@@ -1,2 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
+.default-background{
+    background-color: rgb(238, 238, 238); /* rgb(46, 46, 46); */
+}
