@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User'; //the blueprint
 import { dummy_users } from '../../dummy-data/dummy-users'; // the data
+import { UserService} from '../../user.service';
 
 @Component({
   selector: 'dsol-profile',
@@ -10,8 +11,9 @@ import { dummy_users } from '../../dummy-data/dummy-users'; // the data
 export class ProfileComponent implements OnInit {
 
   d_users:User[] = dummy_users;
-
-  constructor() { }
+  info: string = null;
+  error: string = null;
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }

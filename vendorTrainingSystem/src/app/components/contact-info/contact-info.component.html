@@ -44,12 +44,13 @@
         <br>
       </div>
       <div class = "form-group">
-          <label for="address"> Address: </label>
-          <input name="address" class = "form-control" [(ngModel)] = "contactModel.address" #address="ngModel" required>    
+        <label for="address"> Address: </label>
+        <input name="address" class = "form-control" [(ngModel)] = "contactModel.address" #address="ngModel" required>    
           
-          <div *ngIf="!addressRegex.test(contactModel.address)"> Invalid Address </div>
-          <br>
-        </div>
+        <div *ngIf="!addressRegex.test(contactModel.address)"> Invalid Address </div>
+        <br>
+      </div>
+      <p *ngIf = "info | error" [ngClass]="{'warning': info, 'error': error}"> {{info}}{{error}} </p>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>
     

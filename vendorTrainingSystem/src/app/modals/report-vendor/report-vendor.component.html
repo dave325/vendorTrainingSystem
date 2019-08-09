@@ -13,7 +13,7 @@
       <textarea name="Violation" class="form-control" [(ngModel)]="reportVendorModel.violation" #violation="ngModel" id="violation" required></textarea>
     </div>
     <div *ngIf = "violation.invalid && (violation.dirty || violation.touched)">Violation cannot be empty</div>
-
+    <p *ngIf = "info | error" [ngClass]="{'warning': info, 'error': error}"> {{info}}{{error}} </p>
     <button type="submit" class="btn btn-success" [disabled] = "vendorName.invalid || violation.invalid">Submit</button> <!--dont disable? and check with ngSubmit-->
  
   </form>
