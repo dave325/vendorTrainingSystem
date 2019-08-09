@@ -1,46 +1,48 @@
-<div class="card col-12">
-  <div class="card-title">Event_id: {{ event._id }}</div>
-  <div class="card-title">Vendor_id: {{ event.v_id }}</div>
-  <div class="card-title">Name: {{ event.name }}</div>
-  <div class=card-body>
-    <div class="card-text">Summary: {{ event.summary }}</div>
-    <div class="card-text">Description : {{ event.description }}</div>
-    <div>Url: <a href="event.url">{{ event.url }}</a></div>
+<div class="container-fluid default-background">
+  <div class="row ">
+    <div class="card col-12 ">
+      <div class="card-title text-danger">Event_id: {{ event._id }}</div>
+      <div class="card-title">Vendor_id: {{ event.v_id }}</div>
+      <div class="card-title">Name: {{ event.name }}</div>
+      <div class=card-body>
+        <div class="card-text">Summary: {{ event.summary }}</div>
+        <div class="card-text">Description : {{ event.description }}</div>
+        <div>Url: <a class="text-danger" href="event.url">{{ event.url }}</a></div>
+      </div>
+
+      <span *ngIf="event.listed; then isListed; else notListed"></span>
+      <ng-template #isListed>Event is listed!</ng-template>
+      <ng-template #notListed>Event is not listed!</ng-template>
+      <span *ngIf="event.shareable; then isShared; else notShared"></span>
+      <ng-template #isListed>Event is shareable!</ng-template>
+      <ng-template #notListed>Event is not shareable!</ng-template>
+      <div>Capacity: {{ event.capacity }}</div>
+      <!-- <hr> -->
+      <div>Start Time: {{ event.start_time }}</div>
+      <div>End Time: {{  event.end_time }}</div>
+      <button (click)="open('hello')">open the modal</button>
 
 
 
+
+      <!-- TODO: FINISH WORKING ON CHILD ANIMATIONS -->
+
+      <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
+        <!-- <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p> -->
+        <!-- <div [@childAnimation]="isOpenVertical ? 'openV' : 'closedV'"> -->
+        <button type="button" class="btn btn-primary" (click)="toggle()">More Info</button>
+        <span *ngIf="isOpen">
+          <div>Created At: {{ event.created_at }}</div>
+          <div>Modified At: {{ event.modified_at }}</div>
+          <div>Published At: {{ event.published_at }}</div>
+          <div>Status: {{ event.status }}</div>
+          <div>Created By: {{ event.created_by }}</div>
+          <div>Modified By: {{ event.modified_by }}</div>
+        </span>
+        <!-- </div> -->
+      </div>
+
+    </div>
   </div>
-
-  <span *ngIf="event.listed; then isListed; else notListed"></span>
-  <ng-template #isListed>Event is listed!</ng-template>
-  <ng-template #notListed>Event is not listed!</ng-template>
-  <span *ngIf="event.shareable; then isShared; else notShared"></span>
-  <ng-template #isListed>Event is shareable!</ng-template>
-  <ng-template #notListed>Event is not shareable!</ng-template>
-  <div>Capacity: {{ event.capacity }}</div>
-  <!-- <hr> -->
-  <div>Start Time: {{ event.start_time }}</div>
-  <div>End Time: {{  event.end_time }}</div>
-  <button (click)="open('hello')">open the modal</button>
-
-
-
-
-  <!-- TODO: FINISH WORKING ON CHILD ANIMATIONS -->
-
-  <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
-    <!-- <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p> -->
-    <!-- <div [@childAnimation]="isOpenVertical ? 'openV' : 'closedV'"> -->
-    <button type="button" class="btn btn-primary" (click)="toggle()">More Info</button>
-    <span *ngIf="isOpen">
-      <div>Created At: {{ event.created_at }}</div>
-      <div>Modified At: {{ event.modified_at }}</div>
-      <div>Published At: {{ event.published_at }}</div>
-      <div>Status: {{ event.status }}</div>
-      <div>Created By: {{ event.created_by }}</div>
-      <div>Modified By: {{ event.modified_by }}</div>
-    </span>
-    <!-- </div> -->
-  </div>
-
+  <!--row end-->
 </div>
