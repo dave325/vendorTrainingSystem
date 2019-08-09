@@ -61,7 +61,7 @@ class UserView(viewsets.ModelViewSet):
         if not superUser:
             return Response({'error': 'Invalid Credentials'},
                         status=HTTP_404_NOT_FOUND)
-        token, _ = Token.objects.get_or_create(user=superUser)
+       # token, _ = Token.objects.get_or_create(user=superUser)
 
 
         if user is None:
@@ -79,7 +79,7 @@ class UserView(viewsets.ModelViewSet):
         }
 
         jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}
-        jwt_token.update({'superToken':token.key})
+        #jwt_token.update({'superToken':token.key})
         return Response(jwt_token)
         #return Response({'token': jwt_token.get('token')}, status=HTTP_200_OK)
     
