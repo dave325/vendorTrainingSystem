@@ -18,21 +18,33 @@ a:hover{
   text-align: center;
 }
 
-.events { 
+/* .events { 
   margin-top: 10px;
-}
+} */
 
-
-#bottomContainer{
+/* #bottomContainer{
   background-color: rgb(43, 42, 42);
-}
+} */
 
 #bottomContainerHeader{
   font-size: 150%;
 }
 
+#eventContainer{
+  height: 100vh;
+  overflow: scroll;
+}
+
+
 @media (max-width: 414px){
   #bottomContainerHeader{
     font-size:100%;
+  }
+}
+
+@media (max-width: 768px){ /* Ipad */
+  #eventContainer{
+    height: 100vh;
+
   }
 }

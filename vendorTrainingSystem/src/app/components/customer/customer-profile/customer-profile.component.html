@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row default-background">
     <div class="col-md-3 my-4">
-      <div class="card border-danger card-user">
+      <div class="card card-user">
         <div class="card-body">
           <div class="author">
             <a href="#">
@@ -19,7 +19,6 @@
           </p>
         </div>
         <div class="card-footer">
-          <hr>
           <div class="button-container">
             <div class="row">
               <div class="col-12">
@@ -46,14 +45,14 @@
       </div>
     </div>
 
-    <div class=col-md-9>
-      <h1 class="text-danger event-title mt-3 mb-5">
+    <div class="col-md-9 col-xs-12 my-3">
+      <h1 class="text-danger event-title mt-3 mb-4">
         <p id="bottomContainerHeader">Upcoming Events</p>
       </h1>
-      <div class="row">
-        <div class="col-sm-4 col-md-6 col-lg-4 mb-3" *ngFor="let event of Events">
-          <div class="card border-danger text-white">
-            <div class="card-body bg-dark">
+      <div id="eventContainer" class="row">
+        <div class="col-sm-4 col-md-6 col-lg-4" *ngFor="let event of Events">
+          <div class="card border-danger text-white mb-3">
+            <div class="card-body default-card-background">
               <h5 class="card-text text-danger">{{ event.name }}</h5>
               <p class="card-title">{{ event._id }} </p>
               <p class="card-text">{{ event.v_id }}</p>
@@ -63,6 +62,21 @@
               <p class="card-text">{{ event.created_by }}</p>
               <p class="card-text"> {{ event.capacity }}</p>
               <a class="text-danger" href="#"> {{ event.url }}</a>
+            </div>
+          </div>
+
+          <!--Extra code for scrolling. Remove in final product-->
+          <div class="card border-danger text-white mb-3">
+            <div class="card-body default-card-background">
+              <h5 class="card-text text-danger">asdfasdfasd</h5>
+              <p class="card-title">asdfasdf </p>
+              <p class="card-text"> asdfasdf</p>
+              <p class="card-text"> asdgfadssdfa</p>
+              <p class="card-text">asdgfadssdfa</p>
+              <p class="card-text">asdgfadssdfa</p>
+              <p class="card-text">asdgfadssdfa</p>
+              <p class="card-text"> asdgfadssdfa</p>
+              <a class="text-danger" href="#"> asdgfadssdfa </a>
             </div>
           </div>
         </div>
