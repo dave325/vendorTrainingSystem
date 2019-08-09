@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
     
     this.userService.getUser(this.login).then(
       (res) =>{
-        
+        console.log("success")
       },
       (err)=>{
-
+        console.log("error")
       }
     )
   }
