@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   info = null;
 
   constructor(
-    public modalService: NgbModal,
+    public modalService: NgbModal, 
     private userService: UserService,
     private http:HttpClient
     ) { }
@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitTemplateBased(){
+    console.log(this.login.username),
+    console.log(this.login.password)
+
     this.http.post('/api/user/login/',this.login).toPromise().then(
       (res) =>{
         console.log(res)
