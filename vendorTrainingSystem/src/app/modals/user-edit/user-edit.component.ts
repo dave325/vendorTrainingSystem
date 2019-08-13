@@ -26,7 +26,7 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmitTemplateBased() {
-    this.http.post('/api/user/edit/', this.edit).toPromise().then(
+    this.http.post('/api/user/profileEdit/', this.edit).toPromise().then(
       (res) => {
         console.log(res)
       }

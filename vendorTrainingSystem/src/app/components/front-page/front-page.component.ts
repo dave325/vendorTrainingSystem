@@ -1,10 +1,6 @@
 import { LoginComponent } from './../../modals/login/login.component';
-<<<<<<< HEAD
-import { AboutComponent } from './../../modals/about/about.component';
-=======
 import { UserEditComponent } from './../../modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
->>>>>>> 67320510ab7ca86ddd8e319f94ad620079e0e41a
 import { Component, OnInit } from '@angular/core';
 // import { ReportVendorComponent} from '../../modalm '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,13 +22,8 @@ export class FrontPageComponent implements OnInit {
   ngOnInit() {
   }
 
-<<<<<<< HEAD
-  openModal(){
-    let modalReg = this.modalService.open(AboutComponent);
-=======
   openLoginModal(){
     let modalReg = this.modalService.open(LoginComponent);
->>>>>>> 67320510ab7ca86ddd8e319f94ad620079e0e41a
   }
   
   openRegisterModal(){
