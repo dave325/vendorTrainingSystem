@@ -1,6 +1,6 @@
 import { LoginComponent } from './../../modals/login/login.component';
 import { UserEditComponent } from './../../modals/user-edit/user-edit.component';
-// import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
+import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
 import { Component, OnInit } from '@angular/core';
 // import { ReportVendorComponent} from '../../modalm '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +15,7 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
 })
 export class FrontPageComponent implements OnInit {
   // eventEditComponent = EventEditComponent;
-  // deleteProfileComponent = DeleteProfile;
+    deleteProfileComponent = DeleteProfileComponent;
     userEditComponent = UserEditComponent;
 
   constructor(private modalService:NgbModal) { }
@@ -25,12 +25,18 @@ export class FrontPageComponent implements OnInit {
 
   openLoginModal(){
     let modalReg = this.modalService.open(LoginComponent);
-    let modalEdit = this.modalService.open(UserEditComponent);
-    // letmodalDelete = this.modalService.open.(DeleteProfileComponent);
   }
   
   openRegisterModal(){
     let modalReg = this.modalService.open(RegisterComponent);
+  }
+
+  openUserEditModal() {
+    let modalEdit = this.modalService.open(UserEditComponent);
+  }
+
+  openDeleteProfileModal() {
+    let modalDelete = this.modalService.open(DeleteProfileComponent);
   }
   
   // open(component: Component) {
