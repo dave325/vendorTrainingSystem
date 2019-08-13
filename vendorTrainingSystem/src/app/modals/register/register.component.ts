@@ -12,9 +12,9 @@ export class RegisterComponent implements OnInit {
   register = { 
   firstName: <string> null,
   lastName: <string> null,
-  phone1: <number> null,
-  email1: <string> null,
-  password1: <string> null,
+  phone: <number> null,
+  email: <string> null,
+  password: <string> null,
   confirmPassword: <string> null,
   //error messaging
   errorMsgFirstName: "You must enter a valid First Name",
@@ -35,6 +35,11 @@ export class RegisterComponent implements OnInit {
   }
   
   onSubmitTemplateBased(){
+    this.http.post('/api/user/register/',this.register).toPromise().then(
+      (res) =>{
+        console.log(res)
+      }
+    )
 
     this.userService.getUser(this.register).then(
       (res) =>{
