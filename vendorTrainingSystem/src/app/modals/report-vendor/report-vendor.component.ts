@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-
+import {UserService} from '../../user.service';
+import { User } from 'src/app/models/User';
+import { Vendor} from '../../models/Vendor';
 interface ReportVendorModel{
   vendorName: string;
   violation: string;
@@ -13,8 +15,14 @@ interface ReportVendorModel{
 })
 export class ReportVendorComponent implements OnInit {
   reportVendorModel = <ReportVendorModel>{};
-  
-  constructor(activeModal: NgbActiveModal) {
+  vendor= {
+    name: 'name', address: 'address', phone: 'phone', email: 'email', is_approved: false
+  }
+  info = null;
+  error = null;
+  constructor(activeModal: NgbActiveModal,
+    private userService: UserService
+    ) {
     
   }
 
@@ -22,6 +30,14 @@ export class ReportVendorComponent implements OnInit {
   }
 
   onSubmitReport(){
+    this.userService.getUser(this.vendor).then(
+      (res) =>{
+        
+      },
+      (err)=>{
+
+      }
+    )
     let valid: boolean;
     alert("reported vendor: "+this.reportVendorModel.vendorName+", violation: "+this.reportVendorModel.violation);
     

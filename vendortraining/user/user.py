@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from rest_framework.decorators import action
@@ -15,6 +16,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.contrib import auth
+from . import authetication
 
 class UserView(viewsets.ModelViewSet):
     """
@@ -112,16 +114,28 @@ class UserView(viewsets.ModelViewSet):
 
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
+    @csrf_exempt
     def login(self, request, *args, **kwargs):
-        user_name = request.POST.get('user_name','')
-        user_password = request.POST.get('user_password', '')
+        user_name = request.data.get("username")
+        user_password = request.data.get("password")
+        user_email = request.data.get('email')
         # authenticate user account.
         user = auth.authenticate(request, username=user_name, password=user_password)
         if user is not None:
             # login user account.
+            authenticated_user = User.objects.get(id=user.id)
             auth.login(request, user)
+            # Use authneticated user
+            token = authetication.UserAuthetication.getToken(authenticated_user)
+            serializer = userSerializer.UserSerializer(authenticated_user)
+            obj = {
+                #'user': user,
+                'userData':serializer.data,
+                'token':token
+            }
+
             # set cookie to transfer user name to login success page.
-            return Response(user)
+            return Response(obj)
         else:
             error_json = {'error_message': 'User name or password is not correct.'}
             return Response(error_json)

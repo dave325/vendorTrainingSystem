@@ -24,6 +24,7 @@ import { AboutComponent } from './modals/about/about.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EventEditComponent } from './modals/event-edit/event-edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgbModule
   ],
   entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment'
-
+import { UserService} from '../../user.service';
 import {Vendor} from '../../models/Vendor'
 
 @Component({
@@ -14,7 +14,10 @@ export class ContactInfoComponent implements OnInit {
   emailRegex = environment.regExTests.emailRegex;
   phoneRegex = environment.regExTests.phoneRegex;
   addressRegex = environment.regExTests.addressRegex;
-  constructor() {
+
+  info: string = null;
+  error: string = null;
+  constructor(private userService: UserService) {
     
     this.contactModel.name="Google LLC";
     this.contactModel.phone="123-503-4867";

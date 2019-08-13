@@ -68,6 +68,7 @@ class AdminView(viewsets.ModelViewSet):
         try:
             event = Event.objects.get(event_id = self.request.data.get('event_id'))
             event.is_approved = self.request.data.get('approval')
+            # Need to ave back to db
         except Exception:
             return Exception
         
@@ -150,6 +151,7 @@ class AdminView(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def RemoveVendor(self, request, *args, **kwargs):
         try:
+            # Need to delete from db, we do not want to keep them around
             vendor = Vendor.objects.get(vendor_id = self.request.data.get('vendor_id'))
             vendor.address = ""
             vendor.phone = ""

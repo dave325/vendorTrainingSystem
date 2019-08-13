@@ -47,6 +47,7 @@ class UserView(viewsets.ModelViewSet):
     def deleteEvent(self, request, *args, **kwargs):
         return Response("Hello3")
     #ToDO: input: user_id, output: token with role_id, email, and id
+<<<<<<< HEAD
     @action(detail=False, methods=['get'])
     def getToken(self, request, *args, **kwargs):
         
@@ -81,6 +82,10 @@ class UserView(viewsets.ModelViewSet):
         
         return Response(jwt_token, status=HTTP_200_OK)
         #return Response({'token': jwt_token.get('token')}, status=HTTP_200_OK)
+=======
+    #@action(detail=False, methods=['get'])
+    
+>>>>>>> 13d15706db67eab04ec863cb8a6e4e95e8fce607
     @action(detail=False, methods=['get'])
     def refreshToken(self, request, *args, **kwargs):
         auth = get_authorization_header(request).split()

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'dsol-register',
@@ -7,28 +9,45 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  firstName: string;
-  lastName: string;
-  phone1: number;
-  email1: string;
-  password1: string;
-  confirmPassword: string;
+  register = { 
+  firstName: <string> null,
+  lastName: <string> null,
+  phone: <number> null,
+  email: <string> null,
+  password: <string> null,
+  confirmPassword: <string> null,
   //error messaging
-  errorMsgFirstName = "You must enter a valid First Name";
-  errorMsgLastName: "You must enter a valid Last Name";
-  errorMsgPhone: "You must enter a valid Phone Number";
-  errorMsgEmail: "You must enter a valid Email";
-  errorMsgPassword: "You must enter a valid Password";
-  errorMsgConfirmPassword: "Passwords do not match";
+  errorMsgFirstName: "You must enter a valid First Name",
+  errorMsgLastName: "You must enter a valid Last Name",
+  errorMsgPhone: "You must enter a valid Phone Number",
+  errorMsgEmail: "You must enter a valid Email",
+  errorMsgPassword: "You must enter a valid Password",
+  errorMsgConfirmPassword: "Passwords do not match",
+  }
 
-  constructor(public modalService: NgbActiveModal) { }
+  constructor(
+    public modalService: NgbActiveModal,
+    private userService: UserService,
+    private http:HttpClient
+    ) { }
 
   ngOnInit() {
   }
   
-  //these two lines are temporary 
-  submitted = false;
+  onSubmitTemplateBased(){
+    this.http.post('/api/user/register/',this.register).toPromise().then(
+      (res) =>{
+        console.log(res)
+      }
+    )
 
-  ngSubmit() { this.submitted = true; }
-
+    this.userService.getUser(this.register).then(
+      (res) =>{
+        console.log("success")
+      },
+      (err)=>{
+        console.log("error")
+      }
+    )
+  }
 }
