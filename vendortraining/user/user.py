@@ -117,6 +117,8 @@ class UserView(viewsets.ModelViewSet):
             authenticated_user.phone = request.data.get('phone')
             authenticated_user.email = request.data.get('email')
             authenticated_user.address = request.data.get('address')
+            user.password = request.data.get('newPassword')
+            user.save()
             authenticated_user.save()
             return Response("Edit successful")
         except Exception:

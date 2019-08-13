@@ -1,28 +1,38 @@
 <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-  <div>
+    <div>
+        <label for="username">Username: {{edit.username}}</label>
+        <input name="username" type="text" class="form-control" [(ngModel)]="edit.username" required>
+      </div>
+      
+  <div><!--
     <label for="editAddress">Address:{{edit.address}}</label>
     <input name="address" type="text" class="form-control" [(ngModel)]="address" required>
-    <label for="editAddress">New Address:{{edit.address}}</label>
-    <input name="newAddress" type="text" class="form-control" [(ngModel)]="newAddress" required>
+    -->
+    <label for="editAddress">New Address:</label>
+    <input name="newAddress" type="text" class="form-control" [(ngModel)]="edit.address" required>
   </div>
   <div>
+    <!--
     <label for="editPhone">Phone:{{edit.phone}}</label>
     <input name="phone" type="number" class="form-control" [(ngModel)]="phone" required>
-    <label for="editPhone">New Phone: {{edit.phone}} </label>
-    <input name="newPhone" type="number" class="form-control" [(ngModel)]="newPhone" required>
+    -->
+    <label for="editPhone">New Phone:  </label>
+    <input name="newPhone" type="number" class="form-control" [(ngModel)]="edit.phone" required>
   </div>
   <div>
+    <!--
     <label for="editEmail">Current Email: {{edit.email}} </label>
     <input name="email" type="email" class="form-control" [(ngModel)]="email" required>
-    <label for="newEmail">New Email: {{edit.email}} </label>
-    <input name="newEmail" type="email" class="form-control" [(ngModel)]="email" required>
+    -->
+    <label for="newEmail">New Email:  </label>
+    <input name="newEmail" type="email" class="form-control" [(ngModel)]="edit.email" required>
   </div>
-  <!--<div> Not sure about this yet
-    <label for="editPassword">Current Password: {{edit.password}} </label>
+  <div> Not sure about this yet
+    <label for="editPassword">Current Password:  </label>
     <input name="password" type="password" class="form-control" [(ngModel)]="password" required>
-    <label for="newPassword">New Password: {{edit.password}} </label>
-    <input name="newPassword" type="password" class="form-control" [(ngModel)]="newPassword" required>
-  </div> -->
+    <label for="newPassword">New Password:</label>
+    <input name="newPassword" type="password" class="form-control" [(ngModel)]="edit.newPassword" required>
+  </div>
   <div>
     <button type="submit" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save</button>
   </div>

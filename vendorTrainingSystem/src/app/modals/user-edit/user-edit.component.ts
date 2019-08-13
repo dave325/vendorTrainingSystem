@@ -11,10 +11,12 @@ import { UserService } from 'src/app/user.service'
 export class UserEditComponent implements OnInit {
 
   edit = {
+    username: <string> null,
     address: <string>null,
     phone: <string> null,
     email: <string>null,
     password: <string>null,
+    newPassword: <string>null
   }
 
   constructor(
@@ -32,6 +34,7 @@ export class UserEditComponent implements OnInit {
         console.log(res)
       }
     )
+    /*
     this.userService.getUser(this.edit).then(
       (res) => {
         console.log("success")
@@ -40,6 +43,7 @@ export class UserEditComponent implements OnInit {
         console.log("error")
       }
     )
+    */
   }
 
 }
