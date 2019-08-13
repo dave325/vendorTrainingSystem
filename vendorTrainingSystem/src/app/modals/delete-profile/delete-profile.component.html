@@ -1,0 +1,17 @@
+<form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+  <div>
+    <label for="delete">Would you like to delete your profile? </label>
+    <p>
+      <input type="radio" name="choice" checked>Yes>
+    </p>
+    <p>
+      <input type="radio" name="choice">No
+    </p>
+    <label for="confirm"> Are you sure? </label>
+    <p>
+      <input type="radio" name="confirm" checked>Yes
+    </p>
+    <p>
+      <input type="radio" name="confirm">No
+    </p>
+  </div>

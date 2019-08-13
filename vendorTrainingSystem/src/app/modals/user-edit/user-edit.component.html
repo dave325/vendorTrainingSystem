@@ -1,0 +1,28 @@
+<form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+  <div>
+    <label for="editAddress">Address:{{edit.address}}</label>
+    <input name="address" type="text" class="form-control" [(ngModel)]="address" required>
+    <label for="editAddress">New Address:{{edit.address}}</label>
+    <input name="newAddress" type="text" class="form-control" [(ngModel)]="newAddress" required>
+  </div>
+  <div>
+    <label for="editPhone">Phone:{{edit.phone}}</label>
+    <input name="phone" type="number" class="form-control" [(ngModel)]="phone" required>
+    <label for="editPhone">New Phone: {{edit.phone}} </label>
+    <input name="newPhone" type="number" class="form-control" [(ngModel)]="newPhone" required>
+  </div>
+  <div>
+    <label for="editEmail">Current Email: {{edit.email}} </label>
+    <input name="email" type="email" class="form-control" [(ngModel)]="email" required>
+    <label for="newEmail">New Email: {{edit.email}} </label>
+    <input name="newEmail" type="email" class="form-control" [(ngModel)]="email" required>
+  </div>
+  <div>
+    <label for="editPassword">Current Password: {{edit.password}} </label>
+    <input name="password" type="password" class="form-control" [(ngModel)]="password" required>
+    <label for="newPassword">New Password: {{edit.password}} </label>
+    <input name="newPassword" type="password" class="form-control" [(ngModel)]="newPassword" required>
+  </div>
+  <div>
+    <button type="submit" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save</button>
+  </div>

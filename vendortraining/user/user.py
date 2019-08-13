@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-
+from django.utils.decorators import method_decorator
 # Create your views here.
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -19,6 +19,10 @@ from django.contrib import auth
 from . import authetication
 
 class UserView(viewsets.ModelViewSet):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super(UserView, self).dispatch(request, *args, **kwargs)
+    
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
@@ -28,6 +32,7 @@ class UserView(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = userSerializer.UserSerializer
     permission_classes = []
+    
     """ @action(detail=False, methods=['post'])
     def highlight(self, request, *args, **kwargs):
         queryset = User.objects.all()
@@ -114,7 +119,7 @@ class UserView(viewsets.ModelViewSet):
 
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
-    @csrf_exempt
+    #@csrf_exempt
     def login(self, request, *args, **kwargs):
         user_name = request.data.get("username")
         user_password = request.data.get("password")
@@ -149,7 +154,7 @@ class UserView(viewsets.ModelViewSet):
         user_email = request.data.get('email')
         if len(user_name) > 0 and len(user_password) > 0 and len(user_email) > 0:
             # check whether user account exist or not.
-            user = authenticate(
+            user = auth.authenticate(
                 request, username=user_name, password=user_password)
             # if user account do not exist.
             if user is None:
@@ -157,6 +162,7 @@ class UserView(viewsets.ModelViewSet):
                 user = get_user_model().objects.create_user(username=user_name,
                                                             password=user_password, email=user_email)   
                 # update user object staff field value and save to db.
+                # check if user is created before creating auth_user
                 if user is not None:
                     # save user properties in sqlite auth_user table.
                     new_user = User.objects.create(id=user.id, phone="123456789",role_id=1 )

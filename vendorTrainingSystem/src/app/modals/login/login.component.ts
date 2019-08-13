@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit {
     public modalService: NgbModal, 
     private userService: UserService,
     private http:HttpClient
+<<<<<<< HEAD
     ) { } 
+=======
+    ) { }
+>>>>>>> 67320510ab7ca86ddd8e319f94ad620079e0e41a
 
   ngOnInit() {
   }
@@ -34,6 +38,7 @@ export class LoginComponent implements OnInit {
         console.log(res)
       }
     )
+    /*
     this.userService.getUser(this.login).then(
       (res) =>{
         console.log("success")
@@ -42,5 +47,6 @@ export class LoginComponent implements OnInit {
         console.log("error")
       }
     )
+    */
   }
 }
