@@ -29,14 +29,6 @@ export class FrontPageComponent implements OnInit {
   openRegisterModal(){
     let modalReg = this.modalService.open(RegisterComponent);
   }
-
-  openUserEditModal() {
-    let modalEdit = this.modalService.open(UserEditComponent);
-  }
-
-  openDeleteProfileModal() {
-    let modalDelete = this.modalService.open(DeleteProfileComponent);
-  }
   
   // open(component: Component) {
   //   let modalReg = this.modalService.open(component);
