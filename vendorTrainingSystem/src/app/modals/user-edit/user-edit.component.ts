@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
-import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
-import {UserService} from 'src/app/user.service'
+import { HttpClient } from '@angular/common/http'
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import { UserService } from 'src/app/user.service'
 
 @Component({
   selector: 'dsol-user-edit',
@@ -9,33 +9,33 @@ import {UserService} from 'src/app/user.service'
   styleUrls: ['./user-edit.component.css']
 })
 export class UserEditComponent implements OnInit {
-  
+
   edit = {
-    username: <string> null,
-    email: <string> null,
-    password: <string> null,
+    username: <string>null,
+    email: <string>null,
+    password: <string>null,
   }
 
   constructor(
     public modalService: NgbModal,
     private userService: UserService,
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
   }
 
-  onSubmitTemplateBased(){
-    this.http.post('/api/user/edit/',this.edit).toPromise().then(
-      (res) =>{
+  onSubmitTemplateBased() {
+    this.http.post('/api/user/edit/', this.edit).toPromise().then(
+      (res) => {
         console.log(res)
       }
     )
     this.userService.getUser(this.edit).then(
-      (res) =>{
+      (res) => {
         console.log("success")
       },
-      (err)=>{
+      (err) => {
         console.log("error")
       }
     )
