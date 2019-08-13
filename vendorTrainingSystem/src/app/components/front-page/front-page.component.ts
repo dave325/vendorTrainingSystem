@@ -15,7 +15,6 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
 })
 export class FrontPageComponent implements OnInit {
   // eventEditComponent = EventEditComponent;
-    
 
   constructor(private modalService:NgbModal) { }
 
