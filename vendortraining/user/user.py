@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from rest_framework.decorators import action
@@ -113,6 +114,7 @@ class UserView(viewsets.ModelViewSet):
 
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
+    @csrf_exempt
     def login(self, request, *args, **kwargs):
         user_name = request.data.get("username")
         user_password = request.data.get("password")

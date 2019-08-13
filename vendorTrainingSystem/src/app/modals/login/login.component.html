@@ -1,22 +1,22 @@
 <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
     <div>
-        <label for="email">Email: {{email1}} </label>
-        <input name = "email" type="email" class="form-control" [(ngModel)]="email1" #email="ngModel" required>
-        <div *ngIf="f.submitted && f.email.errors" class="invalid-feedback">
+        <label for="email">Email: {{login.username}} </label>
+        <input name = "email" type="email" class="form-control" [(ngModel)]="login.username" required>
+<!--         <div *ngIf="f.submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
-        </div>
+        </div> -->
     </div>
     <div>
-        <label for="password1">Password: {{password1}} </label>
-        <input name = "password1" type="password" class="form-control" [(ngModel)]="password1" #password="ngModel" required>
-        <div *ngIf="f.submitted && f.password1.errors" class="invalid-feedback">
-            <div *ngIf="password.errors.required">Password is required</div>
-        </div>
+        <label for="password1">Password: {{login.password}} </label>
+        <input name = "password1" type="password" class="form-control" [(ngModel)]="login.password"  required>
+       <!--  <div *ngIf="f.submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div> -->
     </div>
     <div>
 		<!--<p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
 		
-        <button type = "submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="modal.dismiss('Cross click')">Let's login!</button>
+        <button type = "submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Let's login!</button>
 	</div>
 	
 </form>

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
@@ -27,13 +28,14 @@ export class RegisterComponent implements OnInit {
   constructor(
     public modalService: NgbActiveModal,
     private userService: UserService,
+    private http:HttpClient
     ) { }
 
   ngOnInit() {
   }
   
   onSubmitTemplateBased(){
-    
+
     this.userService.getUser(this.register).then(
       (res) =>{
         console.log("success")

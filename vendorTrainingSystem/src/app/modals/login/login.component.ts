@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
@@ -10,14 +11,15 @@ import { UserService } from 'src/app/user.service';
 export class LoginComponent implements OnInit {
 
   login = {
-    email:<string> null,
+    username:<string> null,
     password: <string> null
   }
   info = null;
 
   constructor(
     public modalService: NgbModal,
-    private userService: UserService
+    private userService: UserService,
+    private http:HttpClient
     ) { }
 
 
@@ -28,7 +30,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitTemplateBased(){
-    
+    this.http.post('/api/user/login/',this.login).toPromise().then(
+      (res) =>{
+        console.log(res)
+      }
+    )
     this.userService.getUser(this.login).then(
       (res) =>{
         console.log("success")
