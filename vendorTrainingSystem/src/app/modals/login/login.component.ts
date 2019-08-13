@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         console.log(res)
       }
     )
+    /*
     this.userService.getUser(this.login).then(
       (res) =>{
         console.log("success")
@@ -39,5 +40,6 @@ export class LoginComponent implements OnInit {
         console.log("error")
       }
     )
+    */
   }
 }
