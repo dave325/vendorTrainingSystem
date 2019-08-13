@@ -9,6 +9,7 @@ COPY package.json /code
 # Install dependecies
 RUN npm install
 
-#EXPOSE 4200 49153
+RUN npm install -g @angular/cli
+EXPOSE 4200 49153
 # Get all the code needed to run the app
 COPY . /code
