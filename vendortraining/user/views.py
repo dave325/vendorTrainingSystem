@@ -47,45 +47,8 @@ class UserView(viewsets.ModelViewSet):
     def deleteEvent(self, request, *args, **kwargs):
         return Response("Hello3")
     #ToDO: input: user_id, output: token with role_id, email, and id
-<<<<<<< HEAD
-    @action(detail=False, methods=['get'])
-    def getToken(self, request, *args, **kwargs):
-        
-       # token, _ = Token.objects.get_or_create(user=superUser)
-        #super user check
-        #super_username = request.data.get("super_username")
-        #super_password = request.data.get("super_password")
-        #if super_username is None or super_password is None:
-        #    return Response({'error': 'Please provide both username and password'},
-        #                status=HTTP_400_BAD_REQUEST)
-        #superUser = authenticate(username=super_username, password=super_password)
-        #if not superUser:
-        #    return Response({'error': 'Invalid Credentials'},
-        #                status=HTTP_404_NOT_FOUND)
-        #token, _ = Token.objects.get_or_create(user=superUser)
-
-        user = User.objects.get(id = self.request.data.get('user_id'))
-
-        if user is None:
-            return Response('user not found', status=HTTP_404_NOT_FOUND)
-        
-        #role_id, email, id ...
-        payload = {
-            'id':user.id,
-            'email':user.email,
-            'role':user.role_id,
-            'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
-        }
-
-        jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}
-        #jwt_token.update({'superToken':token.key})
-        
-        return Response(jwt_token, status=HTTP_200_OK)
-        #return Response({'token': jwt_token.get('token')}, status=HTTP_200_OK)
-=======
     #@action(detail=False, methods=['get'])
     
->>>>>>> 13d15706db67eab04ec863cb8a6e4e95e8fce607
     @action(detail=False, methods=['get'])
     def refreshToken(self, request, *args, **kwargs):
         auth = get_authorization_header(request).split()
