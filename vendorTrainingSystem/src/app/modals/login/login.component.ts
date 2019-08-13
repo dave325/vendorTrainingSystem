@@ -22,10 +22,6 @@ export class LoginComponent implements OnInit {
     private http:HttpClient
     ) { }
 
-
-
- 
-
   ngOnInit() {
   }
 
