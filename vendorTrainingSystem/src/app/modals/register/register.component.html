@@ -1,59 +1,67 @@
 <div class="register">
     <form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-        <div>
-            <label>First Name: {{firstName}}</label>
-            <input name = "firstName" type="text" class="form-control" [(ngModel)]="register.firstName" #first="ngModel" required>
-           <!-- <div *ngIf="f.submitted && firstName.invalid" class="errors">
+        <div class="modal-body">
+            <div>
+                <label>First Name: </label>
+                <input name="firstName" type="text" class="form-control" [(ngModel)]="register.firstName"
+                    #first="ngModel" required>
+                <!-- <div *ngIf="f.submitted && firstName.invalid" class="errors">
                 <div *ngIf="firstName.errors.required">{{errorMsgFirstName}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Last Name: {{lastName}}</label>
-            <input name = "lastName" type="text" class="form-control" [(ngModel)]="register.lastName" #last="ngModel" required>
-          <!--  <div *ngIf="f.submitted && lastName.invalid" class="errors">
+            </div>
+            <div>
+                <label>Last Name: </label>
+                <input name="lastName" type="text" class="form-control" [(ngModel)]="register.lastName" #last="ngModel"
+                    required>
+                <!--  <div *ngIf="f.submitted && lastName.invalid" class="errors">
                 <div *ngIf="lastName.errors.required">{{errorMsgLastName}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Phone Number: {{phone}}</label>
-            <input name = "phone" type="phone" class="form-control" [(ngModel)]="register.phone" #phone="ngModel" required minlength="10">
-           <!-- <div *ngIf="f.submitted && phone.invalid" class="errors">
+            </div>
+            <div>
+                <label>Phone Number: </label>
+                <input name="phone" type="phone" class="form-control" [(ngModel)]="register.phone" #phone="ngModel"
+                    required minlength="10">
+                <!-- <div *ngIf="f.submitted && phone.invalid" class="errors">
                 <div *ngIf="phone.errors.required">{{errorMsgPhone}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Email: {{email}}</label>
-            <input name = "email" type="email" class="form-control" [(ngModel)]="register.email" #email="ngModel" required>
-            <!--<div *ngIf="f.submitted && email.invalid" class="errors">
+            </div>
+            <div>
+                <label>Email: </label>
+                <input name="email" type="email" class="form-control" [(ngModel)]="register.email" #email="ngModel"
+                    required>
+                <!--<div *ngIf="f.submitted && email.invalid" class="errors">
                 <div *ngIf="email.errors.required">{{errorMsgEmail}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Username: {{username}}</label>
-            <input name = "username" type="username" class="form-control" [(ngModel)]="register.username" #username="ngModel" required>
-            <!--<div *ngIf="f.submitted && email.invalid" class="errors">
+            </div>
+            <div>
+                <label>Username: </label>
+                <input name="username" type="username" class="form-control" [(ngModel)]="register.username"
+                    #username="ngModel" required>
+                <!--<div *ngIf="f.submitted && email.invalid" class="errors">
                 <div *ngIf="email.errors.required">{{errorMsgEmail}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Password: {{password}}</label>
-            <input name = "password" type="password" class="form-control" [(ngModel)]="register.password" #password="ngModel" required
-                minlength="6">
-            <!--<div *ngIf="f.submitted && password.invalid" class="errors">
+            </div>
+            <div>
+                <label>Password: (minimum 6 characters)</label>
+                <input name="password" type="password" class="form-control" [(ngModel)]="register.password"
+                    #password="ngModel" required minlength="6">
+                <!--<div *ngIf="f.submitted && password.invalid" class="errors">
                 <div *ngIf="password.errors.required">{{errorMsgPassword}}</div>
             </div> -->
-        </div>
-        <div>
-            <label>Confirm Password: {{confirmPassword}}</label>
-            <input name="confirmPassword" type="password" class="form-control" [(ngModel)]="register.confirmPassword" #password="ngModel" required
-                minlength="6">
-           <!-- <div *ngIf="f.submitted && password.invalid && password1 === confirmPassword" class="errors">
+            </div>
+            <div>
+                <label>Confirm Password: </label>
+                <input name="confirmPassword" type="password" class="form-control"
+                    [(ngModel)]="register.confirmPassword" #password="ngModel" required minlength="6">
+                <!-- <div *ngIf="f.submitted && password.invalid && password1 === confirmPassword" class="errors">
                 <div *ngIf="password.errors.required">{{errorMsgConfirmPassword}}</div>
             </div> -->
+            </div>
         </div>
-        <div>
-           <!--  <p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
-            <button type="submit" [disabled]="!f.valid">Submit</button>
+        <div class = "modal-footer">
+            <!--  <p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
+            <!-- <button type="submit" [disabled]="!f.valid">Submit</button> -->
+            <button type="submit" class = "btn btn-outline-primary" aria-label="Close" (click)="modal.dismiss('Cross click')" [disabled]="!f.valid">Submit</button>
         </div>
     </form>
 </div>
