@@ -92,11 +92,15 @@ class UserView(viewsets.ModelViewSet):
             return Response(user, status=status.HTTP_404_NOT_FOUND)
 
 # deleting a user profile
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['post'])
     def profileDelete(self, request, *args, **kwargs):
+        user_name = request.data.get("username")
+        user_password = request.data.get("password")
         try:
-            user = User.objects.filter(
-                user_id=self.request.data.get('user_id')).delete()
+            user = auth.authenticate(request, username=user_name, password=user_password)
+            authenticated_user = User.objects.get(id=user.id)
+            authenticated_user.delete()
+            user.delete()
             return Response("Successfully Deleted")
         except Exception:
             return Exception
