@@ -14,7 +14,7 @@
         </div>
     </div>
     <div>
-		<!--<p *ngIf="info | error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
+		<!--<p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
 		
         <button type = "submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="modal.dismiss('Cross click')">Let's login!</button>
 	</div>

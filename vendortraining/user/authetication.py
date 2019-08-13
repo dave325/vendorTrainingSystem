@@ -19,6 +19,7 @@ from rest_framework.status import (
     HTTP_404_NOT_FOUND,
     HTTP_200_OK
 )
+import datetime
 
 #jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 #jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -102,5 +103,44 @@ class UserAuthetication(viewsets.ModelViewSet):
         #return (baseUser, token)
     
     #def authenticate(self, request):
-        
+    @staticmethod
+    def getToken(user):
+        '''
+        super_username = request.data.get("super_username")
+        super_password = request.data.get("super_password")
+        user_password = request.data.get("user_password")
+        user = User.objects.get(id = self.request.data.get('user_id'))
 
+        if super_username is None or super_password is None:
+            return Response({'error': 'Please provide both username and password'},
+                        status=HTTP_400_BAD_REQUEST)
+        superUser = authenticate(username=super_username, password=super_password)
+        if not superUser:
+            return Response({'error': 'Invalid Credentials'},
+                        status=HTTP_404_NOT_FOUND)
+                        '''
+       # token, _ = Token.objects.get_or_create(user=superUser)
+        #super user check
+        #super_username = request.data.get("super_username")
+        #super_password = request.data.get("super_password")
+        #if super_username is None or super_password is None:
+        #    return Response({'error': 'Please provide both username and password'},
+        #                status=HTTP_400_BAD_REQUEST)
+        #superUser = authenticate(username=super_username, password=super_password)
+        #if not superUser:
+        #    return Response({'error': 'Invalid Credentials'},
+        #                status=HTTP_404_NOT_FOUND)
+        #token, _ = Token.objects.get_or_create(user=superUser)
+        #role_id, email, id ...
+        payload = {
+            'id':user.id,
+            'email':user.email,
+            'role':user.role_id,
+            'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
+        }
+
+        jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}
+        #jwt_token.update({'superToken':token.key})
+        
+        return jwt_token
+        #return Response({'token': jwt_token.get('token')}, status=HTTP_200_OK)

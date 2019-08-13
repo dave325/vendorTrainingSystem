@@ -13,5 +13,5 @@ class User(models.Model):
   address = models.CharField(max_length=254)
   public = models.BooleanField(default=True)
   password = models.CharField(max_length=100)
-  events = models.ManyToManyField(Event, through=u'Attendance')
+  #events = models.ManyToManyField(Event, through=u'Attendance')
 

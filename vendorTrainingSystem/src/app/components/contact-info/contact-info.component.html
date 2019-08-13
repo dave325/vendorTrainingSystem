@@ -50,7 +50,7 @@
         <div *ngIf="!addressRegex.test(contactModel.address)"> Invalid Address </div>
         <br>
       </div>
-      <p *ngIf = "info | error" [ngClass]="{'warning': info, 'error': error}"> {{info}}{{error}} </p>
+      <p *ngIf = "info || error" [ngClass]="{'warning': info, 'error': error}"> {{info}}{{error}} </p>
       <button type = "submit" class="btn btn-success"> Submit </button>
     </form>
     
