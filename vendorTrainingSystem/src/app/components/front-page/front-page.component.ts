@@ -1,8 +1,8 @@
 import { LoginComponent } from './../../modals/login/login.component';
 import { AboutComponent } from './../../modals/about/about.component';
+import { EventModalComponent } from './../../modals/event-modal/event-modal.component';
 import { UserEditComponent } from './../../modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
-import { EventModalComponent } from './../../modals/event-modal/event-modal.component';
 import { Component, OnInit } from '@angular/core';
 // import { ReportVendorComponent} from '../../modalm '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -17,7 +17,6 @@ import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
 })
 export class FrontPageComponent implements OnInit {
   // eventEditComponent = EventEditComponent;
-    
 
   constructor(private modalService:NgbModal) { }
 

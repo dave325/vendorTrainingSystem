@@ -103,15 +103,26 @@ class UserView(viewsets.ModelViewSet):
             user.delete()
             return Response("Successfully Deleted")
         except Exception:
-            return Exception
+            return Response("error")
 
 # editing a user profile
 # MAKE SURE TO USE THE RIGHT METHOD
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['post'])
     def profileEdit(self, request, *args, **kwargs):
-        user = User.objects.filter(id=self.request.data.get('user_id'))
-        user.email = request.data.get('email')
-        return Response(res.data)
+        user_name = request.data.get("username")
+        user_password = request.data.get("password")
+        try:
+            user = auth.authenticate(request, username=user_name, password=user_password)
+            authenticated_user = User.objects.get(id=user.id)
+            authenticated_user.phone = request.data.get('phone')
+            authenticated_user.email = request.data.get('email')
+            authenticated_user.address = request.data.get('address')
+            user.password = request.data.get('newPassword')
+            user.save()
+            authenticated_user.save()
+            return Response("Edit successful")
+        except Exception:
+            return Response("error")
 
 # view events currently signed up for by the user
     @action(detail=False, methods=['post'])

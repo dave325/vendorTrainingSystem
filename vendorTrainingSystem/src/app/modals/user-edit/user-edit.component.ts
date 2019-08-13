@@ -11,9 +11,12 @@ import { UserService } from 'src/app/user.service'
 export class UserEditComponent implements OnInit {
 
   edit = {
-    username: <string>null,
+    username: <string> null,
+    address: <string>null,
+    phone: <string> null,
     email: <string>null,
     password: <string>null,
+    newPassword: <string>null
   }
 
   constructor(
@@ -26,11 +29,12 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmitTemplateBased() {
-    this.http.post('/api/user/edit/', this.edit).toPromise().then(
+    this.http.post('/api/user/profileEdit/', this.edit).toPromise().then(
       (res) => {
         console.log(res)
       }
     )
+    /*
     this.userService.getUser(this.edit).then(
       (res) => {
         console.log("success")
@@ -39,6 +43,7 @@ export class UserEditComponent implements OnInit {
         console.log("error")
       }
     )
+    */
   }
 
 }
