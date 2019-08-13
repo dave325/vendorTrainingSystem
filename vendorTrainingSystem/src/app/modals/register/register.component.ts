@@ -10,12 +10,13 @@ import { UserService } from 'src/app/user.service';
 })
 export class RegisterComponent implements OnInit {
   register = { 
-  firstName: <string> null,
-  lastName: <string> null,
-  phone: <number> null,
-  email: <string> null,
-  password: <string> null,
-  confirmPassword: <string> null,
+    username: <string> null,
+    firstName: <string> null,
+    lastName: <string> null,
+    phone: <number> null,
+    email: <string> null,
+    password: <string> null,
+    confirmPassword: <string> null,
   //error messaging
   errorMsgFirstName: "You must enter a valid First Name",
   errorMsgLastName: "You must enter a valid Last Name",
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
         console.log(res)
       }
     )
-
+    /*
     this.userService.getUser(this.register).then(
       (res) =>{
         console.log("success")
@@ -49,5 +50,6 @@ export class RegisterComponent implements OnInit {
         console.log("error")
       }
     )
+    */
   }
 }

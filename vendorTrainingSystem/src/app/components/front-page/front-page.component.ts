@@ -21,10 +21,11 @@ export class FrontPageComponent implements OnInit {
   openLoginModal(){
     let modalReg = this.modalService.open(LoginComponent);
   }
-
+  
   openRegisterModal(){
-    this.modalService.open(RegisterComponent);
+    let modalReg = this.modalService.open(RegisterComponent);
   }
+  
   // open(component: Component) {
   //   let modalReg = this.modalService.open(component);
   // }

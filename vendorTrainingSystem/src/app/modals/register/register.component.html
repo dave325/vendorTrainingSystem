@@ -29,8 +29,15 @@
             </div> -->
         </div>
         <div>
+            <label>Username: {{username}}</label>
+            <input name = "username" type="username" class="form-control" [(ngModel)]="register.username" #username="ngModel" required>
+            <!--<div *ngIf="f.submitted && email.invalid" class="errors">
+                <div *ngIf="email.errors.required">{{errorMsgEmail}}</div>
+            </div> -->
+        </div>
+        <div>
             <label>Password: {{password}}</label>
-            <input name = "password" type="password" class="form-control" [(ngModel)]="register.password1" #password="ngModel" required
+            <input name = "password" type="password" class="form-control" [(ngModel)]="register.password" #password="ngModel" required
                 minlength="6">
             <!--<div *ngIf="f.submitted && password.invalid" class="errors">
                 <div *ngIf="password.errors.required">{{errorMsgPassword}}</div>
