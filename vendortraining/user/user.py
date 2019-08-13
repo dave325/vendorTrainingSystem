@@ -165,7 +165,7 @@ class UserView(viewsets.ModelViewSet):
                 # check if user is created before creating auth_user
                 if user is not None:
                     # save user properties in sqlite auth_user table.
-                    new_user = User.objects.create(id=user.id, phone="123456789",role_id=1, role_id_id=1 )
+                    new_user = User.objects.create(id=user.id, phone="123456789",role_id=1 )
                     new_user.save()
                     user.save()
                 # redirect web page to register success page.
