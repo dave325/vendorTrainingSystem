@@ -49,18 +49,7 @@ class UserView(viewsets.ModelViewSet):
     #ToDO: input: user_id, output: token with role_id, email, and id
     @action(detail=False, methods=['get'])
     def getToken(self, request, *args, **kwargs):
-        super_username = request.data.get("super_username")
-        super_password = request.data.get("super_password")
-        user_password = request.data.get("user_password")
-        user = User.objects.get(id = self.request.data.get('user_id'))
-
-        if super_username is None or super_password is None:
-            return Response({'error': 'Please provide both username and password'},
-                        status=HTTP_400_BAD_REQUEST)
-        superUser = authenticate(username=super_username, password=super_password)
-        if not superUser:
-            return Response({'error': 'Invalid Credentials'},
-                        status=HTTP_404_NOT_FOUND)
+        
        # token, _ = Token.objects.get_or_create(user=superUser)
         #super user check
         #super_username = request.data.get("super_username")
