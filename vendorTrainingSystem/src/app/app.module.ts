@@ -26,6 +26,7 @@ import { EventEditComponent } from './modals/event-edit/event-edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './modals/user-edit/user-edit.component';
+import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { UserEditComponent } from './modals/user-edit/user-edit.component';
     RegisterComponent,
     ProfileComponent,
     LoginComponent,
-    UserEditComponent
+    UserEditComponent,
+    DeleteProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,7 @@ import { UserEditComponent } from './modals/user-edit/user-edit.component';
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent],
+  entryComponents: [UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
