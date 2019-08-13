@@ -58,7 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent],
+  entryComponents: [EventModalComponent,RegisterComponent, ReportVendorComponent, EventEditComponent, LoginComponent, AboutComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

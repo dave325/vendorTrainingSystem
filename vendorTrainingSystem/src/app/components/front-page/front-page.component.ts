@@ -1,4 +1,5 @@
 import { LoginComponent } from './../../modals/login/login.component';
+import { AboutComponent } from './../../modals/about/about.component';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { RegisterComponent } from '../../modals/register/register.component'
@@ -20,7 +21,7 @@ export class FrontPageComponent implements OnInit {
   }
 
   openModal(){
-    let modalReg = this.modalService.open(LoginComponent);
+    let modalReg = this.modalService.open(AboutComponent);
   }
   // open(component: Component) {
   //   let modalReg = this.modalService.open(component);
