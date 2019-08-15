@@ -4,8 +4,9 @@ import { EventEditComponent } from '../../../modals/event-edit/event-edit.compon
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/user.service';
-import { AboutComponent } from '../../../modals/about/about.component'
-import { EditVendorProfileComponent } from '../../../modals/edit-vendor-profile/edit-vendor-profile.component'
+import { AboutComponent } from '../../../modals/about/about.component';
+import { EditVendorProfileComponent } from '../../../modals/edit-vendor-profile/edit-vendor-profile.component';
+import { ReportVendorComponent } from '../../../modals/report-vendor/report-vendor.component';
 
 @Component({
   selector: 'app-vendor-profile',
@@ -31,5 +32,11 @@ export class VendorProfileComponent implements OnInit {
   }
   openEditVendorProfileModal(){
     let modalReg = this.modalService.open(EditVendorProfileComponent);
+  }
+  openReportVendorModal(){
+    let modalReg = this.modalService.open(ReportVendorComponent);
+  }
+  openEventEditModal(){
+    let modalReg = this.modalService.open(EventEditComponent);
   }
 }
