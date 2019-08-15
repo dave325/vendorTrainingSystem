@@ -1,3 +1,4 @@
+import { AuthenticationService } from './services/Authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -65,7 +66,7 @@ import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-ve
     NgbModule
   ],
   entryComponents: [DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

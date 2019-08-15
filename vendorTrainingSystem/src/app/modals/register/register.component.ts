@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/Authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -26,22 +27,36 @@ export class RegisterComponent implements OnInit {
   errorMsgConfirmPassword: "Passwords do not match",
   }
 
+  error = null;
+  info = null;
   constructor(
     public modalService: NgbActiveModal,
     private userService: UserService,
-    private http:HttpClient
+    private auth: AuthenticationService
     ) { }
 
   ngOnInit() {
   }
   
   onSubmitTemplateBased(){
+    console.log(this.register)
+    this.auth.register(this.register).then(
+      (res) =>{
+        this.error = null;
+        this.info = "Successfully Registered!"
+      },
+      (err) =>{
+        this.info = null;
+        this.error = "Error logging in, please try again!";
+      }
+    );
+    /*
     this.http.post('/api/user/register/',this.register).toPromise().then(
       (res) =>{
         console.log(res)
       }
     )
-    /*
+    /
     this.userService.getUser(this.register).then(
       (res) =>{
         console.log("success")

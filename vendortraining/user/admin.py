@@ -147,6 +147,16 @@ class AdminView(viewsets.ModelViewSet):
         except Exception:
             return Exception
     
+        #testing complete
+    @action(detail=False, methods=['post'])
+    def disproveVendor(self, request, *args, **kwargs):
+        #Vendor.objects.get(vendor_id = self.request.data.get('vendorid')).update(is_approved = self.request.data.get('approval'))
+        try:
+            vendor = Vendor.objects.get(vendor_id = self.request.data.get('vendor_id'))
+            vendor.is_approved = False
+            vendor.save()
+        except Exception:
+            return Exception
     #testing complete
     @action(detail=False, methods=['post'])
     def RemoveVendor(self, request, *args, **kwargs):
