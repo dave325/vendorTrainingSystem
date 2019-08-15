@@ -16,6 +16,7 @@ from vendortraining.models import Role
 
 class AdminView(viewsets.ModelViewSet):
     queryset = User.objects.all()
+    permission_classes = []
     #testing complete
     @action(detail=False, methods=['get'])
     def adminProfile(self, request, *args, **kwargs):

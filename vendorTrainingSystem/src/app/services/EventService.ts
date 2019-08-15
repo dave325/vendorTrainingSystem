@@ -26,12 +26,13 @@ export class EventService {
       this.httpOptions.headers = headers;
   
     }
+    //edit event not implemented
     editEvent(event){
         return this.http.post('/api/vendor/editMyEvents/', event, this.httpOptions).toPromise();
     }
-
+    //view event not implemented
     viewEvents(userId){
-        return this.http.post('/api/vendors/editMyEvents/', userId. this.httpOptions).toPromise();
+        return this.http.post('/api/vendors/viewMyEvents/', userId. this.httpOptions).toPromise();
     }
 
     listEvents () {
@@ -41,7 +42,7 @@ export class EventService {
     deleteEvents (id) {
       return this.http.delete('/api/vendor/event/', id).toPromise();
     }
-
+    //join event incomplete
     joinEvent(information){
       this.http.post('/api/user/joinEvent/', information, this.httpOptions).toPromise();
     }
