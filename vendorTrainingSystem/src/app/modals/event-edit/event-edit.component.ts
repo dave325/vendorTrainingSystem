@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
-
+import { AuthenticationService } from './../../services/Authentication.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Event } from '../../models/Event';
-
+//import { EventService} from '../../services/EventService';
 
 @Component({
   selector: 'dsol-event-edit',
@@ -11,7 +11,10 @@ import { Event } from '../../models/Event';
 })
 export class EventEditComponent implements OnInit {
   @Input() event;
-  constructor(activeModal: NgbActiveModal) { 
+  constructor(
+    public modalService: NgbModal, 
+    //private eventSerivce: EventService,
+    private auth: AuthenticationService) { 
     console.log(this.event);
   }
 
