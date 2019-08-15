@@ -27,6 +27,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.component';
+import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-vendor-profile.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.c
     ProfileComponent,
     LoginComponent,
     UserEditComponent,
-    DeleteProfileComponent
+    DeleteProfileComponent,
+    EditVendorProfileComponent
   ],
   imports: [
     BrowserModule,
