@@ -3,6 +3,8 @@
   <h2 class = "text-danger">List of Events</h2>
   <app-search-event></app-search-event>
   <div class="row">
+    
+    <!--[event] is the variable declared in event.component.ts-->
     <app-event *ngFor="let event of Events" [event]="event"></app-event>
   </div>
 
