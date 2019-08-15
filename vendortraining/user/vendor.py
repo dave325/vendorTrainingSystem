@@ -5,8 +5,8 @@ from django.shortcuts import render
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from vendortraining.models import Vendor
-from vendortraining.models.serializers import vendorSerializer
+from vendortraining.models import Vendor, Event
+from vendortraining.models.serializers import vendorSerializer, eventSerializer
 
 class VendorView(viewsets.ModelViewSet):
     """
@@ -64,7 +64,14 @@ class VendorView(viewsets.ModelViewSet):
     def editMyEvents(self, request, *args, **kwargs):
         return()
     
-    @action(detail=False, methods=['post'])
-    def deleteMyEvents(self, request, *args, **kwargs):
-        return()
+    @action(detail=False, methods=['delete'])
+    def event(self, request, *args, **kwargs):
+        deletedEvent = Event.objects.filter(id = self.request.data.get('id'))
+        deletedEvent.delete()
+        return("profile deleted")
         
+    @action(detail=False, methods=['get'])
+    def getAllEvents(self, request, *args, **kwargs):
+        events = Event.objects.all()
+        serializer = eventSerializer.EventSerializer(events, many=True)
+        return Response(serializer.data)

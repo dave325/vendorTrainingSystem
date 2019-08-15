@@ -314,11 +314,8 @@ CREATE TABLE `vendortraining_attendance` (
 CREATE TABLE `vendortraining_event` (
   `id` int(11) NOT NULL,
   `modified_at` date NOT NULL,
-  `created_by_id` int(11) NOT NULL,
-  `modified_by_id` int(11) NOT NULL,
-  `vendor_id_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
   `created_at` date NOT NULL,
-  `vendor_id` int(11) DEFAULT NULL,
   `created_by` varchar(100) DEFAULT NULL,
   `modified_by` varchar(100) DEFAULT NULL,
   `is_approved` tinyint(1) DEFAULT NULL,
@@ -345,10 +342,8 @@ INSERT INTO `vendortraining_event` (`id`, `modified_at`, `created_by_id`, `modif
 CREATE TABLE `vendortraining_member` (
   `id` int(11) NOT NULL,
   `company_role` varchar(100) NOT NULL,
-  `user_id_id` int(11) NOT NULL,
-  `vendor_id_id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `vendor_id` int(11) DEFAULT NULL
+  `user_id` int(11) NOT NULL,
+  `vendor_id` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -384,7 +379,7 @@ CREATE TABLE `vendortraining_user` (
   `phone` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `password` varchar(100) NOT NULL,
-  `role_id_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `events` int(8) DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   `public` tinyint(1) DEFAULT NULL

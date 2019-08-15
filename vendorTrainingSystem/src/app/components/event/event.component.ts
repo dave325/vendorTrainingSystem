@@ -1,3 +1,4 @@
+import { EventEditComponent } from './../../modals/event-edit/event-edit.component';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes, sequence } from '@angular/animations';
 
@@ -88,4 +89,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   ngOnInit() {
   }
 
+  editEvent(event){
+    const editModal = this.modalService.open(EventEditComponent);
+    editModal.componentInstance.event = event;
+    editModal.result.then((result) => {
+
+    }, (reason) => {
+
+    });
+  }
 }
