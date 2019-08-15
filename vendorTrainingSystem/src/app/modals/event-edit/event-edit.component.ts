@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { AuthenticationService } from './../../services/Authentication.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Event } from '../../models/Event';
 import { EventService} from '../../services/EventService';
+import { HttpClient } from '@angular/common/http'
+import { Event } from '../../models/Event';
 
 @Component({
   selector: 'dsol-event-edit',
@@ -11,21 +12,21 @@ import { EventService} from '../../services/EventService';
   styleUrls: ['./event-edit.component.css']
 })
 export class EventEditComponent implements OnInit {
-  //@Input() event;
+  @Input() event;
+
   constructor(
     activeModal: NgbActiveModal,
-    
-    public modalService: NgbModal, 
-    //private eventSerivce: EventService,
-    private auth: AuthenticationService) { 
-    console.log();
+    private http: HttpClient,
+    private eventService: EventService,
+    ) { 
+    console.log(this.event);
   }
 
   ngOnInit() {
   }
 
   onSubmitTemplateBased() {
-    this.http.post('/api/user/eventEdit/', this.edit).toPromise().then(
+    this.http.post('/api/vendor/editMyEvents/', this.event).toPromise().then(
       (res) => {
         console.log(res)
       }

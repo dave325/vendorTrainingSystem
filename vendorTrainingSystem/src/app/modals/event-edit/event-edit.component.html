@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+<form #f="ngForm">
   <div class="modal-header">
     <div class="modal-title">
       <h3> Edit </h3>
@@ -7,33 +7,26 @@
   <div>
     <div>
       <label for="name">Event Name: </label>
-      <input name="name" type="text" class="form-control" [(ngModel)]="edit.name" required>
+      <input name="name" type="text" class="form-control" [(ngModel)]="event.name" required>
     </div>
     <div>
       <label for="summary">Summary:</label>
-      <input name="summary" type="text" class="form-control" [(ngModel)]="edit.summary" required>
+      <input name="summary" type="text" class="form-control" [(ngModel)]="event.summary" required>
     </div>
     <div>
       <label for="description">Description:</label>
-      <input name="description" type="text" class="form-control" [(ngModel)]="edit.description" required>
+      <input name="description" type="text" class="form-control" [(ngModel)]="event.description" required>
     </div>
     <div>
       <label for="start_time">Start Time:</label>
-      <input name="start_time" type="text" class="form-control" [(ngModel)]="edit.start_time" required>
+      <input name="start_time" type="text" class="form-control" [(ngModel)]="event.start_time" required>
     </div>
     <div>
       <label for="end_time">End Time:</label>
-      <input name="end_time" type="text" class="form-control" [(ngModel)]="edit.end_time" required>
+      <input name="end_time" type="text" class="form-control" [(ngModel)]="event.end_time" required>
     </div>
   </div>
-<<<<<<< HEAD
-  <div class="modal-footer">
-    <button type="submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save
-      your edits!</button>
-  </div>
-=======
   <div>
     <button type="submit" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save</button>
   </div>
 </form>
->>>>>>> fafa0ac22cd91069dad915ec89f25ad9816acca1
