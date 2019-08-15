@@ -63,7 +63,7 @@ import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.c
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent],
+  entryComponents: [EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
