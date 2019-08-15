@@ -18,23 +18,23 @@ export class AdminService {
   }
 
   getAllCustomers() {
-    return this.http.post("/api/admin/listCustomers/", {}, this.httpOptions);
+    return this.http.get("/api/admin/listCustomers/", this.httpOptions).toPromise();
   }
 
   getAllVendors() {
-    return this.http.post("/api/admin/listVendors/", {}, this.httpOptions);
+    return this.http.get("/api/admin/listVendors/", this.httpOptions).toPromise();
   }
 
-  approveVendor() {
-    return this.http.post("/api/admin/approveVendor/", {}, this.httpOptions);
+  approveVendor(vendor) {
+    return this.http.post("/api/admin/approveVendor/", vendor, this.httpOptions).toPromise();
   }
 
-  disproveVendor() {
-    return this.http.post("/api/admin/disproveVendor/", {}, this.httpOptions);
+  disproveVendor(vendor) {
+    return this.http.post("/api/admin/disproveVendor/", vendor, this.httpOptions).toPromise();
   }
 
-  viewCustomer() {
-    return this.http.post("/api/admin/viewCustomer/", {}, this.httpOptions);
+  viewCustomer(customer) {
+    return this.http.post("/api/admin/viewCustomer/", customer, this.httpOptions).toPromise();
   }
 
 }

@@ -25,13 +25,13 @@ class AdminView(viewsets.ModelViewSet):
             serial = userSerializer.UserSerializer(query)
             return Response(serial.data)
         except Exception:
-            return Exception
+            return Response("error")
     
     #testing complete
     @action(detail=False, methods=['post'])
     def editAdminProfile(self, request, *args, **kwargs):
         try:
-            admin = User.objects.get(id = self.request.data.get('id'))
+            admin = User.objects.filter(role__role_name  = 'admin').get(id = self.request.data.get('id'))
         
             admin.email = self.request.data.get('email')
             admin.first_name = self.request.data.get('first_name')
@@ -42,7 +42,7 @@ class AdminView(viewsets.ModelViewSet):
             admin.public = self.request.data.get('public')
             admin.save()
         except Exception:
-            return Exception
+            return Response("error")
 
     #testing complete
     @action(detail=False, methods=['get'])
@@ -52,16 +52,16 @@ class AdminView(viewsets.ModelViewSet):
             serial = userSerializer.UserSerializer(query, many=True)
             return Response(serial.data)
         except Exception:
-            return Exception   
+            return Response("error")
     #testing complete
     @action(detail=False, methods=['get'])
     def listVendors(self, request, *args, **kwargs):
         try:
             query = Vendor.objects.all()
             serial = vendorSerializer.VendorSerializer(query, many=True)
-            return Response(serial.data)  
+            return Response(serial.data)      
         except Exception:
-            return Exception
+            return Response("error")
 
     #testing complete
     @action(detail=False, methods=['post'])
@@ -69,9 +69,11 @@ class AdminView(viewsets.ModelViewSet):
         try:
             event = Event.objects.get(event_id = self.request.data.get('event_id'))
             event.is_approved = self.request.data.get('approval')
-            # Need to ave back to db
+            event.save()
+            return Response("approval updated")
+            # Need to save back to db
         except Exception:
-            return Exception
+            return Response("error")
         
     #TODO:test
     @action(detail=False, methods=['post'])
@@ -81,7 +83,7 @@ class AdminView(viewsets.ModelViewSet):
             event.delete()
             event.save()
         except Exception:
-            return Exception
+            return Response("error")
     #TODO: change fields to values in input
     @action(detail=False, methods=['post'])
     def editEvent(self, request, *args, **kwargs):
@@ -95,37 +97,37 @@ class AdminView(viewsets.ModelViewSet):
             vendorProfile.update(**d)
             return Response(d)
         except Exception:
-            return Exception
+            return Response("error")
 
 
     @action(detail=False, methods=['get'])
     def listEvent(self, request, *args, **kwargs):
         try:
-            query = Event.objects.get(event_id = self.request.data.get('event_id'))
+            query = Event.objects.filter(id = self.request.data.get('event_id'))
             serial = eventSerializer.EventSerializer(query)
             return Response(serial.data)
         except Exception:
-            return Exception
+            return Response("error")
 
     #testing complete
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['post'])
     def viewCustomer(self, request, *args, **kwargs):
         try:
             query = User.objects.filter(role__role_name  = 'customer').get(id = self.request.data.get('customer_id'))
             serial = UserSerializer.userSerializer(query)
             return Response(serial.data)
         except Exception:
-            return Exception
+            return Response("error")
     
     #testing complete
     @action(detail=False, methods=['get'])
     def viewEvent(self, request, *args, **kwargs):
         try:
-            query = Event.objects.get(event_id = self.request.data.get('event_id'))
-            serial = EventSerializer.eventSerializer(query)
+            query = Event.objects.get(id = self.request.data.get('event_id'))
+            serial = eventSerializer.EventSerializer(query)
             return Response(serial.data)
         except Exception:
-            return Exception
+            return Response("error")
 
     #testing complete
     @action(detail=False, methods=['get'])
@@ -135,7 +137,7 @@ class AdminView(viewsets.ModelViewSet):
             serial = userSerializer.UserSerializer(query)
             return Response(serial.data)
         except Exception:
-            return Exception
+            return Response("error")
 
     #testing complete
     @action(detail=False, methods=['post'])
@@ -146,7 +148,7 @@ class AdminView(viewsets.ModelViewSet):
             vendor.is_approved = self.request.data.get('approval')
             vendor.save()
         except Exception:
-            return Exception
+            return Response("error")
     
         #testing complete
     @action(detail=False, methods=['post'])
@@ -157,7 +159,7 @@ class AdminView(viewsets.ModelViewSet):
             vendor.is_approved = False
             vendor.save()
         except Exception:
-            return Exception
+            return Response("error")
     #testing complete
     @action(detail=False, methods=['post'])
     def RemoveVendor(self, request, *args, **kwargs):
@@ -169,7 +171,7 @@ class AdminView(viewsets.ModelViewSet):
             vendor.email =""
             vendor.save()
         except Exception:
-            return Exception
+            return Response("error")
     
     #testing complete
     @action(detail=False, methods=['post'])
@@ -178,5 +180,5 @@ class AdminView(viewsets.ModelViewSet):
             newVendor = Vendor(name = self.request.data.get('name'), address=self.request.data.get('address'), phone = self.request.data.get('phone'), email = self.request.data.get('email'), is_approved= False)
             newVendor.save()
         except Exception:
-            return Exception
+            return Response("error")
 
