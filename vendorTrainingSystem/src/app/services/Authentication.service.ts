@@ -45,4 +45,11 @@ export class AuthenticationService {
   register(user) {
     return this.http.post('/api/user/register/', user).toPromise();
   }
+  editProfile(user){
+    return this.http.post('/api/user/profileEdit/', user).toPromise();
+    
+  }
+  deleteProfile(user){
+    return this.http.post('/api/user/profileDelete/', user).toPromise();
+  }
 }

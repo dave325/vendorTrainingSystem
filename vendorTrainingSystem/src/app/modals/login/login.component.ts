@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       (err) =>{
         this.info = null;
         this.error = "Error logging in, please try again!";
+        console.log(err)
       }
     );
     /*
