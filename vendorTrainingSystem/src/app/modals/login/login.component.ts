@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/Authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,25 +16,30 @@ export class LoginComponent implements OnInit {
     password: <string> null
   }
   info = null;
-
+  error = null;
   constructor(
     public modalService: NgbModal, 
     private userService: UserService,
-    private http:HttpClient
+    private auth: AuthenticationService
     ) { }
 
   ngOnInit() {
   }
 
   onSubmitTemplateBased(){
-    console.log(this.login.username),
+    console.log(this.login.username)
     console.log(this.login.password)
-
-    this.http.post('/api/user/login/',this.login).toPromise().then(
+    this.auth.login(this.login).then(
       (res) =>{
+        this.error = null;
+        this.info = "Successfully Logged in!"
         console.log(res)
+      },
+      (err) =>{
+        this.info = null;
+        this.error = "Error logging in, please try again!";
       }
-    )
+    );
     /*
     this.userService.getUser(this.login).then(
       (res) =>{

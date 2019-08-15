@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
 
 import { Event } from '../../models/Event';
@@ -10,10 +10,15 @@ import { Event } from '../../models/Event';
   styleUrls: ['./event-edit.component.css']
 })
 export class EventEditComponent implements OnInit {
-  
-  constructor(activeModal: NgbActiveModal) { }
+  @Input() event;
+  constructor(activeModal: NgbActiveModal) { 
+    console.log(this.event);
+  }
 
   ngOnInit() {
   }
 
+  submit(){
+    
+  }
 }

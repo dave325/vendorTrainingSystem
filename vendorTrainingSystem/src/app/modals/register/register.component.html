@@ -66,7 +66,7 @@
         <div class = "modal-footer">
             <!--  <p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
             <!-- <button type="submit" [disabled]="!f.valid">Submit</button> -->
-            <button type="submit" class = "btn btn-outline-primary" aria-label="Close" (click)="modal.dismiss('Cross click')" [disabled]="!f.valid">Submit</button>
+            <button type="submit" class = "btn btn-outline-primary" aria-label="Close" (click)="onSubmitTemplateBased()" [disabled]="!f.valid">Submit</button>
         </div>
     </form>
 </div>
