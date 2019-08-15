@@ -13,23 +13,30 @@ import { Event } from '../../models/Event';
 })
 export class EventEditComponent implements OnInit {
   @Input() event;
-
+  
   constructor(
     activeModal: NgbActiveModal,
-    private http: HttpClient,
     private eventService: EventService,
-    ) { 
-    console.log(this.event);
-  }
-
+    ){ 
+      console.log(this.event);
+    }
+  info = null;
+  error = null;
   ngOnInit() {
   }
 
   onSubmitTemplateBased() {
-    this.http.post('/api/vendor/editMyEvents/', this.event).toPromise().then(
-      (res) => {
+    this.eventService.editEvent(this.event).then(
+      (res) =>{
+        this.error = null;
+        this.info = "Edit Successful!"
         console.log(res)
+      },
+      (err) =>{
+        this.info = null;
+        this.error = "Error logging in, please try again!";
+        console.log(err)
       }
-    )
+    );
   }
 }

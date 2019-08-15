@@ -4,10 +4,10 @@
       <h3> Edit </h3>
     </div>
   </div>
-  <div>
+  <div class="modal-body">
     <div>
-      <label for="name">Event Name: </label>
-      <input name="name" type="text" class="form-control" [(ngModel)]="event.name" required>
+      <label for="EventName">Event Name: </label>
+      <input name="EventName" type="text" class="form-control" [(ngModel)]="event.name" required>
     </div>
     <div>
       <label for="summary">Summary:</label>
@@ -26,7 +26,15 @@
       <input name="end_time" type="text" class="form-control" [(ngModel)]="event.end_time" required>
     </div>
   </div>
-  <div>
-    <button type="submit" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save</button>
+  <!--
+  <div class="modal-footer">
+    <button type="submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save Your Edit</button>
   </div>
+  -->
+  <div class="modal-footer">
+		<!--<p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
+
+		<button type="submit" [disabled]="!f.valid" class="button" aria-label="Close"
+			(click)="onSubmitTemplateBased()">Let's login!</button>
+	</div>
 </form>

@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '../../modals/register/register.component'
 import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.component'
-import { EventEditComponent} from '../../modals/event-edit/event-edit.component'
-import { EditVendorProfileComponent } from '../../modals/edit-vendor-profile/edit-vendor-profile.component'
 
 @Component({
   selector: 'app-front-page',
@@ -28,10 +26,6 @@ export class FrontPageComponent implements OnInit {
     let modalReg = this.modalService.open(AboutComponent);
   }
   
-  openEventEditModal(){
-    let modalReg = this.modalService.open(EventEditComponent);
-  }
-  
   openEventModal(){
     let modalReg = this.modalService.open(EventModalComponent);
   }
@@ -42,13 +36,8 @@ export class FrontPageComponent implements OnInit {
   openRegisterModal(){
     let modalReg = this.modalService.open(RegisterComponent);
   }
-  
   openReportVendorModal(){
     let modalReg = this.modalService.open(ReportVendorComponent);
-  }
-  
-  openEditVendorProfileModal(){
-    let modalReg = this.modalService.open(EditVendorProfileComponent);
   }
   
   // open(component: Component) {

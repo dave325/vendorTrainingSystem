@@ -36,4 +36,5 @@ export class AdminService {
   viewCustomer() {
     return this.http.post("/api/admin/viewCustomer/", {}, this.httpOptions);
   }
+
 }
