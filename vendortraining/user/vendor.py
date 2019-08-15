@@ -61,7 +61,11 @@ class VendorView(viewsets.ModelViewSet):
     
     @action(detail=False, methods=['post'])
     def editMyEvents(self, request, *args, **kwargs):
-        return Response("")
+        event = Event.objects.get(id = request.data.get("event_id"))
+        event.vendor_id = request.data.get("vendor_id")
+        event.save()
+        serial = eventSerializer.EventSerializer(event)
+        return Response(serial.data) 
     
     @action(detail=False, methods=['delete'])
     def event(self, request, *args, **kwargs):
