@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Event } from '../../models/Event';
 import { dummy_events } from '../../dummy-data/dummy-events';
 

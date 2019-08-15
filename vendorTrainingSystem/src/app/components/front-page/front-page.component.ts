@@ -35,10 +35,16 @@ export class FrontPageComponent implements OnInit {
   openRegisterModal(){
     let modalReg = this.modalService.open(RegisterComponent);
   }
+
   openReportVendorModal(){
     let modalReg = this.modalService.open(ReportVendorComponent);
   }
   
+  openEditVendorProfileModal(){
+    let modalReg = this.modalService.open(ReportVendorComponent);
+  }
+  
+
   // open(component: Component) {
   //   let modalReg = this.modalService.open(component);
   // }
