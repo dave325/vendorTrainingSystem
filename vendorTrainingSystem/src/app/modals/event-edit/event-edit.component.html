@@ -1,3 +1,25 @@
-<p>
-  event-edit works!
-</p>
+<form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
+  <div>
+    <label for="name">Name: </label>
+    <input name="name" type="text" class="form-control" [(ngModel)]="edit.name" required>
+  </div>
+
+  <div>
+    <label for="summary">Summary:</label>
+    <input name="summary" type="text" class="form-control" [(ngModel)]="edit.summary" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <input name="description" type="text" class="form-control" [(ngModel)]="edit.description" required>
+  </div>
+  <div>
+    <label for="start_time">Start Time:</label>
+    <input name="start_time" type="text" class="form-control" [(ngModel)]="edit.start_time" required>
+  </div>
+  <div>
+    <label for="end_time">End Time:</label>
+    <input name="end_time" type="text" class="form-control" [(ngModel)]="edit.end_time" required>
+  </div>
+  <div>
+    <button type="submit" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save</button>
+  </div>
