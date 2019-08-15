@@ -5,6 +5,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/user.service';
 import { AboutComponent } from '../../../modals/about/about.component'
+import { EditVendorProfileComponent } from '../../../modals/edit-vendor-profile/edit-vendor-profile.component'
 
 @Component({
   selector: 'app-vendor-profile',
@@ -28,5 +29,7 @@ export class VendorProfileComponent implements OnInit {
   openAboutModal() {
     let modalReg = this.modalService.open(AboutComponent);
   }
-
+  openEditVendorProfileModal(){
+    let modalReg = this.modalService.open(EditVendorProfileComponent);
+  }
 }
