@@ -1,5 +1,4 @@
 import { LoginComponent } from './../../modals/login/login.component';
-import { AboutComponent } from './../../modals/about/about.component';
 import { EventModalComponent } from './../../modals/event-modal/event-modal.component';
 import { UserEditComponent } from './../../modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
@@ -19,10 +18,6 @@ export class FrontPageComponent implements OnInit {
   constructor(private modalService:NgbModal) { }
 
   ngOnInit() {
-  }
-
-  openAboutModal(){
-    let modalReg = this.modalService.open(AboutComponent);
   }
   
   openEventModal(){

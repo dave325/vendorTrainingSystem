@@ -67,7 +67,7 @@ import { EventService } from './services/EventService';
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
+  entryComponents: [AboutComponent, EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
   providers: [AuthenticationService, AdminService, EventService],
   bootstrap: [AppComponent]
 })
