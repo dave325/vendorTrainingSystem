@@ -1,4 +1,3 @@
-import { AuthenticationService } from './Authentication.service';
 import { User } from './../models/User';
 import { HttpHeaders, HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,13 +14,12 @@ export class EventService {
   
     constructor(
       private http: HttpClient,
-      private auth: AuthenticationService
       ) {
   
   
       const headers = new HttpHeaders(
         {
-          Authorization: 'Bearer ' + this.auth.getToken()
+          Authorization: 'Bearer '
         }
       );
   

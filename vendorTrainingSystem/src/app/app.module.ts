@@ -29,6 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserEditComponent } from './modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.component';
 import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-vendor-profile.component';
+import { AdminService } from './services/AdminService';
+import { EventService } from './services/EventService';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,7 @@ import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-ve
     NgbModule
   ],
   entryComponents: [EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AdminService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
