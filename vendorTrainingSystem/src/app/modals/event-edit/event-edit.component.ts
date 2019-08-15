@@ -25,6 +25,7 @@ export class EventEditComponent implements OnInit {
   }
 
   onSubmitTemplateBased() {
+    
     this.eventService.editEvent(this.event).then(
       (res) => {
         this.error = null;

@@ -9,6 +9,7 @@ from vendortraining.models import Vendor, Event
 from vendortraining.models.serializers import vendorSerializer, eventSerializer
 
 class VendorView(viewsets.ModelViewSet):
+    
     """
     This viewset automatically provides `list`, `create`, `retrieve`,
     `update` and `destroy` actions.
@@ -16,10 +17,8 @@ class VendorView(viewsets.ModelViewSet):
     Additionally we also provide an extra `highlight` action.
     """
     queryset = Vendor.objects.all()
+    permission_classes = []
     #serializer_class = userSerializer # not sure why this is needed -- Ed
-    @action(detail=True, methods=['post'])
-    def highlight(self, request, *args, **kwargs):
-        return Response("Hello from vendor")
     
     @action(detail=False, methods=['get'])
     def getAll(self, request, *args, **kwargs):
@@ -58,11 +57,11 @@ class VendorView(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def viewMyEvents(self, request, *args, **kwargs):
-        return()
+        return Response("")
     
     @action(detail=False, methods=['post'])
     def editMyEvents(self, request, *args, **kwargs):
-        return()
+        return Response("")
     
     @action(detail=False, methods=['delete'])
     def event(self, request, *args, **kwargs):
