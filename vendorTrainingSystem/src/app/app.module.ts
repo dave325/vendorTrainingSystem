@@ -65,7 +65,7 @@ import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-ve
     HttpClientModule,
     NgbModule
   ],
-  entryComponents: [DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
+  entryComponents: [EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })

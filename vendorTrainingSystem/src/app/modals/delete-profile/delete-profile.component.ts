@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
-
+import { AuthenticationService} from '../../services/Authentication.service';
 @Component({
   selector: 'dsol-delete-profile',
   templateUrl: './delete-profile.component.html',
@@ -14,18 +14,28 @@ export class DeleteProfileComponent implements OnInit {
     password: <string> null,
 
   }
+  info = null;
+  error = null;
   constructor(
-    public modalService: NgbModal,
+    public modalService: NgbModal, 
     private userService: UserService,
-    private http:HttpClient) { }
+    private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
 
   onSubmitTemplateBased(){
-    this.http.post('/api/user/profileDelete/',this.user_info).toPromise().then(
+    console.log(this.user_info);
+    this.auth.deleteProfile(this.user_info).then(
       (res) =>{
+        this.error = null;
+        this.info = "Successfully deleted!"
         console.log(res)
+      },
+      (err) =>{
+        this.info = null;
+        this.error = "Error logging in, please try again!";
+        console.log(err)
       }
     )
   }

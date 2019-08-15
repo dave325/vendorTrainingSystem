@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
-  })
-  export class EventServie {
+})
+export class EventService {
 
   
     private readonly httpOptions=<any>{

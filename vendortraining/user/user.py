@@ -111,14 +111,17 @@ class UserView(viewsets.ModelViewSet):
     def profileEdit(self, request, *args, **kwargs):
         user_name = request.data.get("username")
         user_password = request.data.get("password")
+        #hash newPassword before storing it to user through set_password() function
         try:
             user = auth.authenticate(request, username=user_name, password=user_password)
             authenticated_user = User.objects.get(id=user.id)
             authenticated_user.phone = request.data.get('phone')
             authenticated_user.email = request.data.get('email')
             authenticated_user.address = request.data.get('address')
-            user.password = request.data.get('newPassword')
+            
+            user.set_password(request.data.get('newPassword'))
             user.save()
+            
             authenticated_user.save()
             return Response("Edit successful")
         except Exception:
@@ -180,7 +183,7 @@ class UserView(viewsets.ModelViewSet):
                 # check if user is created before creating auth_user
                 if user is not None:
                     # save user properties in sqlite auth_user table.
-                    new_user = User.objects.create(id=user.id, phone="123456789",role_id=1 )
+                    new_user = User.objects.create(id=user.id, phone=request.data.get('phone'), role_id=1, email = user_email, address = request.data.get('address'))
                     new_user.save()
                     user.save()
                 # redirect web page to register success page.

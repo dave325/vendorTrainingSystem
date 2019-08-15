@@ -44,10 +44,12 @@ export class RegisterComponent implements OnInit {
       (res) =>{
         this.error = null;
         this.info = "Successfully Registered!"
+        console.log(res)
       },
       (err) =>{
         this.info = null;
         this.error = "Error logging in, please try again!";
+        console.log(err)
       }
     );
     /*
