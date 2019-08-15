@@ -15,7 +15,6 @@ import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.c
   styleUrls: ['./front-page.component.css']
 })
 export class FrontPageComponent implements OnInit {
-  // eventEditComponent = EventEditComponent;
 
   constructor(private modalService:NgbModal) { }
 
