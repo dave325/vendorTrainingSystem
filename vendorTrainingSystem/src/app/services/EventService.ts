@@ -1,6 +1,7 @@
 import { User } from './../models/User';
 import { HttpHeaders, HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthenticationService } from "./Authentication.service";
 
 @Injectable({
     providedIn: 'root'
@@ -14,12 +15,11 @@ export class EventService {
   
     constructor(
       private http: HttpClient,
+      private auth: AuthenticationService
       ) {
-  
-  
       const headers = new HttpHeaders(
         {
-          Authorization: 'Bearer '
+          Authorization: 'Bearer ' + this.auth.getToken()
         }
       );
   
@@ -32,7 +32,7 @@ export class EventService {
     }
     //view event not implemented
     viewEvents(userId){
-        return this.http.post('/api/vendors/viewMyEvents/', userId. this.httpOptions).toPromise();
+        return this.http.post('/api/vendors/viewMyEvents/', userId, this.httpOptions).toPromise();
     }
 
     listEvents () {
