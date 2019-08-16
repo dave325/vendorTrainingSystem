@@ -1,12 +1,9 @@
 import { EventEditComponent } from './../../modals/event-edit/event-edit.component';
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition, keyframes, sequence } from '@angular/animations';
-
 import { Event } from '../../models/Event';
 import { EventModalComponent } from 'src/app/modals/event-modal/event-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-
 
 @Component({
   selector: 'app-event',

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Vendor } from 'src/app/models/Vendor';
-import { EventEditComponent } from '../../../modals/event-edit/event-edit.component'
+import { EventEditComponent } from '../../../modals/event-edit/event-edit.component';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/user.service';
