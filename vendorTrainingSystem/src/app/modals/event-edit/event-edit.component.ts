@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http'
 import { Event } from '../../models/Event';
@@ -14,6 +13,7 @@ export class EventEditComponent implements OnInit {
   @Input() event;
 
   constructor(
+    private http: HttpClient,
     activeModal: NgbActiveModal,
     private eventService: EventService
   ) {
