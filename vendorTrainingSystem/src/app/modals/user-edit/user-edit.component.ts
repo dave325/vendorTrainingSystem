@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
-import { AuthenticationService} from '../../services/Authentication.service';
+import { AuthenticationService } from '../../services/Authentication.service';
 @Component({
   selector: 'dsol-user-edit',
   templateUrl: './user-edit.component.html',
@@ -10,12 +10,12 @@ import { AuthenticationService} from '../../services/Authentication.service';
 export class UserEditComponent implements OnInit {
 
   edit = {
-    username: <string> null,
-    address: <string> null,
-    phone: <string> null,
-    email: <string> null,
-    password: <string> null,
-    newPassword: <string> null
+    username: <string>null,
+    address: <string>null,
+    phone: <string>null,
+    email: <string>null,
+    password: <string>null,
+    newPassword: <string>null
   }
   info = null;
   error = null;
@@ -30,14 +30,14 @@ export class UserEditComponent implements OnInit {
 
   onSubmitTemplateBased() {
     console.log(this.edit)
-    
+
     this.auth.editProfile(this.edit).then(
-      (res) =>{
+      (res) => {
         this.error = null;
         this.info = "Successfully edited!"
         console.log(res)
       },
-      (err) =>{
+      (err) => {
         this.info = null;
         this.error = "Editing error, please try again!";
         console.log(err)
