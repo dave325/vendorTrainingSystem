@@ -57,7 +57,9 @@ class VendorView(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def viewMyEvents(self, request, *args, **kwargs):
-        return Response("")
+        event = Event.objects.filter(vendor_id = request.data.get("vendor_id"))
+        serial = eventSerializer.EventSerializer(event, many=True)
+        return Response(serial.data)
     
     @action(detail=False, methods=['post'])
     def editMyEvents(self, request, *args, **kwargs):
