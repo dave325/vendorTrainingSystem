@@ -1,12 +1,7 @@
 import { LoginComponent } from './../../modals/login/login.component';
-import { EventModalComponent } from './../../modals/event-modal/event-modal.component';
-import { UserEditComponent } from './../../modals/user-edit/user-edit.component';
-import { DeleteProfileComponent } from './../../modals/delete-profile/delete-profile.component';
 import { Component, OnInit } from '@angular/core';
-// import { ReportVendorComponent} from '../../modalm '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterComponent } from '../../modals/register/register.component'
-import { ReportVendorComponent} from '../../modals/report-vendor/report-vendor.component'
 
 @Component({
   selector: 'app-front-page',
@@ -20,9 +15,6 @@ export class FrontPageComponent implements OnInit {
   ngOnInit() {
   }
   
-  openEventModal(){
-    let modalReg = this.modalService.open(EventModalComponent);
-  }
   openLoginModal(){
     let modalReg = this.modalService.open(LoginComponent);
   }
