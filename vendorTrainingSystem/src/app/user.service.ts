@@ -26,7 +26,7 @@ export class UserService {
 
     const headers = new HttpHeaders(
       {
-        Authorization: 'Bearer ' + this.auth.getToken()
+        Authorization: 'Bearer ' + AuthenticationService.getToken()
       }
     );
 
@@ -34,7 +34,7 @@ export class UserService {
 
   }
 
-  getUser(user): Promise<HttpEvent<User>> {
+  static getUser(): Promise<HttpEvent<User>> {
     // TODO hash information
     return JSON.parse(window.sessionStorage.getItem('user'));
   } 

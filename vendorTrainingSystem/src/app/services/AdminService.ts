@@ -11,7 +11,7 @@ export class AdminService {
 
   constructor(private http: HttpClient, private auth: AuthenticationService) {
     const headers = new HttpHeaders({
-      Authorization: "Bearer " + this.auth.getToken()
+      Authorization: "Bearer " + AuthenticationService.getToken()
     });
 
     this.httpOptions.headers = headers;

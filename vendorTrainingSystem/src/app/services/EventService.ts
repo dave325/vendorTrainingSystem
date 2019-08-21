@@ -19,7 +19,7 @@ export class EventService {
       ) {
       const headers = new HttpHeaders(
         {
-          Authorization: 'Bearer ' + this.auth.getToken()
+          Authorization: 'Bearer ' + AuthenticationService.getToken()
         }
       );
   

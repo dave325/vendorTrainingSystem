@@ -10,19 +10,18 @@ export class AuthenticationService {
   private readonly httpOptions = <any>{};
   constructor(private http: HttpClient) {
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + this.getToken()
+      Authorization: 'Bearer ' + AuthenticationService.getToken()
     });
 
     this.httpOptions.headers = headers;
   }
 
-  private getUser(user): Promise<HttpEvent<User>> {
-    return this.http
-      .post<User>('/api/user/getUser/', user, this.httpOptions)
-      .toPromise();
+
+  private setUser(user) {
+    window.sessionStorage.setItem('user', JSON.stringify(user));
   }
 
-  getToken() {
+  public static getToken() {
     return JSON.parse(window.sessionStorage.getItem('userToken'));
   }
 
@@ -39,17 +38,33 @@ export class AuthenticationService {
    * TODO set token and only return true/false to user
    */
   login(user) {
-    return this.http.post('/api/user/login/', user).toPromise();
+    return new Promise((resolve, reject) => {
+      this.http.post('/api/auth/login/', user).toPromise().then(
+        (res: { success:Boolean, user: Object, token: {token:String}, error_message: string} ) => {
+          console.log(res);
+          if (res.success ) {
+            this.setUser(res.user);
+            this.setToken(res.token.token);
+            resolve({ 'success': true })
+          }else{
+            reject(res.error_message)
+          }
+        },
+        (err) => {
+          reject(err.error_message);
+        }
+      )
+    });
   }
 
   register(user) {
     return this.http.post('/api/user/register/', user).toPromise();
   }
-  editProfile(user){
+  editProfile(user) {
     return this.http.post('/api/user/profileEdit/', user).toPromise();
-    
+
   }
-  deleteProfile(user){
+  deleteProfile(user) {
     return this.http.post('/api/user/profileDelete/', user).toPromise();
   }
 }

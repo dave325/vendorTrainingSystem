@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   info = null;
   error = null;
   constructor(
-    public modalService: NgbModal, 
+    public modalService: NgbActiveModal, 
     private userService: UserService,
     private auth: AuthenticationService
     ) { }
@@ -33,6 +33,11 @@ export class LoginComponent implements OnInit {
       (res) =>{
         this.error = null;
         this.info = "Successfully Logged in!"
+        console.log(res)
+        setTimeout(
+          ()=>{
+            this.modalService.close();
+        }, 300)
         console.log(res)
       },
       (err) =>{
