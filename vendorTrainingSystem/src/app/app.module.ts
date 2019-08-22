@@ -1,3 +1,4 @@
+import { LoggerService } from './services/Logger.service';
 import { AuthenticationService } from './services/Authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -30,7 +31,7 @@ import { UserEditComponent } from './modals/user-edit/user-edit.component';
 import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.component';
 import { EditVendorProfileComponent } from './modals/edit-vendor-profile/edit-vendor-profile.component';
 import { AdminService } from './services/AdminService';
-import { EventService } from './services/EventService';
+import { EventService } from './services/EventService.service';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { EventService } from './services/EventService';
     NgbModule
   ],
   entryComponents: [AboutComponent, EventEditComponent, DeleteProfileComponent, UserEditComponent, EventModalComponent,RegisterComponent, ReportVendorComponent,  AboutComponent, EventEditComponent, LoginComponent, EditVendorProfileComponent],
-  providers: [AuthenticationService, AdminService, EventService],
+  providers: [AuthenticationService, AdminService, EventService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -38,8 +38,8 @@ class UserAuthetication(viewsets.ModelViewSet):
         if not auth:  # or auth[0].lower() != b'token'
             return HttpResponse({'Error': "Token is invalid"}, status="404")
         try:
-            #if(self.authenticate_credentials(auth[1].decode())):
-            return Response({'success': True, 'info':self.authenticate_credentials(auth[1].decode())})
+            if(self.authenticate_credentials(auth[1].decode())[0]):
+                return Response({'success': True, 'role_info': self.authenticate_credentials(auth[1].decode())[1]})
         except UnicodeError:
             return Response({'success': False, 'message': 'Invalid Token'}, status="404")
     # todo: with login cred, check db
@@ -102,17 +102,20 @@ class UserAuthetication(viewsets.ModelViewSet):
             if not baseUser:
                 raise exceptions.AuthenticationFailed(msg)
             if email == baseUser.email and userid == baseUser.id and role == baseUser.role.id:
-                return True
+                return [True, baseUser.role.id]
             else:
-                raise exceptions.AuthenticationFailed(detail="Invalid Token", code="403")
+                raise exceptions.AuthenticationFailed(
+                    detail="Invalid Token", code="403")
             # have token fields to base user?
             # if not user.token['token'] == token:
             #   raise exceptions.AuthenticationFailed(msg)
 
         except jwt.ExpiredSignature or jwt.DecodeError or jwt.InvalidTokenError:
-            raise exceptions.AuthenticationFailed(detail="Invalid Token", code="403")
+            raise exceptions.AuthenticationFailed(
+                detail="Invalid Token", code="403")
         except User.DoesNotExist:
-            raise exceptions.APIException(default_detail="Internal server error", status_code="500")
+            raise exceptions.APIException(
+                default_detail="Internal server error", status_code="500")
         return False
         # return baseUser
         # return (baseUser, token)
@@ -145,17 +148,17 @@ class UserAuthetication(viewsets.ModelViewSet):
             request, username=user_name, password=user_password)
         if user is not None:
             # login user account.
-            
+
             auth.login(request, user)
             authenticated_user = User.objects.get(id=user.id)
             serializer = userSerializer.UserSerializer(authenticated_user)
             # Use authneticated user
             token = self.getToken(
                 authenticated_user)
-            
+
             obj = {
                 # 'user': user,
-                'success':True,
+                'success': True,
                 'user': serializer.data,
                 'token': token
             }
@@ -164,7 +167,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             return Response(obj)
         else:
             error_json = {
-                'success' : False,
+                'success': False,
                 'error_message': 'User name or password is not correct.'}
             return HttpResponse(error_json, status="404")
 

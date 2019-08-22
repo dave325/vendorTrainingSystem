@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http'
 import { Event } from '../../models/Event';
-import { EventService } from "./../../services/EventService"
+import { EventService } from "./../../services/EventService.service"
 
 @Component({
   selector: 'dsol-event-edit',
