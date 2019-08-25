@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from vendortraining.models import User
+from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
 from vendortraining.user import authetication
 
@@ -27,7 +27,7 @@ class UserView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = User.objects.all() # imports the user object from vendortraining.models
+    queryset = UserInfo.objects.all() # imports the user object from vendortraining.models
     permission_classes = (permissions.AllowAny,)
     #serializer_class = userSerializer
     @action(detail=False, methods=['post'])

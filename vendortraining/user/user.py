@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from vendortraining.models import User
+from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Event
 from vendortraining.models.serializers import eventSerializer
@@ -29,7 +29,7 @@ class UserView(viewsets.ModelViewSet):
 
     Additionally we also provide an extra `highlight` action.
     """
-    queryset = User.objects.all()
+    queryset = UserInfo.objects.all()
     serializer_class = userSerializer.UserSerializer
     permission_classes = []
     

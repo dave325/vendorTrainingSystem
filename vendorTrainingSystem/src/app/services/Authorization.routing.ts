@@ -35,8 +35,12 @@ export class AuthorizationService implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
+        
         let url: string = state.url;
+        if( route.parent.url.length == 0){
+            return false;
+        }
+
         let path = route.parent.url[0].path;
         //guard makes routes accesibly only server responds with a valid token
         return this.verifyToken(UserService.getUser()).then(

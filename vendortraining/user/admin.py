@@ -4,7 +4,7 @@ from django.contrib import admin
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
-from vendortraining.models import User
+from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Event
 from vendortraining.models.serializers import eventSerializer
@@ -15,7 +15,7 @@ from vendortraining.models import Role
 
 
 class AdminView(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = UserInfo.objects.all()
     permission_classes = []
     #testing complete
     @action(detail=False, methods=['get'])

@@ -2,7 +2,7 @@ from vendortraining import models
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from vendortraining.models import User
+from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Role
 from vendortraining.models.serializers import roleSerializer
@@ -28,7 +28,7 @@ import datetime
 
 class UserAuthetication(viewsets.ModelViewSet):
 
-    queryset = User.objects.all()
+    queryset = UserInfo.objects.all()
     #authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = (permissions.AllowAny,)
 
@@ -45,7 +45,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     # todo: with login cred, check db
     @action(detail=False, methods=['post'])
     def checkUser(self, request, *args, **kwargs):
-        baseUser = user.User.objects.get(id=self.request.data.get('user_id'))
+        baseUser = UserInfo.objects.get(id=self.request.data.get('user_id'))
         res = userSerializer.UserSerializer(baseUser)
         if self.request.data.get('user_id') == 5:
             return res.data
@@ -54,7 +54,7 @@ class UserAuthetication(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def checkId(self, request, *args, **kwargs):
-        if user.User.objects.filter(id == self.request.data.get('user_id')):
+        if UserInfo.objects.filter(id == self.request.data.get('user_id')):
             return True
         else:
             return False
@@ -80,7 +80,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         return 'Token'
 
     def get_model(self):
-        return User
+        return UserInfo
 
     def authenticate_credentials(self, token):
         model = self.get_model()
@@ -93,7 +93,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         userid = payload['id']
         role = payload['role']
         try:
-            baseUser = User.objects.get(
+            baseUser = UserInfo.objects.get(
                 # email=email,
                 id=userid
                 # is_active=True
@@ -124,9 +124,9 @@ class UserAuthetication(viewsets.ModelViewSet):
     @staticmethod
     def getToken(user):
         payload = {
-            'id': user.id,
-            'email': user.email,
-            'role': user.role_id,
+            'id': user['user'].get('id'),
+            'email': user['user'].get('email'),
+            'role': user['info'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
 
@@ -150,16 +150,19 @@ class UserAuthetication(viewsets.ModelViewSet):
             # login user account.
 
             auth.login(request, user)
-            authenticated_user = User.objects.get(id=user.id)
-            serializer = userSerializer.UserSerializer(authenticated_user)
+            #authenticated_user = User.objects.get(id=user.id)
+            serializer = userSerializer.UserSerializer(user)
+            userData = {}
+            userData['user'] = serializer.data
+            userData['info'] = serializer.getUserInfo(user.id)
             # Use authneticated user
             token = self.getToken(
-                authenticated_user)
+                userData)
 
             obj = {
                 # 'user': user,
                 'success': True,
-                'user': serializer.data,
+                'user': userData,
                 'token': token
             }
 
@@ -169,7 +172,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             error_json = {
                 'success': False,
                 'error_message': 'User name or password is not correct.'}
-            return HttpResponse(error_json, status="404")
+            return Response(error_json, status="404")
 
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
