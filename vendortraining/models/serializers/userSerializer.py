@@ -6,7 +6,7 @@ from vendortraining.models import UserInfo
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id','username','first_name','last_name']
+        fields = ['id','username','first_name','last_name','email']
         depth = 2
   
     def getUserInfo(self,id):

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'customer', component: CustomerComponent,canActivate: [AuthorizationService] },
   { path: 'vendor/profile', component: VendorComponent,canActivate: [AuthorizationService] },
   { path: 'admin/profile', component: AdminComponent,canActivate: [AuthorizationService] },
-  { path: 'list-events', component: ListEventsComponent,canActivate: [AuthorizationService] },
+  { path: 'list-events', component: ListEventsComponent},
   { path: 'profile', component: ProfileComponent,canActivate: [AuthorizationService]}
 ];
 

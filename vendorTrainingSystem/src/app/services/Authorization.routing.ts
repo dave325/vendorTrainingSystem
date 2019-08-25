@@ -92,6 +92,8 @@ export class AuthorizationService implements CanActivate {
         switch (role) {
             case 0:
                 if (path == "customer") {
+                    this.logger.setMsg(null);
+                    this.logger.setStatus(null);
                     return true;
                 } else {
                     this.logger.setMsg("Invalid User");
@@ -101,6 +103,8 @@ export class AuthorizationService implements CanActivate {
                 }
             case 1:
                 if (path == "vendor") {
+                    this.logger.setMsg(null);
+                    this.logger.setStatus(null);
                     return true;
                 } else {
                     this.logger.setMsg("Invalid User");
@@ -110,6 +114,8 @@ export class AuthorizationService implements CanActivate {
                 }
             case 2:
                 if (path == "admin") {
+                    this.logger.setMsg(null);
+                    this.logger.setStatus(null);
                     return true;
                 } else {
                     this.router.navigate(['/']);

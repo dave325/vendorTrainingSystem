@@ -99,11 +99,11 @@ class UserAuthetication(viewsets.ModelViewSet):
                 id=userid
                 # is_active=True
             )
-
-            if not baseUser:
+            userInfo = UserInfo.objects.get(id=userid)
+            if not baseUser or not userInfo:
                 raise exceptions.AuthenticationFailed(msg)
-            if email == baseUser.email and userid == baseUser.id and role == baseUser.role.id:
-                return [True, baseUser.role.id]
+            if email == baseUser.email and userid == baseUser.id and role == userInfo.role.id:
+                return [True, userInfo.role.id]
             else:
                 raise exceptions.AuthenticationFailed(
                     detail="Invalid Token", code="403")
@@ -130,7 +130,6 @@ class UserAuthetication(viewsets.ModelViewSet):
             'role': user['info'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
-
         jwt_token = {'token': jwt.encode(
             payload, "SECRET_KEY", algorithm='HS256')}
         # jwt_token.update({'superToken':token.key})
@@ -159,7 +158,6 @@ class UserAuthetication(viewsets.ModelViewSet):
             # Use authneticated user
             token = self.getToken(
                 userData)
-
             obj = {
                 # 'user': user,
                 'success': True,
