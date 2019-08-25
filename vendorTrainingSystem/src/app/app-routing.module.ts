@@ -20,8 +20,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
   { path: 'front-page', component: FrontPageComponent},
   { path: 'customer', component: CustomerComponent,canActivate: [AuthorizationService] },
-  { path: 'vendor', component: VendorComponent,canActivate: [AuthorizationService] },
-  { path: 'admin', component: AdminComponent,canActivate: [AuthorizationService] },
+  { path: 'vendor/profile', component: VendorComponent,canActivate: [AuthorizationService] },
+  { path: 'admin/profile', component: AdminComponent,canActivate: [AuthorizationService] },
   { path: 'list-events', component: ListEventsComponent,canActivate: [AuthorizationService] },
   { path: 'profile', component: ProfileComponent,canActivate: [AuthorizationService]}
 ];

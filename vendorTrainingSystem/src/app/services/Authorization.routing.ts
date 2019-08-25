@@ -37,14 +37,15 @@ export class AuthorizationService implements CanActivate {
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         
         let url: string = state.url;
-        if( route.parent.url.length == 0){
+        if( route.url[0] && route.url[0].path.length == 0){
             return false;
         }
 
-        let path = route.parent.url[0].path;
+        let path = route.url[0].path;
         //guard makes routes accesibly only server responds with a valid token
         return this.verifyToken(UserService.getUser()).then(
             (res: any) => {
+                console.log(res)
                 if (res.success) {
                     return this.checkLogin(res.role_info,path,route)
                 }
@@ -87,6 +88,7 @@ export class AuthorizationService implements CanActivate {
      * Checks the status of user login against role information returned from db 
      */
     checkLogin(role: number, path: string, route: ActivatedRouteSnapshot) {
+        console.log(role)
         switch (role) {
             case 0:
                 if (path == "customer") {

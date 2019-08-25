@@ -6,7 +6,7 @@ from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Role
 from vendortraining.models.serializers import roleSerializer
-
+from django.contrib.auth.models import User
 #from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from rest_framework import permissions, exceptions
@@ -85,6 +85,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     def authenticate_credentials(self, token):
         model = self.get_model()
         msg = {'Error': "Token mismatch", 'status': "401"}
+        
         try:
             payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
         except jwt.InvalidTokenError:
@@ -93,7 +94,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         userid = payload['id']
         role = payload['role']
         try:
-            baseUser = UserInfo.objects.get(
+            baseUser = User.objects.get(
                 # email=email,
                 id=userid
                 # is_active=True
@@ -113,7 +114,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         except jwt.ExpiredSignature or jwt.DecodeError or jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed(
                 detail="Invalid Token", code="403")
-        except User.DoesNotExist:
+        except UserInfo.DoesNotExist:
             raise exceptions.APIException(
                 default_detail="Internal server error", status_code="500")
         return False
