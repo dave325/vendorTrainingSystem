@@ -28,7 +28,7 @@ class VendorView(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def getMyProfile(self, request, *args, **kwargs):
         qset = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id')) #self.request.data is a python dictionary. use get return the value
-        s = vendorSerializer.VendorSerializer(qset, many=True)
+        s = vendorSerializer.VendorSerializer(qset)
         return Response(s.data)
     
     #Peter: should use post methods unless other guys are okay with delete methods

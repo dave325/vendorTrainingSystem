@@ -15,7 +15,7 @@ import { ReportVendorComponent } from '../../../modals/report-vendor/report-vend
 })
 export class VendorProfileComponent implements OnInit {
 
-  @Input() vendor: Vendor;
+  vendor: Vendor;
 
   constructor(
     private modalService: NgbModal,

@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from vendortraining.models import UserInfo
 from vendortraining.models.serializers import userSerializer
-from vendortraining.models import Role
+from vendortraining.models import Role, Member, Vendor
 from vendortraining.models.serializers import roleSerializer
 from django.contrib.auth.models import User
 #from django.contrib.auth.models import User
@@ -13,6 +13,8 @@ from rest_framework import permissions, exceptions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication, get_authorization_header
 from rest_framework.authtoken.models import Token
 from django.contrib import auth
+from django.contrib.auth import get_user_model
+
 
 import jwt
 from rest_framework.status import (
@@ -155,6 +157,8 @@ class UserAuthetication(viewsets.ModelViewSet):
             userData = {}
             userData['user'] = serializer.data
             userData['info'] = serializer.getUserInfo(user.id)
+            if userData['info']['role_id'] == 2:
+                userData.update(serializer.getMemberInfo(user.id))
             # Use authneticated user
             token = self.getToken(
                 userData)
@@ -180,6 +184,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         user_name = request.data.get("username")
         user_password = request.data.get("password")
         user_email = request.data.get('email')
+        role_id = request.data.get('role_id')
         if len(user_name) > 0 and len(user_password) > 0 and len(user_email) > 0:
             # check whether user account exist or not.
             user = auth.authenticate(
@@ -188,13 +193,20 @@ class UserAuthetication(viewsets.ModelViewSet):
             if user is None:
                 # create user account and return the user object.
                 user = get_user_model().objects.create_user(username=user_name,
-                                                            password=user_password, email=user_email)
+                                                            password=user_password, email=user_email, first_name=request.data.get('firstName')
+                                                            , last_name=request.data.get('lastName'))
                 # update user object staff field value and save to db.
                 # check if user is created before creating auth_user
                 if user is not None:
                     # save user properties in sqlite auth_user table.
-                    new_user = User.objects.create(id=user.id, phone=request.data.get(
-                        'phone'), role_id=1, email=user_email, address=request.data.get('address'))
+                    new_user = UserInfo.objects.create(id=user.id, phone=request.data.get(
+                        'phone'), role_id=role_id, address=request.data.get('address'))
+                    if role_id == 2:
+                        new_vendor = Vendor.objects.create(name=request.data.get('vendor_name'), address=request.data.get('vendor_address')
+                        , phone=request.data.get('vendor_phone'), email=request.data.get('vendor_email'), is_approved=False)
+                        new_vendor.save()
+                        new_member = Member.objects.create(company_role='creator', user_id=user.id, vendor_id=new_vendor.id)
+                        new_member.save()
                     new_user.save()
                     user.save()
                 # redirect web page to register success page.

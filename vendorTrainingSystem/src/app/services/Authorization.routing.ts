@@ -88,9 +88,8 @@ export class AuthorizationService implements CanActivate {
      * Checks the status of user login against role information returned from db 
      */
     checkLogin(role: number, path: string, route: ActivatedRouteSnapshot) {
-        console.log(role)
         switch (role) {
-            case 0:
+            case 1:
                 if (path == "customer") {
                     this.logger.setMsg(null);
                     this.logger.setStatus(null);
@@ -101,8 +100,8 @@ export class AuthorizationService implements CanActivate {
                     this.router.navigate(['/']);
                     return false;
                 }
-            case 1:
-                if (path == "vendor") {
+            case 2:
+                if (path == "vendor" || path == "customer") {
                     this.logger.setMsg(null);
                     this.logger.setStatus(null);
                     return true;
@@ -112,8 +111,8 @@ export class AuthorizationService implements CanActivate {
                     this.router.navigate(['/']);
                     return false;
                 }
-            case 2:
-                if (path == "admin") {
+            case 3:
+                if (path == "admin" || path == "vendor" || path == "customer") {
                     this.logger.setMsg(null);
                     this.logger.setStatus(null);
                     return true;

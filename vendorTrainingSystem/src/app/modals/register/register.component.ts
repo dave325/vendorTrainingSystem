@@ -15,9 +15,15 @@ export class RegisterComponent implements OnInit {
     firstName: <string> null,
     lastName: <string> null,
     phone: <number> null,
+    address: <string> null,
     email: <string> null,
     password: <string> null,
     confirmPassword: <string> null,
+    role_id:<number> 1,
+    vendor_name:<string> null,
+    vendor_email: <string> null,
+    vendor_address: <string> null,
+    vendor_phone: <string> null,
   //error messaging
   errorMsgFirstName: "You must enter a valid First Name",
   errorMsgLastName: "You must enter a valid Last Name",
@@ -26,7 +32,7 @@ export class RegisterComponent implements OnInit {
   errorMsgPassword: "You must enter a valid Password",
   errorMsgConfirmPassword: "Passwords do not match",
   }
-
+  isVendor:Boolean = false;
   error = null;
   info = null;
   constructor(
@@ -39,6 +45,11 @@ export class RegisterComponent implements OnInit {
   }
   
   onSubmitTemplateBased(){
+    if(this.isVendor){
+      this.register.role_id = 2;
+    }else{
+      this.register.role_id = 1;
+    }
     console.log(this.register)
     this.auth.register(this.register).then(
       (res) =>{

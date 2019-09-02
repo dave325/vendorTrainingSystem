@@ -7,15 +7,11 @@
           <div class="author">
             <a href="#">
               <img class="card-img avatar border-gray rounded" src="assets/img/bg5.jpg" alt="...">
-              <h3 class="text-danger">Spring Vendor Services</h3>
+              <h3 class="text-danger">vendor.vendor_info.company_name</h3>
             </a>
           </div>
           <p id="description" class="description">
-            @chetfaker
-            <br>
-            "I like the way you work it
-            <br> No diggity
-            <br> I wanna bag it up"
+           TODO: ADD VENDOR INFORMATION SPOT ON DB
           </p>
         </div>
         <div class="card-footer">
@@ -41,19 +37,20 @@
       </div>
       <!-- <div class="container"> -->
       <div id="eventContainer" class="row">
-        <div class="col-sm-4 col-md-6 col-lg-4 mb-3">
+        <div class="col-sm-4 col-md-6 col-lg-4 mb-3" *ngFor="event of vendor.events">
           <div class="card border-danger default-card-background text-white">
             <div class="card-body">
-              <h5 class="card-title text-danger">Make A Sandwich Workshop</h5>
-              <p class="card-text">Learn how to make a sandwich.</p>
-              <p class="card-text">Start time: 02/08/2019@9:00:00</p>
-              <p class="card-text">end_time: 02/08/2019@12:00</p>
-              <p class="card-text">created_at: 01/08/2019@12:00:00</p>
-              <p class="card-text">status: Open</p>
-              <p class="card-text">created_by: 1000</p>
-              <p class="card-text">capacity: 100</p>
+              <!-- TODO Fix table to show more info here-->
+              <h5 class="card-title text-danger">{{event.title}}</h5>
+              <p class="card-text">{{event.description}}</p>
+              <p class="card-text">Start time: {{event.starttime | 'date':shortime}}</p>
+              <p class="card-text">end_time: {{event.endtime | 'date':shortime}}</p>
+              <p class="card-text">created_at: {{event.create_at | 'date':shortDate}}</p>
+              <p class="card-text">status: {{event.is_approved}}</p>
+              <p class="card-text">created_by: {{event.created_by}}</p>
+              <p class="card-text">capacity: {{event.total_attendance}}</p>
               <a href="#" class="card-text text-danger">
-                www.eventbrite.com/make-sandwich-event
+                {{event.eventbrite_location}}
               </a>
             </div>
           </div>

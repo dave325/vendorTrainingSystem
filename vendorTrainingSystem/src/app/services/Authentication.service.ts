@@ -20,6 +20,7 @@ export class AuthenticationService {
   private setUser(user) {
     window.sessionStorage.setItem('user', JSON.stringify(user));
   }
+  
 
   public static getToken() {
     return JSON.parse(window.sessionStorage.getItem('userToken'));
@@ -58,7 +59,7 @@ export class AuthenticationService {
   }
 
   register(user) {
-    return this.http.post('/api/user/register/', user).toPromise();
+    return this.http.post('/api/auth/register/', user).toPromise();
   }
   editProfile(user) {
     return this.http.post('/api/user/profileEdit/', user).toPromise();
