@@ -34,7 +34,7 @@ export class UserService {
 
   }
 
-  static getUser(): Promise<HttpEvent<User>> {
+  static getUser(){
     // TODO hash information
     return JSON.parse(window.sessionStorage.getItem('user'));
   } 

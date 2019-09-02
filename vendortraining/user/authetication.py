@@ -43,7 +43,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             if(self.authenticate_credentials(auth[1].decode())[0]):
                 return Response({'success': True, 'role_info': self.authenticate_credentials(auth[1].decode())[1]})
         except UnicodeError:
-            return Response({'success': False, 'message': 'Invalid Token'}, status="404")
+            return Response({'success': False, 'message': 'Invalid Token1'}, status="404")
     # todo: with login cred, check db
     @action(detail=False, methods=['post'])
     def checkUser(self, request, *args, **kwargs):
@@ -87,7 +87,6 @@ class UserAuthetication(viewsets.ModelViewSet):
     def authenticate_credentials(self, token):
         model = self.get_model()
         msg = {'Error': "Token mismatch", 'status': "401"}
-        
         try:
             payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
         except jwt.InvalidTokenError:

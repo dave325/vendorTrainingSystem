@@ -15,13 +15,14 @@ import { ReportVendorComponent } from '../../../modals/report-vendor/report-vend
 })
 export class VendorProfileComponent implements OnInit {
 
-  vendor: Vendor;
+  vendor;
 
   constructor(
     private modalService: NgbModal,
     private http: HttpClient,
     private userService: UserService,
   ) {
+   this.vendor = UserService.getUser()
   }
 
   ngOnInit() {

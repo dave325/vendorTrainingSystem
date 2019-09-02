@@ -23,13 +23,13 @@ export class AuthenticationService {
   
 
   public static getToken() {
-    return JSON.parse(window.sessionStorage.getItem('userToken'));
+    return window.sessionStorage.getItem('userToken');
   }
 
   //the token is stored as a string because it has to be sent back in the http header as a string
 
   private setToken(token) {
-    window.sessionStorage.setItem('userToken', JSON.stringify(token));
+    window.sessionStorage.setItem('userToken', token.toString());
   }
 
   /**

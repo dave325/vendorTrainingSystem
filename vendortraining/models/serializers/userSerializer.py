@@ -15,12 +15,13 @@ class UserSerializer(serializers.ModelSerializer):
         return vendorSerializer.VendorSerializer(Vendor.objects.get(id=id)).data
     def getMemberInfo(self, id):
         data = memberSerializer.MemberSerializer(Member.objects.get(user_id=id)).data
-        vendor_info = {}
-        vendor_info['vendor_info'] = self.getVendorInfo( data.get('vendor_id'))
-        vendor_info['events'] = self.getVendorEvents(data.get('vendor_id'))
         return {
             'vendor_info':self.getVendorInfo( data.get('vendor_id')),
-            'events':self.getVendorEvents(data.get('vendor_id'))
+            'events':self.getVendorEvents(data.get('vendor_id')),
+            'members':self.getAllMembers(data.get('vendor_id'))
         }
     def getVendorEvents(self, id):
         return eventSerializer.EventSerializer(Event.objects.filter(vendor_id=id), many=True).data
+    def getAllMembers(self, vendor_id):
+        data = memberSerializer.MemberSerializer(Member.objects.filter(vendor_id=vendor_id), many=True).data
+        return data
