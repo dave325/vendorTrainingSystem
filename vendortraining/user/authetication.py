@@ -3,10 +3,7 @@ from rest_framework import status, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from vendortraining.models import UserInfo
-from vendortraining.models.serializers import userSerializer
-from vendortraining.models import Role, Member, Vendor
-from vendortraining.models.serializers import roleSerializer
-from django.contrib.auth.models import User
+from vendortraining.models import Role, Member, Vendor, Event
 #from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from rest_framework import permissions, exceptions
@@ -14,6 +11,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.authtoken.models import Token
 from django.contrib import auth
 from django.contrib.auth import get_user_model
+from vendortraining.models.serializers import userSerializer, memberSerializer, vendorSerializer, eventSerializer
 
 
 import jwt
@@ -95,16 +93,16 @@ class UserAuthetication(viewsets.ModelViewSet):
         userid = payload['id']
         role = payload['role']
         try:
-            baseUser = User.objects.get(
+            baseUser = UserInfo.objects.get(
                 # email=email,
                 id=userid
                 # is_active=True
             )
-            userInfo = UserInfo.objects.get(id=userid)
-            if not baseUser or not userInfo:
+            #userInfo = UserInfo.objects.get(id=userid)
+            if not baseUser:
                 raise exceptions.AuthenticationFailed(msg)
-            if email == baseUser.email and userid == baseUser.id and role == userInfo.role.id:
-                return [True, userInfo.role.id]
+            if email == baseUser.user.email and userid == baseUser.id and role == baseUser.role.id:
+                return [True, baseUser.role.id]
             else:
                 raise exceptions.AuthenticationFailed(
                     detail="Invalid Token", code="403")
@@ -127,10 +125,11 @@ class UserAuthetication(viewsets.ModelViewSet):
     def getToken(user):
         payload = {
             'id': user['user'].get('id'),
-            'email': user['user'].get('email'),
-            'role': user['info'].get('role_id'),
+            'email': user['user'].get('user').get('email'),
+            'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
+        print(payload)
         jwt_token = {'token': jwt.encode(
             payload, "SECRET_KEY", algorithm='HS256')}
         # jwt_token.update({'superToken':token.key})
@@ -152,12 +151,11 @@ class UserAuthetication(viewsets.ModelViewSet):
 
             auth.login(request, user)
             #authenticated_user = User.objects.get(id=user.id)
-            serializer = userSerializer.UserSerializer(user)
+            serializer = userSerializer.UserSerializer(UserInfo.objects.get(id=user.id))
             userData = {}
             userData['user'] = serializer.data
-            userData['info'] = serializer.getUserInfo(user.id)
-            if userData['info']['role_id'] == 2:
-                userData.update(serializer.getMemberInfo(user.id))
+            if userData['user']['role_id'] == 2:
+                userData.update(self.getMemberInfo(user.id))
             # Use authneticated user
             token = self.getToken(
                 userData)
@@ -175,7 +173,21 @@ class UserAuthetication(viewsets.ModelViewSet):
                 'success': False,
                 'error_message': 'User name or password is not correct.'}
             return Response(error_json, status="404")
-
+    def getMemberInfo(self, id):
+        data = memberSerializer.MemberSerializer(Member.objects.get(user_id=id)).data
+        return {
+            'vendor_info':self.getVendorInfo( data.get('vendor_id')),
+            'events':self.getVendorEvents(data.get('vendor_id')),
+            'members':self.getAllMembers(data.get('vendor_id'))
+        }
+    def getVendorInfo(self, id):
+        return vendorSerializer.VendorSerializer(Vendor.objects.get(id=id)).data
+    
+    def getVendorEvents(self, id):
+        return eventSerializer.EventSerializer(Event.objects.filter(vendor_id=id), many=True).data
+    def getAllMembers(self, vendor_id):
+        data = memberSerializer.MemberSerializer(Member.objects.filter(vendor_id=vendor_id), many=True).data
+        return data
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
     def register(self, request, *args, **kwargs):
@@ -199,7 +211,7 @@ class UserAuthetication(viewsets.ModelViewSet):
                 if user is not None:
                     # save user properties in sqlite auth_user table.
                     new_user = UserInfo.objects.create(id=user.id, phone=request.data.get(
-                        'phone'), role_id=role_id, address=request.data.get('address'))
+                        'phone'), role_id=role_id, address=request.data.get('address'), user_id=user.id)
                     if role_id == 2:
                         new_vendor = Vendor.objects.create(name=request.data.get('vendor_name'), address=request.data.get('vendor_address')
                         , phone=request.data.get('vendor_phone'), email=request.data.get('vendor_email'), is_approved=False)

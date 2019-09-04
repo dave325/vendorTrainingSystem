@@ -1,11 +1,10 @@
 from rest_framework import serializers
-from vendortraining.models import UserInfo
 from vendortraining.models import Role
+from django.contrib.auth.models import User
 class UserInfoSerializer(serializers.ModelSerializer):
-    role_id = serializers.PrimaryKeyRelatedField(read_only='True')
 
     class Meta:
-        model = UserInfo
-        fields = '__all__'
+        model = User
+        fields = ['id','username','first_name','last_name','email']
         depth = 2
     

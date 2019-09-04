@@ -6,7 +6,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status, viewsets
 from vendortraining.models import UserInfo
-from vendortraining.models.serializers import userSerializer
 from vendortraining.models import Event
 from vendortraining.models.serializers import eventSerializer
 from vendortraining.models import Vendor
@@ -16,7 +15,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
 from django.contrib import auth
-from . import authetication
+from vendortraining.models.serializers import userSerializer
 
 class UserView(viewsets.ModelViewSet):
     @method_decorator(csrf_exempt)
