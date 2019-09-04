@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'dsol-edit-vendor-profile',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditVendorProfileComponent implements OnInit {
 
-  constructor() { }
+  @Input() vendor;
+  constructor(
+    private modal: NgbActiveModal
+  ) { 
+    console.log(this.vendor)
+  }
 
   ngOnInit() {
   }
+
 
 }

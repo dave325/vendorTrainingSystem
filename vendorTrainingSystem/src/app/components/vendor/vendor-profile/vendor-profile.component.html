@@ -69,17 +69,7 @@
         </div>
         <div class="card-body">
           <ul class="list-unstyled team-members">
-            <li>
-              <div class="row my-1">
-                <div class="col-lg-3 col-md-6 col-xs-12 member-avatar">
-                  <div class="avatar">
-                    <img src="assets/img/ayo-ogunseinde-1.jpg" alt="Member Image">
-                  </div>
-                </div>
-              </div>
-            </li>
-            <hr>
-            <li>
+            <li *ngFor="let member of vendor.members">
               <div class="row my-3 ">
                 <div class="col-lg-3 col-md-6 col-xs-12 member-avatar">
                   <div class="avatar">
@@ -87,12 +77,12 @@
                   </div>
                 </div>
                 <div class=" col-lg-9 col-md-6 col-xs-12 member-info">
-                  <div>Bob Dylan</div>
-                  <div>1-347-1234</div>
-                  <div>123 Baker Street</div>
-                  <div>Head of Lettuce Quality Assurance</div>
+                  <div>{{member.user.user.first_name}} {{member.user.user.last_name}}</div>
+                  <div>Phone #: {{member.user.phone}}</div>
+                  <div>Address: {{member.user.address}}</div>
+                  <div>Company Role: {{member.company_role}}</div>
                   <span class="text-danger">
-                    <small>Busy</small>
+                    <small>Delete User</small>
                   </span>
                 </div>
               </div>

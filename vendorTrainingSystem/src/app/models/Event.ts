@@ -16,6 +16,7 @@ export interface Event {
   listed:boolean;
   shareable:boolean;
   capacity:number;
+  add:boolean;
 }
 
 // Note: Did not use any fields from Expansions

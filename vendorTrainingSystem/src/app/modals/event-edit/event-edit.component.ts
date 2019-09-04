@@ -10,22 +10,37 @@ import { EventService } from "./../../services/EventService.service"
   styleUrls: ['./event-edit.component.css']
 })
 export class EventEditComponent implements OnInit {
-  @Input() event;
+  @Input() event: Event;
 
   constructor(
     private http: HttpClient,
     activeModal: NgbActiveModal,
     private eventService: EventService
   ) {
-    console.log(this.event);
+
+    
   }
   info = null;
   error = null;
   ngOnInit() {
+    if (!this.event) {
+      this.event = <Event>{
+        name: '',
+        summary: '',
+        description: '',
+        url: '',
+        start_time: '',
+        end_time: '',
+        add:true
+      };
+    } else {
+      this.event.add = false;
+    }
+    console.log(this.event);
   }
 
   onSubmitTemplateBased() {
-    
+
     this.eventService.editEvent(this.event).then(
       (res) => {
         this.error = null;

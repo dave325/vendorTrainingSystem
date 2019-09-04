@@ -15,7 +15,7 @@ import { ReportVendorComponent } from '../../../modals/report-vendor/report-vend
 })
 export class VendorProfileComponent implements OnInit {
 
-  vendor;
+  private vendor;
 
   constructor(
     private modalService: NgbModal,
@@ -31,13 +31,30 @@ export class VendorProfileComponent implements OnInit {
   openAboutModal() {
     let modalReg = this.modalService.open(AboutComponent);
   }
+  
   openEditVendorProfileModal(){
     let modalReg = this.modalService.open(EditVendorProfileComponent);
+    modalReg.componentInstance.vendor = this.vendor.vendor_info;
+    modalReg.result.then(
+      (res) =>{
+       // TODO - send message
+      },(err)=>{
+
+      }
+    )
   }
   openReportVendorModal(){
     let modalReg = this.modalService.open(ReportVendorComponent);
   }
-  openEventEditModal(){
+  openEventEditModal(event){
     let modalReg = this.modalService.open(EventEditComponent);
+    modalReg.componentInstance.event = event;
+    modalReg.result.then(
+      (res) =>{
+       // TODO - send message
+      },(err)=>{
+
+      }
+    )
   }
 }
