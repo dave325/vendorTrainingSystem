@@ -6,23 +6,23 @@
   </div>
   <div class="modal-body">
     <div>
-      <label for="EventName">Event Name: </label>
+      <label for="EventName">Event Name: {{event.event_info.name}} </label>
       <input name="EventName" type="text" class="form-control" [(ngModel)]="event.name" required>
     </div>
     <div>
-      <label for="summary">Summary:</label>
+      <label for="summary">Summary: {{event.event_info.name}}</label>
       <input name="summary" type="text" class="form-control" [(ngModel)]="event.summary" required>
     </div>
     <div>
-      <label for="description">Description:</label>
+      <label for="description">Description:{{event.event_info.description}}</label>
       <input name="description" type="text" class="form-control" [(ngModel)]="event.description" required>
     </div>
     <div>
-      <label for="start_time">Start Time:</label>
+      <label for="start_time">Start Time: {{event.event_info.start_time}}</label>
       <input name="start_time" type="text" class="form-control" [(ngModel)]="event.start_time" required>
     </div>
     <div>
-      <label for="end_time">End Time:</label>
+      <label for="end_time">End Time: {{event.event_info.end_time}}</label>
       <input name="end_time" type="text" class="form-control" [(ngModel)]="event.end_time" required>
     </div>
   </div>
