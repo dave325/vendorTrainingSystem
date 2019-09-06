@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  S;
+  
   private readonly httpOptions = <any>{};
   constructor(private http: HttpClient) {
     const headers = new HttpHeaders({
