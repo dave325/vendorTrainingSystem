@@ -1,10 +1,10 @@
 from django.db import models
 from .vendor import Vendor
-from .user import User
+from .user import UserInfo
 
 class Member(models.Model):
   user = models.ForeignKey(
-    User, 
+    UserInfo, 
     on_delete=models.CASCADE
   )
   vendor = models.ForeignKey(

@@ -1,3 +1,5 @@
+import { AuthenticationService } from './services/Authentication.service';
+import { DeleteProfileComponent } from './modals/delete-profile/delete-profile.component';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpEvent } from '@angular/common/http';
 import { User } from './models/User';
@@ -16,12 +18,15 @@ export class UserService {
 
   }
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService
+    ) {
 
 
-    let headers = new HttpHeaders(
+    const headers = new HttpHeaders(
       {
-        'Authorization': 'Bearer ' + this.getToken()
+        Authorization: 'Bearer ' + AuthenticationService.getToken()
       }
     );
 
@@ -29,19 +34,21 @@ export class UserService {
 
   }
 
-  getUser(user): Promise<HttpEvent<User>> {
-
-    return this.http.post<User>(this.getUserRoute, user, this.httpOptions).toPromise();
+  static getUser(){
+    // TODO hash information
+    return JSON.parse(window.sessionStorage.getItem('user'));
   } 
 
-  public getToken() {
-    return JSON.parse(window.sessionStorage.getItem('userToken'));
+  editProfile(user){
+    return this.http.post('/api/vendor/editProfile', user, this.httpOptions).toPromise();
   }
 
-
-  //the token is stored as a string because it has to be sent back in the http header as a string
-
-  private setToken(token) {
-    window.sessionStorage.setItem('userToken', JSON.stringify(token));
+  deleteProfile(id){
+    return this.http.post('/api/vendor/deleteProfile', id, this.httpOptions).toPromise();
   }
+
+  getProfile(id){
+    return this.http.post('/api/vendor/getProfile/', id, this.httpOptions).toPromise();
+  }
+
 }

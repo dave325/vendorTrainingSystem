@@ -20,8 +20,7 @@
       <!-- <hr> -->
       <div>Start Time: {{ event.start_time }}</div>
       <div>End Time: {{  event.end_time }}</div>
-      <button (click)="open('hello')">open the modal</button>
-
+     
 
 
 
@@ -30,7 +29,7 @@
       <div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
         <!-- <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p> -->
         <!-- <div [@childAnimation]="isOpenVertical ? 'openV' : 'closedV'"> -->
-        <button type="button" class="btn btn-primary" (click)="toggle()">More Info</button>
+       
         <span *ngIf="isOpen">
           <div>Created At: {{ event.created_at }}</div>
           <div>Modified At: {{ event.modified_at }}</div>
@@ -41,8 +40,10 @@
         </span>
         <!-- </div> -->
       </div>
-
+      
     </div>
+    <button type="btn btn-primary col-6" class="btn btn-primary" (click)="toggle()">More Info</button>
+    <button class="btn btn-primary col-6" (click)="editEvent(event)">Edit Event</button>
   </div>
   <!--row end-->
 </div>

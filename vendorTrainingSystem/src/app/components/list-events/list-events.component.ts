@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Event } from '../../models/Event';
 import { dummy_events } from '../../dummy-data/dummy-events';
 
@@ -10,7 +9,7 @@ import { dummy_events } from '../../dummy-data/dummy-events';
 })
 export class ListEventsComponent implements OnInit {
 
-  Events:Event[] = dummy_events;
+  Events = dummy_events;
 
   constructor() { }
 

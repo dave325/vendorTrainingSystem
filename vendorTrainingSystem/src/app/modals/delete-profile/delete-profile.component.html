@@ -1,0 +1,30 @@
+<form #f="ngForm">
+  <div class="modal-header">
+    <div class="modal-title">
+      <h3> Delete Profile </h3>
+    </div>
+  </div>
+  <div>
+    <div>
+      <label for="email">Username: {{user_info.username}} </label>
+      <input name="email" type="email" class="form-control" [(ngModel)]="user_info.username" required>
+    </div>
+    <div>
+      <label for="password">Password: {{user_info.password}} </label>
+      <input name="password" type="password" class="form-control" [(ngModel)]="user_info.password" required>
+    </div>
+    <label for="delete">Would you like to delete your profile? </label>
+    <p>
+      <input type="radio" name="choice" checked>Yes>
+    </p>
+    <p>
+      <input type="radio" name="choice">No
+    </p>
+    <label for="confirm"> Are you sure? </label>
+
+    <div class="modal-footer">
+      <!--<p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
+      <button type="submit" [disabled]="!f.valid" class="button" aria-label="Close"
+        (click)="onSubmitTemplateBased()">Delete Profile</button>
+    </div>
+  </div>

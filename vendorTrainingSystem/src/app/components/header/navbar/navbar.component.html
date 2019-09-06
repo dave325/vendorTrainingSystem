@@ -12,13 +12,13 @@
         <a class="nav-link" routerLink="/customer">Customer</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/vendor">Vendor</a>
+        <a class="nav-link" routerLink="/vendor/profile">Vendor</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/admin">Admin</a>
+        <a class="nav-link" routerLink="/admin/profile">Admin</a>
       </li>
     </ul>
   </div>
 </nav>
-
+<h1 role="alert" class="alert-{{logger.getStatus()}}">{{logger.getMsg()}}</h1>
 <router-outlet></router-outlet>

@@ -1,3 +1,34 @@
-<p>
-  event-edit works!
-</p>
+<form #f="ngForm">
+  <div class="modal-header">
+    <div class="modal-title">
+      <h3> Edit </h3>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div>
+      <label for="EventName">Event Name: </label>
+      <input name="EventName" type="text" class="form-control" [(ngModel)]="event.name" required>
+    </div>
+    <div>
+      <label for="summary">Summary:</label>
+      <input name="summary" type="text" class="form-control" [(ngModel)]="event.summary" required>
+    </div>
+    <div>
+      <label for="description">Description:</label>
+      <input name="description" type="text" class="form-control" [(ngModel)]="event.description" required>
+    </div>
+    <div>
+      <label for="start_time">Start Time:</label>
+      <input name="start_time" type="text" class="form-control" [(ngModel)]="event.start_time" required>
+    </div>
+    <div>
+      <label for="end_time">End Time:</label>
+      <input name="end_time" type="text" class="form-control" [(ngModel)]="event.end_time" required>
+    </div>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Save Your Edit</button>
+  </div>
+  
+</form>

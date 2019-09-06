@@ -30,7 +30,7 @@ export class ReportVendorComponent implements OnInit {
   }
 
   onSubmitReport(){
-    this.userService.getUser(this.vendor).then(
+    UserService.getUser().then(
       (res) =>{
         
       },

@@ -1,24 +1,35 @@
-<form #f="ngForm" (ngSubmit)="onSubmitTemplateBased()">
-    <div>
-        <label for="email">Email: {{login.username}} </label>
-        <input name = "email" type="email" class="form-control" [(ngModel)]="login.username" required>
-<!--         <div *ngIf="f.submitted && f.email.errors" class="invalid-feedback">
+<form #f="ngForm" (submit)="onSubmitTemplateBased()">
+
+	<div class="modal-header">
+		<div class="modal-title">
+			<h3> Login </h3>
+		</div>
+	</div>
+
+	<div class="modal-body">
+		<div>
+			<label for="email">Email: {{login.username}} </label>
+			<input name="email" type="email" class="form-control" [(ngModel)]="login.username" required>
+			<!--         <div *ngIf="f.submitted && f.email.errors" class="invalid-feedback">
             <div *ngIf="f.email.errors.required">Email is required</div>
         </div> -->
-    </div>
-    <div>
-        <label for="password1">Password: {{login.password}} </label>
-        <input name = "password1" type="password" class="form-control" [(ngModel)]="login.password"  required>
-       <!--  <div *ngIf="f.submitted && f.password.errors" class="invalid-feedback">
+		</div>
+		<div>
+			<label for="password1">Password: {{login.password}} </label>
+			<input name="password1" type="password" class="form-control" [(ngModel)]="login.password" required>
+			<!--  <div *ngIf="f.submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.password.errors.required">Password is required</div>
         </div> -->
-    </div>
-    <div>
-		<!--<p *ngIf="info || error" [ngClass]="{'warning': info, 'error':error}">{{info}}</p> -->
-		
-        <button type = "submit" [disabled]="!f.valid" class="button" aria-label="Close" (click)="onSubmitTemplateBased()">Let's login!</button>
+		</div>
+
 	</div>
-	
+	<div class="modal-footer">
+		<p *ngIf="info || error" [ngClass]="{'warning': alert-info, 'error':alert-danger}" role="alert">{{info}}{{error}}</p>
+
+		<input type="submit" [disabled]="!f.valid" class="button" aria-label="Close"
+			(click)="onSubmitTemplateBased()" value="Login">
+	</div>
+
 </form>
 
 

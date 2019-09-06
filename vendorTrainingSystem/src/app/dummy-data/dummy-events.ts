@@ -1,6 +1,6 @@
 import { Event } from '../models/Event';
 
-export const dummy_events:Event[] = [
+export const dummy_events = [
   {_id: 1,
     v_id: 100,
     name: 'Make A Sandwich Workshop',

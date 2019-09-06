@@ -1,3 +1,4 @@
+import { AuthorizationService } from './services/Authorization.routing';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -17,12 +18,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
-  { path: 'front-page', component: FrontPageComponent },
-  { path: 'customer', component: CustomerComponent },
-  { path: 'vendor', component: VendorComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'list-events', component: ListEventsComponent },
-  { path: 'profile', component: ProfileComponent}
+  { path: 'front-page', component: FrontPageComponent},
+  { path: 'customer', component: CustomerComponent,canActivate: [AuthorizationService] },
+  { path: 'vendor/profile', component: VendorComponent,canActivate: [AuthorizationService] },
+  { path: 'admin/profile', component: AdminComponent,canActivate: [AuthorizationService] },
+  { path: 'list-events', component: ListEventsComponent},
+  { path: 'profile', component: ProfileComponent,canActivate: [AuthorizationService]}
 ];
 
 @NgModule({

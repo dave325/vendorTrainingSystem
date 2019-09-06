@@ -6,10 +6,10 @@
           <div class="author">
             <a href="#">
               <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
-              <h5 class="text-danger name">Samantha Smith</h5>
+              <h5 class="text-danger name">{{user_info.firstname}} {{user_info.lastname}} </h5>
             </a>
             <p class="description">
-              @samsmith123
+              @{{user_info.username}}
             </p>
           </div>
           <p class="description">
@@ -22,23 +22,27 @@
           <div class="button-container">
             <div class="row">
               <div class="col-12">
-                <h6>123 York Ave.
+                <h6>{{user_info.address}}
                   <br>
                   <small>Address</small>
                 </h6>
               </div>
               <div class="col-12">
-                <h6>1-800-1234
+                <h6>{{user_info.phone}}
                   <br>
                   <small>Phone</small>
                 </h6>
               </div>
               <div class="col-12">
-                <h6>spring123@gmail.com
+                <h6>{{user_info.email}}
                   <br>
                   <small>Email</small>
                 </h6>
               </div>
+              <div>
+                <button (click)="openUserEditModal()">Edit User </button>  
+              </div>
+              <div><button (click)="openDeleteProfileModal()">Delete Profile</button></div>
             </div>
           </div>
         </div>

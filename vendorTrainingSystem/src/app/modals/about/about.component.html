@@ -1,7 +1,13 @@
 <div>
-    <input type="vendor" class = "form-control" [(ngModel)]="vendor1" #vendor="ngModel" required>
-    <button class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">About the company!</button>
-    <div>{{vendorName}}</div>
-    <div>{{vendorAbout}}</div>
-    <div>{{vendorContact}}</div>
-</div>>
+    <div class="modal-header">
+        <h3>About the Company!</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div>Bob Dylan</div>
+            <div>1-347-1234</div>
+            <div>123 Baker Street</div>
+            <div>Head of Lettuce Quality Assurance</div>
+        </div>
+    </div>
+</div>

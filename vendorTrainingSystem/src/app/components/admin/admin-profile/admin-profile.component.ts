@@ -12,7 +12,7 @@ import { dummy_vendors } from '../../../dummy-data/dummy-vendors';
   styleUrls: ['./admin-profile.component.css']
 })
 export class AdminProfileComponent implements OnInit {
-  Events:Event[] = dummy_events;
+  Events = dummy_events;
   Vendors:Vendor[] = dummy_vendors;
 
 
