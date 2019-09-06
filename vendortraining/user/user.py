@@ -37,6 +37,7 @@ class UserView(viewsets.ModelViewSet):
 # user seeing ALL listed events
     @action(detail=False, methods=['get'])
     def listAllEvents(self, request, *args, **kwargs):
+        return "Hello"
         eventSet = Event.objects.all()
         serializer_class = eventSerializer.EventSerializer(eventSet, many=True)
         return Response(serializer_class.data)

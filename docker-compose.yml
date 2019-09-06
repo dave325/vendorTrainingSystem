@@ -17,7 +17,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "3001:3001"
+      - "30010:3001"
     depends_on:
       - db
   phpmyadmin:
