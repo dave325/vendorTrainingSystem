@@ -9,7 +9,7 @@ import { dummy_events } from '../../dummy-data/dummy-events';
 })
 export class ListEventsComponent implements OnInit {
 
-  Events:Event[] = dummy_events;
+  Events = dummy_events;
 
   constructor() { }
 

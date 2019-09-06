@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CustomerProfileComponent implements OnInit {
 
-  Events:Event[] = dummy_events;
+  Events = dummy_events;
   user_info = {
     username: "samsmith123",
     firstname: "Samantha",
