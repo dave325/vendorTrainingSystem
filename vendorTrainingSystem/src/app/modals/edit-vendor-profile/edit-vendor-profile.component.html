@@ -5,27 +5,27 @@
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label class="make-block">Name</label>
+        <label class="make-block">{{vendor.vendor_info.name}}</label>
         <input class="form-control" name="vendor_name" #vendor_name="ngModel" [(ngModel)]="vendor.name">
       </div>
 
       <div class="form-group">
-        <label class="make-block">Address</label>
+        <label class="make-block">{{vendor.vendor_info.address}}</label>
         <input class="form-control" name="vendor_address" #vendor_address="ngModel" [(ngModel)]="vendor.address">
       </div>
 
       <div class="form-group">
-        <label class="make-block">Phone Number</label>
+        <label class="make-block">{{vendor.vendor_info.phone}}</label>
         <input class="form-control" name="vendor_phone" #vendor_phone="ngModel" [(ngModel)]="vendor.phone">
       </div>
       
       <div class="form-group">
-        <label class="make-block">Email</label>
+        <label class="make-block">{{vendor.vendor_info.email}}</label>
         <input class="form-control" name="vendor_email" #vendor_email="ngModel" [(ngModel)]="vendor.email">
       </div>
 
       <div class="form-group">
-        <label class="make-block">Description</label>
+        <label class="make-block">{{Description}}</label>
         <!--TODO - add vendor description in database -->
         <textarea class="form-control" name="vendor_description" #vendor_description="ngModel" [(ngModel)]="vendor.description"></textarea>
       </div>
