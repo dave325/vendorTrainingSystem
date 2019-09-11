@@ -18,11 +18,13 @@ export class ContactInfoComponent implements OnInit {
   info: string = null;
   error: string = null;
   constructor(private userService: UserService) {
-    
+    /*
     this.contactModel.name="Google LLC";
     this.contactModel.phone="123-503-4867";
     this.contactModel.email="ContactGoogle@gmail.com";
     this.contactModel.address="123 Hollow St, Queens, New York 86351"
+    */
+   this.contactModel = UserService.getUser();
   }
   
 
