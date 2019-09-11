@@ -6,27 +6,30 @@
           <div class="author">
             <a href="#">
               <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
-              <h5 class="text-danger name">{{user.user_info.firstname}} {{user.user_info.lastname}} </h5>
+              <h5 class="text-danger name">{{customer.firstname}} {{customer.lastname}} <!-- {{user.user_info.firstname}} {{user.user_info.lastname}}  --> </h5>
+              
             </a>
             <p class="description">
-              {{user.user_info.username}}
+              <!-- {{user.user_info.username}} -->
+              {{customer.username}}
             </p>
           </div>
           <p class="description">
-            {{user.user_info.description}}
+            <!-- {{user.user_info.description}} -->
+            {{customer.description}}
           </p>
         </div>
         <div class="card-footer">
           <div class="button-container">
             <div class="row">
               <div class="col-12">
-                  <small>{{user.user_info.address}}</small>
+                  <small>{{customer.address}} <!--{{user.user_info.address}}  --></small>
               </div>
               <div class="col-12">
-                  <small>{{user.user_info.phone}}</small>
+                  <small>{{customer.phone}} <!--{{user.user_info.phone}} --></small>
               </div>
               <div class="col-12">
-                  <small>{{user.user_info.email}}</small>
+                  <small>{{customer.email}} <!--{{user.user_info.email}} --></small>
               </div>
               <div>
                 <button (click)="openUserEditModal()">Edit User </button>  
