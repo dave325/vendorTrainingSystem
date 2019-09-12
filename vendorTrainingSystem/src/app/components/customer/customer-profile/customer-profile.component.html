@@ -6,17 +6,17 @@
           <div class="author">
             <a href="#">
               <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
-              <h5 class="text-danger name">{{customer.user.firstname}} {{customer.user.lastname}} <!-- {{user.user_info.firstname}} {{user.user_info.lastname}}  --> </h5>
+              <h5 class="text-danger name">{{customer.first_name}} {{customer.last_name}} <!-- {{user.user_info.firstname}} {{user.user_info.lastname}}  --> </h5>
               
             </a>
             <p class="description">
               <!-- {{user.user_info.username}} -->
-              {{customer.username}}
+              {{customer.username}} <!-- no username attr in database-->
             </p>
           </div>
           <p class="description">
             <!-- {{user.user_info.description}} -->
-            {{customer.description}}
+            {{customer.description}} <!-- no description attr in database-->
           </p>
         </div>
         <div class="card-footer">
@@ -46,18 +46,18 @@
         <p id="bottomContainerHeader">Upcoming Events</p>
       </h1>
       <div id="eventContainer" class="row">
-        <div class="col-sm-4 col-md-6 col-lg-4" *ngFor="let event of Events">
+        <div class="col-sm-4 col-md-6 col-lg-4" *ngFor="let event of allEvents">
           <div class="card border-danger text-white mb-3">
             <div class="card-body default-card-background">
-              <h5 class="card-text text-danger">{{ allEvent.name }}</h5>
-              <p class="card-title">{{ allEvent._id }} </p>
-              <p class="card-text">{{ allEvent.v_id }}</p>
-              <p class="card-text"> {{allEvent.end_time }}</p>
-              <p class="card-text">{{ allEvent.created_at }}</p>
-              <p class="card-text">{{ allEvent.status }}</p>
-              <p class="card-text">{{ allEvent.created_by }}</p>
-              <p class="card-text"> {{ allEvent.capacity }}</p>
-              <a class="text-danger" href="#"> {{ allEvent.url }}</a>
+              <h5 class="card-text text-danger">{{ event.name }}</h5> <!-- no name attr in database-->
+              <p class="card-title">{{ event._id }} </p>
+              <p class="card-text">{{ event.vendor_id }}</p>
+              <p class="card-text"> {{event.end_time }}</p> <!-- no end_time in event table-->
+              <p class="card-text">{{ event.created_at }}</p> 
+              <p class="card-text">{{ event.status }}</p> <!-- no status in event table-->
+              <p class="card-text">{{ event.created_by }}</p>
+              <p class="card-text"> {{ event.capacity }}</p>
+              <a class="text-danger" href="#"> {{ event.url }}</a>
             </div>
           </div>
 

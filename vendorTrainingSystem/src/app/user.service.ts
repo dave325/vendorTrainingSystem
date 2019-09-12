@@ -39,6 +39,8 @@ export class UserService {
     return JSON.parse(window.sessionStorage.getItem('user'));
   } 
 
+  //report vendor methods
+
   editProfile(user){
     return this.http.post('/api/vendor/editProfile', user, this.httpOptions).toPromise();
   }
