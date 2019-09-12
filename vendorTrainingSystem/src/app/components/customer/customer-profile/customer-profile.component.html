@@ -6,7 +6,7 @@
           <div class="author">
             <a href="#">
               <img class="avatar border-gray" src="assets/img/joe-gardner-2.jpg" alt="...">
-              <h5 class="text-danger name">{{customer.firstname}} {{customer.lastname}} <!-- {{user.user_info.firstname}} {{user.user_info.lastname}}  --> </h5>
+              <h5 class="text-danger name">{{customer.user.firstname}} {{customer.user.lastname}} <!-- {{user.user_info.firstname}} {{user.user_info.lastname}}  --> </h5>
               
             </a>
             <p class="description">
@@ -49,15 +49,15 @@
         <div class="col-sm-4 col-md-6 col-lg-4" *ngFor="let event of Events">
           <div class="card border-danger text-white mb-3">
             <div class="card-body default-card-background">
-              <h5 class="card-text text-danger">{{ event.name }}</h5>
-              <p class="card-title">{{ event._id }} </p>
-              <p class="card-text">{{ event.v_id }}</p>
-              <p class="card-text"> {{event.end_time }}</p>
-              <p class="card-text">{{ event.created_at }}</p>
-              <p class="card-text">{{ event.status }}</p>
-              <p class="card-text">{{ event.created_by }}</p>
-              <p class="card-text"> {{ event.capacity }}</p>
-              <a class="text-danger" href="#"> {{ event.url }}</a>
+              <h5 class="card-text text-danger">{{ allEvent.name }}</h5>
+              <p class="card-title">{{ allEvent._id }} </p>
+              <p class="card-text">{{ allEvent.v_id }}</p>
+              <p class="card-text"> {{allEvent.end_time }}</p>
+              <p class="card-text">{{ allEvent.created_at }}</p>
+              <p class="card-text">{{ allEvent.status }}</p>
+              <p class="card-text">{{ allEvent.created_by }}</p>
+              <p class="card-text"> {{ allEvent.capacity }}</p>
+              <a class="text-danger" href="#"> {{ allEvent.url }}</a>
             </div>
           </div>
 

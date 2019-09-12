@@ -5,6 +5,7 @@ import { UserEditComponent } from './../../../modals/user-edit/user-edit.compone
 import { DeleteProfileComponent } from './../../../modals/delete-profile/delete-profile.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/user.service';
+import { EventService} from '../../../services/EventService.service';
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
@@ -13,6 +14,7 @@ import { UserService } from 'src/app/user.service';
 export class CustomerProfileComponent implements OnInit {
   private customer;
   Events = dummy_events;
+  private allEvent;
   user_info = {
     username: "samsmith123",
     firstname: "Samantha",
@@ -22,9 +24,11 @@ export class CustomerProfileComponent implements OnInit {
     address: "123 York Ave."
   }
   constructor(private modalService:NgbModal,
-    private userService: UserService
+    private userService: UserService,
+    private eventService: EventService
     ) {
     this.customer = UserService.getUser(); 
+    this.allEvent = eventService.listEvents();
   }
 
   ngOnInit() {
