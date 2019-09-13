@@ -17,6 +17,13 @@ from django.contrib.auth import authenticate
 from django.contrib import auth
 from vendortraining.models.serializers import userSerializer
 
+
+from rest_framework.status import (
+    HTTP_400_BAD_REQUEST,
+    HTTP_404_NOT_FOUND,
+    HTTP_200_OK
+)
+
 class UserView(viewsets.ModelViewSet):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
@@ -56,6 +63,7 @@ class UserView(viewsets.ModelViewSet):
         @params methods 
         Get user object and all events associated with user
     '''
+
     @action(detail=False, methods=['post'])
     def profileDelete(self, request, *args, **kwargs):
         user_name = request.data.get("username")
@@ -101,3 +109,4 @@ class UserView(viewsets.ModelViewSet):
             event_id=self.request.data.get('event_id'))
         serializer_class = eventSerializer.EventSerializer(queryset, many=true)
         return Response(serializer_class.data)
+

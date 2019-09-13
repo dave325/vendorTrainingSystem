@@ -14,11 +14,7 @@ from rest_framework import permissions
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication, get_authorization_header
 from rest_framework.authtoken.models import Token
 
-from rest_framework.status import (
-    HTTP_400_BAD_REQUEST,
-    HTTP_404_NOT_FOUND,
-    HTTP_200_OK
-)
+
 
 class UserView(viewsets.ModelViewSet):
     """
@@ -49,45 +45,7 @@ class UserView(viewsets.ModelViewSet):
     #ToDO: input: user_id, output: token with role_id, email, and id
     #@action(detail=False, methods=['get'])
     
-    @action(detail=False, methods=['get'])
-    def refreshToken(self, request, *args, **kwargs):
-        auth = get_authorization_header(request).split()
-        if not auth: #or auth[0].lower() != b'token'
-            return Response(auth)
 
-        try:
-            token = auth[1].decode()
-        except UnicodeError:                                               
-            msg = _('Invalid token header. Token string should not contain invalid  characters.')
-            raise exceptions.AuthenticationFailed(msg)
-        
-        msg = {'Error': "Token mismatch",'status' :"401"}
-        try:
-            payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
-        except jwt.InvalidTokenError:
-            raise exceptions.AuthenticationFailed(msg)
-
-        user_id = payload['id']
-        email = payload['email']
-        role = payload['role']
-        exp = payload['exp']
-        
-        if not user_id or not email or not role or not exp:
-            return Response({'error': 'Invalid Token'}, status=HTTP_400_BAD_REQUEST)
-        
-        user = User.objects.get(id = user_id, email = email, role_id = role)
-        if not user:
-            return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
-        
-        new_payload = {
-            'id':user.id,
-            'email':user.email,
-            'role':user.role_id,
-            'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
-        }
-        
-        jwt_token = {'token': jwt.encode(payload, "SECRET_KEY", algorithm='HS256')}
-        return Response(jwt_token, status=HTTP_200_OK)
 
 
            

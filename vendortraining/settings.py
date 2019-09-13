@@ -83,7 +83,7 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH = {                
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'vendortraining.user.views.jwt_response_payload_handler',
+    'JWT_RESPONSE_PAYLOAD_HANDLER':  'rest_framework_jwt.utils.jwt_response_payload_handler',
 }
 #REST_FRAMEWORK = {
 #    'DEFAULT_AUTHENTICATION_CLASSES': [
