@@ -62,9 +62,13 @@ class UserAuthetication(viewsets.ModelViewSet):
             return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
         
         new_payload = {
-            'id':user.id,
+            #'id':user.id,
             #'email':user.email,
-            'role':user.role_id,
+            #'role':user.role_id,
+            #'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60),
+            'id': user['user'].get('id'),
+            #'email': user['user'].get('user').get('email'),
+            'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
         
@@ -102,7 +106,6 @@ class UserAuthetication(viewsets.ModelViewSet):
         except jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed(msg)
         # Retrieve payload information from token (May put this in a function)
-        email = payload['email']
         userid = payload['id']
         role = payload['role']
         try:
@@ -112,7 +115,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             )
             if not baseUser:
                 raise exceptions.AuthenticationFailed(msg)
-            if email == baseUser.user.email and userid == baseUser.id and role == baseUser.role.id:
+            if userid == baseUser.id and role == baseUser.role.id:
                 return [True, baseUser.role.id]
             else:
                 raise exceptions.AuthenticationFailed(
