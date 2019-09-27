@@ -41,6 +41,8 @@ class EventController(viewsets.ModelViewSet):
         serializer_class = eventSerializer.EventSerializer(queryset)
         return Response(serializer_class.data)
     # user joining ONE event. dont know if we should include the change to the attendance table somehow
+
+    #TODO: are we supposed to update a table when we join an event?
     @action(detail=False, methods=['post'])
     def joinEvent(self, request, *args, **kwargs):
         queryset = Event.objects.filter(
