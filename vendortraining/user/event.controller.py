@@ -16,9 +16,10 @@ class EventController(viewsets.ModelViewSet):
         serializer = eventSerializer.EventSerializer(events, many=True)
         return Response(serializer.data)
     
+    #TODO COMPLETE RETURN CALL
     @action(detail=False, methods=['post'])
     def editMyEvents(self, request, *args, **kwargs):
-        return()
+        return() 
     
     @action(detail=False, methods=['delete'])
     def event(self, request, *args, **kwargs):

@@ -6,7 +6,6 @@ from . import vendor
 from . import authetication
 from . import super
 from . import admin
-from . import views
 
 from django.urls import include, path
 
