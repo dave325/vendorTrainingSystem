@@ -11,6 +11,7 @@ from vendortraining.models.serializers import vendorSerializer, eventSerializer
 class EventController(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def viewMyEvents(self, request, *args, **kwargs):
+        # TODO: should  filter have a parameter passed to it?
         events = Event.objects.filter()
         serializer = eventSerializer.EventSerializer(events, many=True)
         return Response(serializer.data)

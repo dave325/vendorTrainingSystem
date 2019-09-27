@@ -43,6 +43,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             msg = _('Invalid token header. Token string should not contain invalid  characters.')
             raise exceptions.AuthenticationFailed(msg)
         
+        # TODO: Does msg need to be moved into the except block? or is it going to be used more globally later
         msg = {'Error': "Token mismatch",'status' :"401"}
         try:
             payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
@@ -67,7 +68,8 @@ class UserAuthetication(viewsets.ModelViewSet):
             #'role':user.role_id,
             #'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60),
             'id': user['user'].get('id'),
-            #'email': user['user'].get('user').get('email'),
+            # TODO: check if email is working properly
+            'email': user['user'].get('user').get('email'),
             'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
@@ -97,7 +99,6 @@ class UserAuthetication(viewsets.ModelViewSet):
         has all ofteh right information from decoded token
     '''
     def authenticate_credentials(self, token):
-        model = self.get_model()
         msg = {'Error': "Token mismatch", 'status': "401"}
         try:
             # Decode jet token
@@ -139,6 +140,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     def getToken(user):
         payload = {
             'id': user['user'].get('id'),
+            # TODO: check and uncomment email
             #'email': user['user'].get('user').get('email'),
             'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
@@ -158,6 +160,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     def login(self, request, *args, **kwargs):
         user_name = request.data.get("username")
         user_password = request.data.get("password")
+        # TODO: PYlint says that user_email is not being used. Remove?
         user_email = request.data.get('email')
         # authenticate user account.
         user = auth.authenticate(
@@ -210,6 +213,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         return data
     
 
+    #TODO: I don't think this comment should be here
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
     def register(self, request, *args, **kwargs):
