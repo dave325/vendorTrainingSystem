@@ -46,6 +46,7 @@ class UserView(viewsets.ModelViewSet):
     '''
     @action(detail=False, methods=['post'])
     def profile(self, request, *args, **kwargs):
+        return Response("Hi")
         user = User.objects.get(id=self.request.data.get('user_id'))
         user.events.all()
         token = Token.objects.get_or_create(user=user)

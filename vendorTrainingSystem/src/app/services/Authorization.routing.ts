@@ -35,7 +35,10 @@ export class AuthorizationService implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        
+            // Fail safe
+        if(AuthenticationService.getToken() == null){
+            return false;
+        }
         let url: string = state.url;
         if( route.url[0] && route.url[0].path.length == 0){
             return false;
