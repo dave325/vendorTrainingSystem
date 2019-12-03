@@ -9,8 +9,6 @@ import { User } from './models/User';
 })
 export class UserService {
 
-
-
   private readonly getUserRoute: string = "/getUser";
   private readonly setUserRoute: string = "/setUser";
 
@@ -22,7 +20,6 @@ export class UserService {
     private http: HttpClient,
     private auth: AuthenticationService
     ) {
-
 
     const headers = new HttpHeaders(
       {
@@ -39,8 +36,8 @@ export class UserService {
     return JSON.parse(window.sessionStorage.getItem('user'));
   } 
 
-  //report vendor methods
-
+  //TODO: Put in the report vendor methods
+  
   editProfile(user){
     return this.http.post('/api/vendor/editProfile', user, this.httpOptions).toPromise();
   }

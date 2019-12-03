@@ -12,3 +12,5 @@ class Member(models.Model):
     on_delete=models.CASCADE
   )
   company_role = models.CharField(max_length=100)
+
+  # member fields are not included, only foerign keys 

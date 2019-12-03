@@ -44,20 +44,6 @@ class UserView(viewsets.ModelViewSet):
         @params methods 
         Get user object and all events associated with user
     '''
-    @action(detail=False, methods=['post'])
-    def profile(self, request, *args, **kwargs):
-        return Response("Hi")
-        user = User.objects.get(id=self.request.data.get('user_id'))
-        user.events.all()
-        token = Token.objects.get_or_create(user=user)
-
-        try:
-            res = userSerializer.UserSerializer(user)
-            item = dict[res.data, token]
-            return Response(item)
-        except NameError:
-            return Response(user, status=status.HTTP_404_NOT_FOUND)
-
     # deleting a user profile
     '''
         @params detail
@@ -65,6 +51,8 @@ class UserView(viewsets.ModelViewSet):
         Get user object and all events associated with user
     '''
 
+    # TODO: should be in super
+    # TODO: check for vendor and member
     @action(detail=False, methods=['post'])
     def profileDelete(self, request, *args, **kwargs):
         user_name = request.data.get("username")
@@ -82,10 +70,9 @@ class UserView(viewsets.ModelViewSet):
 
 # editing a user profile
 # MAKE SURE TO USE THE RIGHT METHOD
+    # TODO: should be in super
     @action(detail=False, methods=['post'])
     def profileEdit(self, request, *args, **kwargs):
-        user_name = request.data.get("username")
-        user_password = request.data.get("password")
         #hash newPassword before storing it to user through set_password() function
         try:
             # Edit user information
@@ -103,11 +90,24 @@ class UserView(viewsets.ModelViewSet):
         except Exception:
             return Response("error")
 
-# view events currently signed up for by the user
-    @action(detail=False, methods=['post'])
-    def userEvents(self, request, *args, **kwargs):
-        queryset = Event.objects.filter(
-            event_id=self.request.data.get('event_id'))
-        serializer_class = eventSerializer.EventSerializer(queryset, many=true)
-        return Response(serializer_class.data)
 
+
+
+
+    #TODO: MOVED FROM VENDOR. MAKE SUR THIS WORKS -ED
+    #TODO Peter: it shows no error message when invalid input is given 
+    @action(detail=False, methods=['post'])
+    def editMyProfile(self, request, *args, **kwargs):
+        vendorProfile = Vendor.objects.filter(vendor_id = self.request.data.get('vendor_id'))
+        y = ""
+        d = {}
+        for x in self.request.data:
+            if len(str(self.request.data.get(x))) == 0: #If the data field is empty, we assume that we do not want to update that value----How it works:We convert to str to use len(). Probably a more elegent way of doing this though
+                continue
+            d[x] = self.request.data.get(x)
+            # x = str(self.request.data.get(x))
+            # y = y + " " + x
+
+        vendorProfile.update(**d)
+
+        return Response(y) # for debug-- not nessicary

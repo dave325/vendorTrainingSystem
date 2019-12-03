@@ -11,13 +11,15 @@ from vendortraining.models.serializers import vendorSerializer, eventSerializer
 class EventController(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'])
     def viewMyEvents(self, request, *args, **kwargs):
+        # TODO: should  filter have a parameter passed to it? Yes: need to have vendor/user id
         events = Event.objects.filter()
         serializer = eventSerializer.EventSerializer(events, many=True)
         return Response(serializer.data)
     
+    #TODO COMPLETE RETURN CALL
     @action(detail=False, methods=['post'])
     def editMyEvents(self, request, *args, **kwargs):
-        return()
+        return() 
     
     @action(detail=False, methods=['delete'])
     def event(self, request, *args, **kwargs):
@@ -39,6 +41,8 @@ class EventController(viewsets.ModelViewSet):
         serializer_class = eventSerializer.EventSerializer(queryset)
         return Response(serializer_class.data)
     # user joining ONE event. dont know if we should include the change to the attendance table somehow
+
+    #TODO: are we supposed to update a table when we join an event? Yes: call an api and update a table
     @action(detail=False, methods=['post'])
     def joinEvent(self, request, *args, **kwargs):
         queryset = Event.objects.filter(

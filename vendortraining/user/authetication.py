@@ -43,6 +43,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             msg = _('Invalid token header. Token string should not contain invalid  characters.')
             raise exceptions.AuthenticationFailed(msg)
         
+        # TODO: Does msg need to be moved into the except block? or is it going to be used more globally later
         msg = {'Error': "Token mismatch",'status' :"401"}
         try:
             payload = jwt.decode(token, "SECRET_KEY", algorithm='HS256')
@@ -57,14 +58,19 @@ class UserAuthetication(viewsets.ModelViewSet):
         if not user_id or not email or not role or not exp:
             return Response({'error': 'Invalid Token'}, status=HTTP_400_BAD_REQUEST)
         
-        user = User.objects.get(id = user_id, email = email, role_id = role)
+        user = UserInfo.objects.get(id = user_id, role_id = role)
         if not user:
             return Response({'error': 'Invalid Credentials'}, status=HTTP_404_NOT_FOUND)
         
         new_payload = {
-            'id':user.id,
-            'email':user.email,
-            'role':user.role_id,
+            #'id':user.id,
+            #'email':user.email,
+            #'role':user.role_id,
+            #'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60),
+            'id': user['user'].get('id'),
+            # TODO: check if email is working properly
+            'email': user['user'].get('user').get('email'),
+            'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
         
@@ -93,7 +99,6 @@ class UserAuthetication(viewsets.ModelViewSet):
         has all ofteh right information from decoded token
     '''
     def authenticate_credentials(self, token):
-        model = self.get_model()
         msg = {'Error': "Token mismatch", 'status': "401"}
         try:
             # Decode jet token
@@ -102,7 +107,6 @@ class UserAuthetication(viewsets.ModelViewSet):
         except jwt.InvalidTokenError:
             raise exceptions.AuthenticationFailed(msg)
         # Retrieve payload information from token (May put this in a function)
-        email = payload['email']
         userid = payload['id']
         role = payload['role']
         try:
@@ -112,7 +116,7 @@ class UserAuthetication(viewsets.ModelViewSet):
             )
             if not baseUser:
                 raise exceptions.AuthenticationFailed(msg)
-            if email == baseUser.user.email and userid == baseUser.id and role == baseUser.role.id:
+            if userid == baseUser.id and role == baseUser.role.id:
                 return [True, baseUser.role.id]
             else:
                 raise exceptions.AuthenticationFailed(
@@ -136,7 +140,8 @@ class UserAuthetication(viewsets.ModelViewSet):
     def getToken(user):
         payload = {
             'id': user['user'].get('id'),
-            'email': user['user'].get('user').get('email'),
+            # TODO: check and uncomment email
+            #'email': user['user'].get('user').get('email'),
             'role': user['user'].get('role_id'),
             'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=60)
         }
@@ -155,6 +160,7 @@ class UserAuthetication(viewsets.ModelViewSet):
     def login(self, request, *args, **kwargs):
         user_name = request.data.get("username")
         user_password = request.data.get("password")
+        # TODO: PYlint says that user_email is not being used. Remove?
         user_email = request.data.get('email')
         # authenticate user account.
         user = auth.authenticate(
@@ -207,6 +213,7 @@ class UserAuthetication(viewsets.ModelViewSet):
         return data
     
 
+    #TODO: I don't think this comment should be here
     # view events currently signed up for by the user
     @action(detail=False, methods=['post'])
     def register(self, request, *args, **kwargs):
@@ -231,6 +238,7 @@ class UserAuthetication(viewsets.ModelViewSet):
                 # check if user is created before creating auth_user
                 if user is not None:
                     # save user properties in auth_user table.
+                    # error!: if role is not defined in the database
                     new_user = UserInfo.objects.create(id=user.id, phone=request.data.get(
                         'phone'), role_id=role_id, address=request.data.get('address'), user_id=user.id)
                     # CHeck if user is a vendor
